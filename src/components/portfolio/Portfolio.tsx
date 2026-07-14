@@ -951,47 +951,7 @@ export function Portfolio() {
                   </p>
                 </motion.div>
               ))}
-          <Reveal delay={0.2}>
-  <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.06] to-white/[0.02] p-8 text-center">
-    <p className="text-3xl font-bold text-white">
-      Ready to Hire Me?
-    </p>
-
-    <p className="mt-4 mx-auto max-w-2xl text-sm leading-7 text-white/60">
-      I'm a Digital Marketing Executive passionate about performance marketing,
-      SEO, social media, paid advertising, and AI-powered marketing solutions.
-      I'm always excited to work on projects that create measurable business growth.
-    </p>
-
-    <div className="mt-8 flex flex-wrap justify-center gap-4">
-      <a
-        href="mailto:your@email.com"
-        className="rounded-xl bg-white px-6 py-3 text-sm font-semibold text-black transition hover:scale-105"
-      >
-        📧 Hire Me
-      </a>
-
-      <a
-        href="/resume.pdf"
-        target="_blank"
-        className="rounded-xl border border-white/20 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
-      >
-        📄 Download Resume
-      </a>
-    </div>
-  </div>
-</Reveal>
-            <Reveal delay={0.3}>
-              <a
-                href="mailto:theyashpawar92@gmail.com"
-                className="group inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-4 text-sm font-semibold text-ink transition-transform hover:scale-[1.02]"
-              >
-                <Send className="h-4 w-4" />
-                Send a message
-              </a>
-            </Reveal>
-          </div>
-        </div>
+          
 
         <div className="mx-auto mt-20 flex max-w-7xl flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-sm text-white/40 sm:flex-row">
           <span>© {new Date().getFullYear()} Yash Pawar — Digital Marketing Executive</span>
