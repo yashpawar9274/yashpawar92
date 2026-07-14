@@ -167,7 +167,7 @@ const experience = [
   {
     role: "Digital Marketing Executive",
     org: "OM Value Homes — Real Estate",
-    period: "2.5+ Years · Present",
+    period: "Dec 2024 · Present",
     points: [
       "Manage end-to-end digital marketing activities across social and paid channels.",
       "Plan and execute the monthly content calendar and campaign roadmap.",
@@ -453,7 +453,7 @@ export function Portfolio() {
               className="mt-12 grid max-w-lg grid-cols-3 gap-6 border-t border-white/10 pt-8"
             >
               {[
-                { k: "2.5+ Yrs", v: "Experience" },
+                { k: "1.5 Yrs", v: "Experience" },
                 { k: "Real Estate", v: "Industry" },
                 { k: "Palghar, MH", v: "Location" },
               ].map((s) => (
@@ -509,7 +509,7 @@ export function Portfolio() {
           <div className="space-y-8">
             <Reveal delay={0.1}>
               <p className="text-lg leading-relaxed text-foreground">
-                I'm a Digital Marketing Executive with 2.5+ years of hands-on experience in
+                I'm a Digital Marketing Executive with 1.5+ years of hands-on experience in
                 real-estate marketing. I manage the complete digital function — content
                 planning, creative design, Meta advertising, and reporting — with a focus on
                 generating qualified enquiries and building a consistent, trustworthy brand.
@@ -932,10 +932,10 @@ export function Portfolio() {
           <div className="grid gap-4">
             <StaggerGroup className="grid gap-4 sm:grid-cols-2">
               {[
-                { icon: Mail, label: "Email", value: "add-your-email@example.com" },
-                { icon: Phone, label: "Phone", value: "+91 00000 00000" },
-                { icon: Linkedin, label: "LinkedIn", value: "linkedin.com/in/your-profile" },
-                { icon: Globe, label: "Portfolio", value: "your-portfolio-website.com" },
+                { icon: Mail, label: "Email", value: "theyashpawar92@gmail.com" },
+                { icon: Phone, label: "Phone", value: "+91 73850 66631" },
+                { icon: Linkedin, label: "LinkedIn", value: "linkedin.com/in/yashpawar9274" },
+                { icon: Instagram, label: "Instagram", value: "instagram.com/theitsash" },
               ].map((c) => (
                 <motion.div
                   key={c.label}
@@ -951,23 +951,39 @@ export function Portfolio() {
                   </p>
                 </motion.div>
               ))}
-            </StaggerGroup>
-            <Reveal delay={0.2}>
-              <div className="flex items-center gap-5 rounded-2xl border border-white/10 bg-white/[0.04] p-6">
-                <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-xl border border-dashed border-white/20 bg-white/5">
-                  <QrCode className="h-8 w-8 text-white/50" />
-                </div>
-                <div>
-                  <p className="text-sm font-semibold">Scan to connect</p>
-                  <p className="mt-1 text-xs text-white/50">
-                    Add your QR code here linking to your portfolio or LinkedIn.
-                  </p>
-                </div>
-              </div>
-            </Reveal>
+          <Reveal delay={0.2}>
+  <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.06] to-white/[0.02] p-8 text-center">
+    <p className="text-3xl font-bold text-white">
+      Ready to Hire Me?
+    </p>
+
+    <p className="mt-4 mx-auto max-w-2xl text-sm leading-7 text-white/60">
+      I'm a Digital Marketing Executive passionate about performance marketing,
+      SEO, social media, paid advertising, and AI-powered marketing solutions.
+      I'm always excited to work on projects that create measurable business growth.
+    </p>
+
+    <div className="mt-8 flex flex-wrap justify-center gap-4">
+      <a
+        href="mailto:your@email.com"
+        className="rounded-xl bg-white px-6 py-3 text-sm font-semibold text-black transition hover:scale-105"
+      >
+        📧 Hire Me
+      </a>
+
+      <a
+        href="/resume.pdf"
+        target="_blank"
+        className="rounded-xl border border-white/20 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+      >
+        📄 Download Resume
+      </a>
+    </div>
+  </div>
+</Reveal>
             <Reveal delay={0.3}>
               <a
-                href="mailto:add-your-email@example.com"
+                href="mailto:theyashpawar92@gmail.com"
                 className="group inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-4 text-sm font-semibold text-ink transition-transform hover:scale-[1.02]"
               >
                 <Send className="h-4 w-4" />
