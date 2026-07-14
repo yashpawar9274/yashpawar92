@@ -952,6 +952,17 @@ export function Portfolio() {
                 </motion.div>
               ))}
             </StaggerGroup>
+
+            <Reveal delay={0.2}>
+              <a
+                href="mailto:theyashpawar92@gmail.com"
+                className="group inline-flex items-center justify-center gap-2 rounded-full bg-blue px-8 py-4 text-sm font-semibold text-white transition-all hover:bg-blue/90 hover:scale-[1.02] w-full sm:w-auto"
+              >
+                <Send className="h-4 w-4" />
+                Get in Touch
+                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </a>
+            </Reveal>
           </div>
         </div>
 
