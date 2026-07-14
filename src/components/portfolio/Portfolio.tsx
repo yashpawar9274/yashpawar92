@@ -950,14 +950,18 @@ export function Portfolio() {
                     {c.value}
                   </p>
                 </motion.div>
-                       ))}
-        </StaggerGroup>
-      </div>
-    </div>
+              ))}
+            </StaggerGroup>
+          </div>
+        </div>
 
-    <div className="mx-auto mt-20 flex max-w-7xl flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-sm text-white/40 sm:flex-row">
-      <span>
-        © {new Date().getFullYear()} Yash Pawar — Digital Marketing Executive
-      </span>
-      <span>Real Estate Digital Marketing · Palghar, Maharashtra</span>
+        <div className="mx-auto mt-20 flex max-w-7xl flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-sm text-white/40 sm:flex-row">
+          <span>
+            © {new Date().getFullYear()} Yash Pawar — Digital Marketing Executive
+          </span>
+          <span>Real Estate Digital Marketing · Palghar, Maharashtra</span>
+        </div>
+      </Section>
     </div>
+  );
+}
