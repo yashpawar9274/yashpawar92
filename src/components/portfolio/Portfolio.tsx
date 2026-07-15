@@ -50,6 +50,71 @@ import heroBg from "@/assets/hero-bg.jpg";
 import { Navbar } from "./Navbar";
 import { Reveal, StaggerGroup, staggerChild } from "./reveal";
 import { EditableImage } from "./EditableImage";
+import newspaperAsset from "@/assets/omvh/newspaper.asset.json";
+import gmbAsset from "@/assets/omvh/gmb.asset.json";
+import linesAsset from "@/assets/omvh/lines.asset.json";
+import dreamAsset from "@/assets/omvh/dream.asset.json";
+import beforeAfterAsset from "@/assets/omvh/beforeafter.asset.json";
+import comfortAsset from "@/assets/omvh/comfort.asset.json";
+import rentAsset from "@/assets/omvh/rent.asset.json";
+
+const omvhCreatives: {
+  src: string;
+  title: string;
+  tag: string;
+  desc: string;
+  aspect: string;
+}[] = [
+  {
+    src: dreamAsset.url,
+    title: "Your Dream Home",
+    tag: "Property Launch Creative",
+    desc: "1 BHK launch creative highlighting interiors, amenities, pricing, and RERA compliance for lead-form campaigns.",
+    aspect: "1 / 1",
+  },
+  {
+    src: newspaperAsset.url,
+    title: "Times of India Feature",
+    tag: "Print · Concept",
+    desc: "Newspaper-style concept creative used for social distribution — anchoring credibility with a familiar format.",
+    aspect: "4 / 5",
+  },
+  {
+    src: rentAsset.url,
+    title: "Rent vs. Own",
+    tag: "Awareness Campaign",
+    desc: "Long-form comparison creative built around the buyer psychology of renting versus building an asset.",
+    aspect: "16 / 10",
+  },
+  {
+    src: comfortAsset.url,
+    title: "Comfort · Built for Happiness",
+    tag: "Lifestyle Creative",
+    desc: "Lifestyle-led creative featuring living, kitchen, and bedroom shots with clear pricing and USPs.",
+    aspect: "1 / 1",
+  },
+  {
+    src: beforeAfterAsset.url,
+    title: "Before / After",
+    tag: "Storytelling Post",
+    desc: "Transformation creative — empty space vs. elegant living — used to communicate finish and craftsmanship.",
+    aspect: "16 / 10",
+  },
+  {
+    src: linesAsset.url,
+    title: "From Lines on Paper to a Life Well Built",
+    tag: "Brand Story",
+    desc: "Sketch-to-reality brand creative connecting design intent with the finished project on the ground.",
+    aspect: "4 / 5",
+  },
+  {
+    src: gmbAsset.url,
+    title: "Google Business Profile",
+    tag: "Local SEO · Reviews",
+    desc: "Google Business Profile creative reinforcing 5.0 rating, location, and direct call-to-action for local buyers.",
+    aspect: "4 / 5",
+  },
+];
 
 /* ---------------------------------- Shell --------------------------------- */
 
