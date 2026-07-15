@@ -49,6 +49,7 @@ import portrait from "@/assets/portrait.jpg";
 import heroBg from "@/assets/hero-bg.jpg";
 import { Navbar } from "./Navbar";
 import { Reveal, StaggerGroup, staggerChild } from "./reveal";
+import { EditableImage } from "./EditableImage";
 
 /* ---------------------------------- Shell --------------------------------- */
 
@@ -477,16 +478,17 @@ export function Portfolio() {
           >
             <div className="absolute -inset-4 rounded-[2rem] bg-blue/20 blur-3xl" />
             <div className="relative overflow-hidden rounded-[1.75rem] border border-white/15 bg-white/5 shadow-[var(--shadow-blue)]">
-              <img
-                src={portrait}
-                alt="Yash Pawar — professional photo placeholder"
-                width={1024}
-                height={1280}
-                className="aspect-[4/5] w-full object-cover"
+              <EditableImage
+                storageKey="hero-portrait"
+                fallback={portrait}
+                alt="Yash Pawar — professional portrait"
+                aspect="4 / 5"
+                imgClassName="h-full w-full object-cover"
+                label="Upload photo"
               />
-              <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between rounded-xl border border-white/15 bg-ink/60 px-4 py-3 backdrop-blur-md">
-                <span className="text-sm font-semibold">Yash Pawar</span>
-                <span className="text-xs text-blue-glow">Add your photo</span>
+              <div className="pointer-events-none absolute bottom-4 left-4 right-4 flex items-center justify-between rounded-xl border border-white/15 bg-ink/60 px-4 py-3 backdrop-blur-md">
+                <span className="text-sm font-semibold text-white">Yash Pawar</span>
+                <span className="text-xs text-blue-glow">Hover to replace</span>
               </div>
             </div>
           </motion.div>
