@@ -793,61 +793,91 @@ export function Portfolio() {
         </StaggerGroup>
       </Section>
 
-      {/* 6b — CASE STUDY MEDIA (uploads) */}
+      {/* 6b — CASE STUDY MEDIA */}
       <Section id="project-media" className="border-t border-border bg-secondary/30">
         <SectionHeader
           index="05.5"
           eyebrow="Case Study Media"
           title={
             <>
-              Real photos, creatives &amp; <span className="text-gradient-blue">brochures</span>
+              Real creatives from <span className="text-gradient-blue">OM Value Homes</span>
             </>
           }
-          intro="Upload your OM Value Homes visuals below. Files are stored locally in your browser — hover any tile and click Upload to swap it, or Reset to revert to the placeholder."
+          intro="A curated selection of live campaign creatives — property launches, awareness posts, lifestyle visuals, and local-SEO assets — all designed and shipped for OM Value Homes."
         />
 
-        <div className="mb-10 grid gap-6 lg:grid-cols-[1.4fr_1fr]">
-          <EditableImage
-            storageKey="omvh-hero"
-            fallback={heroBg}
-            alt="OM Value Homes — hero photo"
-            aspect="16 / 9"
-            className="card-premium rounded-2xl"
-            imgClassName="h-full w-full object-cover"
-            label="Upload hero photo"
-          />
-          <EditableImage
-            storageKey="omvh-brochure"
-            fallback={heroBg}
-            alt="OM Value Homes — brochure cover"
-            aspect="3 / 4"
-            className="card-premium rounded-2xl"
-            imgClassName="h-full w-full object-cover"
-            label="Upload brochure"
-          />
-        </div>
+        {/* Feature creative */}
+        <Reveal className="mb-8">
+          <div className="card-premium overflow-hidden rounded-2xl">
+            <div className="grid gap-0 lg:grid-cols-[1.2fr_1fr]">
+              <div className="relative aspect-[4/5] lg:aspect-auto lg:min-h-[520px]">
+                <img
+                  src={omvhCreatives[0].src}
+                  alt={omvhCreatives[0].title}
+                  className="absolute inset-0 h-full w-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+              <div className="flex flex-col justify-center gap-4 p-8 lg:p-12">
+                <span className="eyebrow">Featured Creative</span>
+                <h3 className="text-2xl font-bold lg:text-3xl">{omvhCreatives[0].title}</h3>
+                <p className="text-sm leading-relaxed text-muted-foreground lg:text-base">
+                  {omvhCreatives[0].desc}
+                </p>
+                <div className="mt-2 flex flex-wrap gap-2">
+                  {["Meta Ads", "Lead Form", "Canva", "1 BHK Launch"].map((t) => (
+                    <span
+                      key={t}
+                      className="rounded-full border border-border bg-background px-3 py-1 text-xs font-medium text-muted-foreground"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </Reveal>
 
+        {/* Creative grid */}
         <div className="mb-4 flex items-center justify-between">
-          <span className="eyebrow">Creatives</span>
+          <span className="eyebrow">Creative Gallery</span>
           <span className="text-xs text-muted-foreground">
-            Six slots · social posts, reels, carousels, posters
+            {omvhCreatives.length - 1} live creatives · social, awareness &amp; local SEO
           </span>
         </div>
-        <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-3">
-          {[1, 2, 3, 4, 5, 6].map((n) => (
-            <EditableImage
-              key={n}
-              storageKey={`omvh-creative-${n}`}
-              fallback={heroBg}
-              alt={`OM Value Homes creative ${n}`}
-              aspect="1 / 1"
-              className="card-premium rounded-2xl"
-              imgClassName="h-full w-full object-cover"
-              label={`Upload creative ${n}`}
-            />
+        <StaggerGroup className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {omvhCreatives.slice(1).map((c) => (
+            <motion.figure
+              key={c.title}
+              variants={staggerChild}
+              className="card-premium group overflow-hidden rounded-2xl"
+            >
+              <div
+                className="relative overflow-hidden bg-secondary"
+                style={{ aspectRatio: c.aspect }}
+              >
+                <img
+                  src={c.src}
+                  alt={c.title}
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                />
+              </div>
+              <figcaption className="p-5">
+                <span className="text-[10px] font-semibold uppercase tracking-widest text-blue">
+                  {c.tag}
+                </span>
+                <h4 className="mt-2 text-sm font-bold">{c.title}</h4>
+                <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
+                  {c.desc}
+                </p>
+              </figcaption>
+            </motion.figure>
           ))}
-        </div>
+        </StaggerGroup>
       </Section>
+
 
 
       {/* 7 — CAMPAIGN SHOWCASE */}
