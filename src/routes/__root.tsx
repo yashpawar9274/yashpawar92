@@ -77,34 +77,20 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Yash Pawar — Digital Marketing Executive Portfolio" },
-      {
-        name: "description",
-        content:
-          "Portfolio of Yash Pawar, Digital Marketing Executive with 2.5+ years in real estate digital marketing — Meta Ads, lead generation, content strategy, and AI-powered workflows.",
-      },
       { name: "author", content: "Yash Pawar" },
-      { property: "og:title", content: "Yash Pawar — Digital Marketing Executive" },
-      {
-        property: "og:description",
-        content:
-          "Real estate digital marketing specialist — Meta Ads, lead generation, content strategy, and AI-driven campaign execution.",
-      },
-      { property: "og:type", content: "profile" },
+      { property: "og:site_name", content: "Yash Pawar — Portfolio" },
+      { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
-      {
-        rel: "stylesheet",
-        href: appCss,
-      },
+      { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap",
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", type: "image/png", href: "/favicon.png" },
     ],
   }),
   shellComponent: RootShell,

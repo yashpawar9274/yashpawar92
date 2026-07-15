@@ -49,6 +49,7 @@ import portrait from "@/assets/portrait.jpg";
 import heroBg from "@/assets/hero-bg.jpg";
 import { Navbar } from "./Navbar";
 import { Reveal, StaggerGroup, staggerChild } from "./reveal";
+import { EditableImage } from "./EditableImage";
 
 /* ---------------------------------- Shell --------------------------------- */
 
@@ -477,16 +478,17 @@ export function Portfolio() {
           >
             <div className="absolute -inset-4 rounded-[2rem] bg-blue/20 blur-3xl" />
             <div className="relative overflow-hidden rounded-[1.75rem] border border-white/15 bg-white/5 shadow-[var(--shadow-blue)]">
-              <img
-                src={portrait}
-                alt="Yash Pawar — professional photo placeholder"
-                width={1024}
-                height={1280}
-                className="aspect-[4/5] w-full object-cover"
+              <EditableImage
+                storageKey="hero-portrait"
+                fallback={portrait}
+                alt="Yash Pawar — professional portrait"
+                aspect="4 / 5"
+                imgClassName="h-full w-full object-cover"
+                label="Upload photo"
               />
-              <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between rounded-xl border border-white/15 bg-ink/60 px-4 py-3 backdrop-blur-md">
-                <span className="text-sm font-semibold">Yash Pawar</span>
-                <span className="text-xs text-blue-glow">Add your photo</span>
+              <div className="pointer-events-none absolute bottom-4 left-4 right-4 flex items-center justify-between rounded-xl border border-white/15 bg-ink/60 px-4 py-3 backdrop-blur-md">
+                <span className="text-sm font-semibold text-white">Yash Pawar</span>
+                <span className="text-xs text-blue-glow">Hover to replace</span>
               </div>
             </div>
           </motion.div>
@@ -725,6 +727,63 @@ export function Portfolio() {
           ))}
         </StaggerGroup>
       </Section>
+
+      {/* 6b — CASE STUDY MEDIA (uploads) */}
+      <Section id="project-media" className="border-t border-border bg-secondary/30">
+        <SectionHeader
+          index="05.5"
+          eyebrow="Case Study Media"
+          title={
+            <>
+              Real photos, creatives &amp; <span className="text-gradient-blue">brochures</span>
+            </>
+          }
+          intro="Upload your OM Value Homes visuals below. Files are stored locally in your browser — hover any tile and click Upload to swap it, or Reset to revert to the placeholder."
+        />
+
+        <div className="mb-10 grid gap-6 lg:grid-cols-[1.4fr_1fr]">
+          <EditableImage
+            storageKey="omvh-hero"
+            fallback={heroBg}
+            alt="OM Value Homes — hero photo"
+            aspect="16 / 9"
+            className="card-premium rounded-2xl"
+            imgClassName="h-full w-full object-cover"
+            label="Upload hero photo"
+          />
+          <EditableImage
+            storageKey="omvh-brochure"
+            fallback={heroBg}
+            alt="OM Value Homes — brochure cover"
+            aspect="3 / 4"
+            className="card-premium rounded-2xl"
+            imgClassName="h-full w-full object-cover"
+            label="Upload brochure"
+          />
+        </div>
+
+        <div className="mb-4 flex items-center justify-between">
+          <span className="eyebrow">Creatives</span>
+          <span className="text-xs text-muted-foreground">
+            Six slots · social posts, reels, carousels, posters
+          </span>
+        </div>
+        <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-3">
+          {[1, 2, 3, 4, 5, 6].map((n) => (
+            <EditableImage
+              key={n}
+              storageKey={`omvh-creative-${n}`}
+              fallback={heroBg}
+              alt={`OM Value Homes creative ${n}`}
+              aspect="1 / 1"
+              className="card-premium rounded-2xl"
+              imgClassName="h-full w-full object-cover"
+              label={`Upload creative ${n}`}
+            />
+          ))}
+        </div>
+      </Section>
+
 
       {/* 7 — CAMPAIGN SHOWCASE */}
       <Section id="campaigns" className="bg-secondary/40">
