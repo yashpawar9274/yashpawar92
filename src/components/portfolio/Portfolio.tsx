@@ -728,6 +728,63 @@ export function Portfolio() {
         </StaggerGroup>
       </Section>
 
+      {/* 6b — CASE STUDY MEDIA (uploads) */}
+      <Section id="project-media" className="border-t border-border bg-secondary/30">
+        <SectionHeader
+          index="05.5"
+          eyebrow="Case Study Media"
+          title={
+            <>
+              Real photos, creatives &amp; <span className="text-gradient-blue">brochures</span>
+            </>
+          }
+          intro="Upload your OM Value Homes visuals below. Files are stored locally in your browser — hover any tile and click Upload to swap it, or Reset to revert to the placeholder."
+        />
+
+        <div className="mb-10 grid gap-6 lg:grid-cols-[1.4fr_1fr]">
+          <EditableImage
+            storageKey="omvh-hero"
+            fallback={heroBg}
+            alt="OM Value Homes — hero photo"
+            aspect="16 / 9"
+            className="card-premium rounded-2xl"
+            imgClassName="h-full w-full object-cover"
+            label="Upload hero photo"
+          />
+          <EditableImage
+            storageKey="omvh-brochure"
+            fallback={heroBg}
+            alt="OM Value Homes — brochure cover"
+            aspect="3 / 4"
+            className="card-premium rounded-2xl"
+            imgClassName="h-full w-full object-cover"
+            label="Upload brochure"
+          />
+        </div>
+
+        <div className="mb-4 flex items-center justify-between">
+          <span className="eyebrow">Creatives</span>
+          <span className="text-xs text-muted-foreground">
+            Six slots · social posts, reels, carousels, posters
+          </span>
+        </div>
+        <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-3">
+          {[1, 2, 3, 4, 5, 6].map((n) => (
+            <EditableImage
+              key={n}
+              storageKey={`omvh-creative-${n}`}
+              fallback={heroBg}
+              alt={`OM Value Homes creative ${n}`}
+              aspect="1 / 1"
+              className="card-premium rounded-2xl"
+              imgClassName="h-full w-full object-cover"
+              label={`Upload creative ${n}`}
+            />
+          ))}
+        </div>
+      </Section>
+
+
       {/* 7 — CAMPAIGN SHOWCASE */}
       <Section id="campaigns" className="bg-secondary/40">
         <SectionHeader
