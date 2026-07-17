@@ -846,10 +846,11 @@ export function Portfolio() {
               <div className="relative aspect-[4/5] lg:aspect-auto lg:min-h-[520px]">
                 <img
                   src={omvhCreatives[0].src}
-                  alt={omvhCreatives[0].title}
+                  alt={omvhCreatives[0].alt}
                   className="absolute inset-0 h-full w-full object-cover"
                   loading="lazy"
                 />
+                <figcaption className="sr-only">{omvhCreatives[0].desc}</figcaption>
               </div>
               <div className="flex flex-col justify-center gap-4 p-8 lg:p-12">
                 <span className="eyebrow">Featured Creative</span>
