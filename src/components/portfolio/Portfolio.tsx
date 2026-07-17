@@ -51,16 +51,27 @@ import { Navbar } from "./Navbar";
 import { Reveal, StaggerGroup, staggerChild } from "./reveal";
 import { EditableImage } from "./EditableImage";
 
-// Direct image imports from public or assets folder
-// These will be available at production URLs like /images/dream-home.png
+// Real OM Value Homes creatives — served from the Lovable CDN with absolute
+// URLs so they load on any host (Lovable, Vercel, custom domain, etc.).
+import dreamAsset from "@/assets/omvh/dream.asset.json";
+import newspaperAsset from "@/assets/omvh/newspaper.asset.json";
+import rentAsset from "@/assets/omvh/rent.asset.json";
+import beforeAfterAsset from "@/assets/omvh/beforeafter.asset.json";
+import comfortAsset from "@/assets/omvh/comfort.asset.json";
+import linesAsset from "@/assets/omvh/lines.asset.json";
+import gmbAsset from "@/assets/omvh/gmb.asset.json";
+
+const ASSET_HOST = "https://project--2b272c81-12e2-4f7d-954c-9b45799b6698.lovable.app";
+const abs = (u: string) => (u.startsWith("http") ? u : `${ASSET_HOST}${u}`);
+
 const IMAGES = {
-  dream: "/images/omvh/dream-home.png",
-  newspaper: "/images/omvh/newspaper-ad.png",
-  rent: "/images/omvh/rent-vs-own.png",
-  beforeAfter: "/images/omvh/beforeafter.png",
-  comfort: "/images/omvh/comfort.png",
-  lines: "/images/omvh/lines.png",
-  gmb: "/images/omvh/gmb.png",
+  dream: abs(dreamAsset.url),
+  newspaper: abs(newspaperAsset.url),
+  rent: abs(rentAsset.url),
+  beforeAfter: abs(beforeAfterAsset.url),
+  comfort: abs(comfortAsset.url),
+  lines: abs(linesAsset.url),
+  gmb: abs(gmbAsset.url),
 };
 
 const omvhCreatives: {
@@ -68,55 +79,63 @@ const omvhCreatives: {
   title: string;
   tag: string;
   desc: string;
+  alt: string;
   aspect: string;
 }[] = [
   {
     src: IMAGES.dream,
-    title: "Your Dream Home",
+    title: "Your Dream Home — 1 BHK Launch",
     tag: "Property Launch Creative",
-    desc: "1 BHK launch creative highlighting interiors, amenities, pricing, and RERA compliance for lead-form campaigns.",
+    desc: "Lead-form campaign creative for the OM Value Homes 1 BHK launch — interior photography, pricing, amenities, and RERA compliance combined into a single conversion-focused visual.",
+    alt: "OM Value Homes 1 BHK launch creative titled 'Your Dream Home' showing modern interior photography, unit pricing, and key amenities for Meta lead-form ads.",
     aspect: "1 / 1",
   },
   {
     src: IMAGES.newspaper,
-    title: "Times of India Feature",
-    tag: "Print · Concept",
-    desc: "Newspaper-style concept creative used for social distribution — anchoring credibility with a familiar format.",
+    title: "Times-of-India Style Print Concept",
+    tag: "Print · Social Concept",
+    desc: "Newspaper-style concept creative distributed on Meta to borrow the credibility of a familiar editorial format — used to warm up cold audiences before retargeting.",
+    alt: "Newspaper-style OM Value Homes ad held by a smiling delivery courier on a bicycle, designed as a social credibility concept for Meta campaigns.",
     aspect: "4 / 5",
   },
   {
     src: IMAGES.rent,
-    title: "Rent vs. Own",
+    title: "Stop Paying Rent — Rent vs. Own",
     tag: "Awareness Campaign",
-    desc: "Long-form comparison creative built around the buyer psychology of renting versus building an asset.",
+    desc: "Long-form awareness creative built around the buyer psychology of renting versus building an asset — designed for save-and-share behaviour on Instagram.",
+    alt: "'Stop Paying Rent' awareness creative for OM Value Homes comparing monthly rent outflow versus home-ownership EMIs in a side-by-side layout.",
     aspect: "16 / 10",
   },
   {
     src: IMAGES.comfort,
-    title: "Comfort · Built for Happiness",
+    title: "Designed for Comfort — Lifestyle Visual",
     tag: "Lifestyle Creative",
-    desc: "Lifestyle-led creative featuring living, kitchen, and bedroom shots with clear pricing and USPs.",
+    desc: "Lifestyle-led creative featuring real living, kitchen, and bedroom photography with clear pricing and USPs — used in the mid-funnel to build aspiration.",
+    alt: "'Designed for Comfort' OM Value Homes lifestyle creative featuring a modern living room, clean typography, and pricing overlay.",
     aspect: "1 / 1",
   },
   {
     src: IMAGES.beforeAfter,
-    title: "Before / After",
+    title: "Before / After — Space to Home",
     tag: "Storytelling Post",
-    desc: "Transformation creative — empty space vs. elegant living — used to communicate finish and craftsmanship.",
+    desc: "Transformation creative — bare shell vs. fully furnished living room — used to communicate finish quality and possession readiness to serious buyers.",
+    alt: "OM Value Homes before-and-after creative showing an empty apartment shell on the left and the same space fully furnished as a living room on the right.",
     aspect: "16 / 10",
   },
   {
     src: IMAGES.lines,
     title: "From Lines on Paper to a Life Well Built",
     tag: "Brand Story",
-    desc: "Sketch-to-reality brand creative connecting design intent with the finished project on the ground.",
+    desc: "Sketch-to-reality brand creative connecting architectural design intent with the finished project on the ground — the anchor visual for brand-story campaigns.",
+    alt: "OM Value Homes brand creative titled 'From lines on paper to a life well built' showing an architectural pencil sketch transitioning into a photograph of the finished building.",
     aspect: "4 / 5",
   },
   {
     src: IMAGES.gmb,
-    title: "Google Business Profile",
+    title: "Google Business Profile — Local SEO",
     tag: "Local SEO · Reviews",
-    desc: "Google Business Profile creative reinforcing 5.0 rating, location, and direct call-to-action for local buyers.",
+    desc: "Google Business Profile creative reinforcing the 5.0 rating, project location, photos, and direct call CTA — the last-click asset for local Palghar buyers searching by intent.",
+    alt: "Mockup of the OM Value Homes Google Business Profile displaying a 5.0-star rating, project photos, address, and a call button — highlighting local SEO work.",
     aspect: "4 / 5",
   },
 ];
