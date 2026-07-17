@@ -75,7 +75,10 @@ export const unlockAdmin = createServerFn({ method: "POST" })
   .handler(async ({ data }) => {
     const expected = process.env.ADMIN_PASSCODE;
     if (!expected) throw new Error("ADMIN_PASSCODE not configured");
-    if (!passcodeMatches(data.passcode, expected)) return { ok: false as const };
+    const { createHash, timingSafeEqual } = await import("node:crypto");
+    const a = createHash("sha256").update(data.passcode, "utf8").digest();
+    const b = createHash("sha256").update(expected, "utf8").digest();
+    if (!timingSafeEqual(a, b)) return { ok: false as const };
     const session = await useSession<AdminSession>(getSessionConfig());
     await session.update({ unlocked: true });
     return { ok: true as const };
