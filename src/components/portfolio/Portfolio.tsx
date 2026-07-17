@@ -474,6 +474,12 @@ const goals = [
 /* ---------------------------------- Page ---------------------------------- */
 
 export function Portfolio() {
+  const fetchUploads = useServerFn(listOmvhUploads);
+  const { data: uploads = [] } = useQuery({
+    queryKey: ["omvh-uploads"],
+    queryFn: () => fetchUploads(),
+    staleTime: 60_000,
+  });
   return (
     <div id="top" className="overflow-x-hidden bg-background">
       <Navbar />
