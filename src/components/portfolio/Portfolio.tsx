@@ -877,7 +877,7 @@ export function Portfolio() {
         <div className="mb-4 flex items-center justify-between">
           <span className="eyebrow">Creative Gallery</span>
           <span className="text-xs text-muted-foreground">
-            {omvhCreatives.length - 1} live creatives · social, awareness &amp; local SEO
+            {omvhCreatives.length - 1 + uploads.length} live creatives · social, awareness &amp; local SEO
           </span>
         </div>
         <StaggerGroup className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -893,7 +893,7 @@ export function Portfolio() {
               >
                 <img
                   src={c.src}
-                  alt={c.title}
+                  alt={c.alt}
                   loading="lazy"
                   className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                 />
@@ -905,6 +905,34 @@ export function Portfolio() {
                 <h4 className="mt-2 text-sm font-bold">{c.title}</h4>
                 <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
                   {c.desc}
+                </p>
+              </figcaption>
+            </motion.figure>
+          ))}
+          {uploads.map((u) => (
+            <motion.figure
+              key={u.id}
+              variants={staggerChild}
+              className="card-premium group overflow-hidden rounded-2xl"
+            >
+              <div
+                className="relative overflow-hidden bg-secondary"
+                style={{ aspectRatio: u.aspect }}
+              >
+                <img
+                  src={u.url}
+                  alt={u.alt}
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                />
+              </div>
+              <figcaption className="p-5">
+                <span className="text-[10px] font-semibold uppercase tracking-widest text-blue">
+                  {u.tag}
+                </span>
+                <h4 className="mt-2 text-sm font-bold">{u.title}</h4>
+                <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
+                  {u.caption}
                 </p>
               </figcaption>
             </motion.figure>
