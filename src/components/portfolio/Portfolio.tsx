@@ -1,5 +1,8 @@
 import type { ReactNode } from "react";
 import { motion } from "motion/react";
+import { useQuery } from "@tanstack/react-query";
+import { useServerFn } from "@tanstack/react-start";
+import { listOmvhUploads } from "@/lib/omvh.functions";
 import {
   Radar,
   RadarChart,
@@ -471,6 +474,12 @@ const goals = [
 /* ---------------------------------- Page ---------------------------------- */
 
 export function Portfolio() {
+  const fetchUploads = useServerFn(listOmvhUploads);
+  const { data: uploads = [] } = useQuery({
+    queryKey: ["omvh-uploads"],
+    queryFn: () => fetchUploads(),
+    staleTime: 60_000,
+  });
   return (
     <div id="top" className="overflow-x-hidden bg-background">
       <Navbar />
@@ -837,10 +846,11 @@ export function Portfolio() {
               <div className="relative aspect-[4/5] lg:aspect-auto lg:min-h-[520px]">
                 <img
                   src={omvhCreatives[0].src}
-                  alt={omvhCreatives[0].title}
+                  alt={omvhCreatives[0].alt}
                   className="absolute inset-0 h-full w-full object-cover"
                   loading="lazy"
                 />
+                <figcaption className="sr-only">{omvhCreatives[0].desc}</figcaption>
               </div>
               <div className="flex flex-col justify-center gap-4 p-8 lg:p-12">
                 <span className="eyebrow">Featured Creative</span>
@@ -867,7 +877,7 @@ export function Portfolio() {
         <div className="mb-4 flex items-center justify-between">
           <span className="eyebrow">Creative Gallery</span>
           <span className="text-xs text-muted-foreground">
-            {omvhCreatives.length - 1} live creatives · social, awareness &amp; local SEO
+            {omvhCreatives.length - 1 + uploads.length} live creatives · social, awareness &amp; local SEO
           </span>
         </div>
         <StaggerGroup className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -883,7 +893,7 @@ export function Portfolio() {
               >
                 <img
                   src={c.src}
-                  alt={c.title}
+                  alt={c.alt}
                   loading="lazy"
                   className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                 />
@@ -895,6 +905,34 @@ export function Portfolio() {
                 <h4 className="mt-2 text-sm font-bold">{c.title}</h4>
                 <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
                   {c.desc}
+                </p>
+              </figcaption>
+            </motion.figure>
+          ))}
+          {uploads.map((u) => (
+            <motion.figure
+              key={u.id}
+              variants={staggerChild}
+              className="card-premium group overflow-hidden rounded-2xl"
+            >
+              <div
+                className="relative overflow-hidden bg-secondary"
+                style={{ aspectRatio: u.aspect }}
+              >
+                <img
+                  src={u.url}
+                  alt={u.alt}
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                />
+              </div>
+              <figcaption className="p-5">
+                <span className="text-[10px] font-semibold uppercase tracking-widest text-blue">
+                  {u.tag}
+                </span>
+                <h4 className="mt-2 text-sm font-bold">{u.title}</h4>
+                <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
+                  {u.caption}
                 </p>
               </figcaption>
             </motion.figure>

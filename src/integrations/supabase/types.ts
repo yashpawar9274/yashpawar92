@@ -14,7 +14,42 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      omvh_uploads: {
+        Row: {
+          alt: string
+          aspect: string
+          caption: string
+          created_at: string
+          id: string
+          sort_order: number
+          storage_path: string
+          tag: string
+          title: string
+        }
+        Insert: {
+          alt: string
+          aspect?: string
+          caption: string
+          created_at?: string
+          id?: string
+          sort_order?: number
+          storage_path: string
+          tag?: string
+          title: string
+        }
+        Update: {
+          alt?: string
+          aspect?: string
+          caption?: string
+          created_at?: string
+          id?: string
+          sort_order?: number
+          storage_path?: string
+          tag?: string
+          title?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
