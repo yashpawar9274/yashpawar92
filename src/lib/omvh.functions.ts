@@ -1,6 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
 import { useSession } from "@tanstack/react-start/server";
-import { createHash, timingSafeEqual } from "node:crypto";
 
 export type OmvhUpload = {
   id: string;
@@ -30,12 +29,6 @@ function getSessionConfig() {
       path: "/",
     },
   };
-}
-
-function passcodeMatches(input: string, expected: string): boolean {
-  const a = createHash("sha256").update(input, "utf8").digest();
-  const b = createHash("sha256").update(expected, "utf8").digest();
-  return timingSafeEqual(a, b);
 }
 
 async function requireAdmin() {
