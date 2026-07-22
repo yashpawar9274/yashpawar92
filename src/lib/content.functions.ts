@@ -25,6 +25,8 @@ async function requireAdmin() {
   if (!session.data.unlocked) throw new Response("Unauthorized", { status: 401 });
 }
 
+type Json = null | boolean | number | string | Json[] | { [k: string]: Json };
+
 /** Public — returns { key: data } map for all sections. */
 export const getSiteContent = createServerFn({ method: "GET" }).handler(async () => {
   const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
@@ -32,8 +34,8 @@ export const getSiteContent = createServerFn({ method: "GET" }).handler(async ()
     .from("site_content")
     .select("key, data");
   if (error) throw new Error(error.message);
-  const map: Record<string, unknown> = {};
-  for (const row of data ?? []) map[row.key] = row.data;
+  const map: Record<string, Json> = {};
+  for (const row of data ?? []) map[row.key] = row.data as Json;
   return map;
 });
 
