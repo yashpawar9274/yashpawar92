@@ -81,7 +81,10 @@ export const updateOmvhUpload = createServerFn({ method: "POST" })
   .handler(async ({ data }) => {
     await requireAdmin();
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-    const patch: Record<string, unknown> = {};
+    const patch: {
+      title?: string; tag?: string; caption?: string; alt?: string;
+      aspect?: string; sort_order?: number;
+    } = {};
     if (data.title !== undefined) patch.title = data.title.slice(0, 120);
     if (data.tag !== undefined) patch.tag = data.tag.slice(0, 60);
     if (data.caption !== undefined) patch.caption = data.caption.slice(0, 500);
