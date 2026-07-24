@@ -85,6 +85,7 @@ const TABS: { id: Tab; label: string }[] = [
   { id: "ai", label: "AI Workflow" },
   { id: "strengths", label: "Strengths" },
   { id: "goals", label: "Future Goals" },
+  { id: "application", label: "Application Summary" },
   { id: "contact", label: "Contact" },
 ];
 

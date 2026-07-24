@@ -45,6 +45,22 @@ export type SiteContent = {
   ai: { icon: IconName; title: string; desc: string }[];
   strengths: { icon: IconName; title: string }[];
   goals: { tag: string; title: string; desc: string }[];
+  application: {
+    eyebrow: string;
+    title: string;
+    summary: string;
+    positioning: string;
+    highlights: string[];
+    fit: { icon: IconName; title: string; desc: string }[];
+    preferredRoles: string[];
+    preferredIndustries: string[];
+    preferredLocations: string[];
+    workMode: string;
+    availability: string;
+    noticePeriod: string;
+    salaryExpectation: string;
+    ctaLabel: string;
+  };
   contact: {
     intro: string;
     location: string;
@@ -211,6 +227,47 @@ export const DEFAULT_CONTENT: SiteContent = {
     { tag: "Certifications", title: "Pursue recognised marketing certifications", desc: "Meta Blueprint, Google Ads, and Google Analytics certifications to validate and expand core skills." },
     { tag: "Growth Plan", title: "Build a data-driven marketing system", desc: "Move toward measurable, repeatable campaign frameworks that scale results with efficiency in any industry." },
   ],
+  application: {
+    eyebrow: "Job Application Summary",
+    title: "Why I'm a strong fit for Digital Marketing Executive roles",
+    summary:
+      "Digital Marketing Executive with 2.5+ years of hands-on experience owning the full digital function — content, creative, paid campaigns, lead generation, local SEO, and reporting. Proven in real estate, ready to apply the same playbook across B2C, services, e-commerce, and product brands.",
+    positioning:
+      "I combine campaign thinking, in-house creative design, and AI-assisted workflows to run lean, lead-focused digital marketing — the exact profile teams need to grow qualified pipeline without waiting on external agencies.",
+    highlights: [
+      "Full ownership of digital marketing at OM Value Homes",
+      "Meta Ads + lead-gen forms with sales-team handoff",
+      "Monthly content calendars across Instagram & Facebook",
+      "In-house creative design in Canva (posts, reels, brochures)",
+      "AI workflows with ChatGPT / Claude / Gemini for speed",
+      "Local SEO via Google Business Profile & on-page basics",
+    ],
+    fit: [
+      { icon: "Target", title: "Performance mindset", desc: "Every campaign is tied to a clear objective — leads, reach, or engagement — and reviewed against cost and quality, not vanity metrics." },
+      { icon: "Palette", title: "Creative + copy in one hand", desc: "I design the creative and write the copy myself, so campaigns ship faster and stay consistent with the brand." },
+      { icon: "Sparkles", title: "AI-native workflow", desc: "I use AI tools daily for research, ideation, and copy variations — freeing time for strategy, testing, and optimisation." },
+      { icon: "LineChart", title: "Data-led decisions", desc: "Comfortable reading Meta reports, CRM data, and Sheets to spot what's working and reallocate budget or creative accordingly." },
+      { icon: "Handshake", title: "Cross-team collaboration", desc: "Worked directly with sales, leadership, and vendors — I understand how marketing connects to revenue and reporting." },
+      { icon: "GraduationCap", title: "Fast learner", desc: "Comfortable moving into new industries; I map buyer journey, audience, and channels before touching creative or budget." },
+    ],
+    preferredRoles: [
+      "Digital Marketing Executive",
+      "Senior Digital Marketing Executive",
+      "Performance Marketing Executive",
+      "Social Media & Content Executive",
+    ],
+    preferredIndustries: [
+      "Real Estate", "B2C Services", "E-commerce", "D2C Brands", "Ed-Tech", "Healthcare", "Hospitality",
+    ],
+    preferredLocations: [
+      "Mumbai", "Thane", "Palghar", "Vasai–Virar", "Remote (India)", "Hybrid",
+    ],
+    workMode: "Full-time · On-site / Hybrid / Remote",
+    availability: "Actively interviewing",
+    noticePeriod: "Immediate to 15 days",
+    salaryExpectation: "As per role & industry standards",
+    ctaLabel: "Discuss this role",
+  },
   contact: {
     intro: "Open to Digital Marketing Executive and Senior Digital Marketing Executive roles across real estate, B2C, services, and product brands. Let's connect.",
     location: "Palghar (W), Maharashtra",
@@ -225,7 +282,7 @@ export const DEFAULT_CONTENT: SiteContent = {
 export type ContentKey = keyof SiteContent;
 export const CONTENT_KEYS: ContentKey[] = [
   "hero", "about", "experience", "skills", "process", "project",
-  "campaigns", "creative", "tools", "ai", "strengths", "goals", "contact",
+  "campaigns", "creative", "tools", "ai", "strengths", "goals", "application", "contact",
 ];
 
 export function mergeContent(overrides: Partial<Record<string, unknown>> | null | undefined): SiteContent {
