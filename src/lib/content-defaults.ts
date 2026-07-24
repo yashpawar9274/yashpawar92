@@ -45,6 +45,22 @@ export type SiteContent = {
   ai: { icon: IconName; title: string; desc: string }[];
   strengths: { icon: IconName; title: string }[];
   goals: { tag: string; title: string; desc: string }[];
+  application: {
+    eyebrow: string;
+    title: string;
+    summary: string;
+    positioning: string;
+    highlights: string[];
+    fit: { icon: IconName; title: string; desc: string }[];
+    preferredRoles: string[];
+    preferredIndustries: string[];
+    preferredLocations: string[];
+    workMode: string;
+    availability: string;
+    noticePeriod: string;
+    salaryExpectation: string;
+    ctaLabel: string;
+  };
   contact: {
     intro: string;
     location: string;
