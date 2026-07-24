@@ -272,7 +272,7 @@ export function Portfolio() {
 
       {/* 6 — FEATURED PROJECT */}
       <Section id="project">
-        <SectionHeader index="05" eyebrow="Featured Project" title={<>Case Study: <span className="text-gradient-blue">OM Value Homes</span></>} intro="End-to-end ownership of digital marketing for a real-estate brand — from strategy and creatives to campaigns and reporting." />
+        <SectionHeader index="05" eyebrow="Featured Project" title={<>Case Study: <span className="text-gradient-blue">OM Value Homes</span></>} intro="A real-estate case study demonstrating end-to-end digital marketing — from strategy and creatives to campaigns and reporting — using skills that transfer to B2C, services, and product brands." />
         <StaggerGroup className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {c.project.map((b) => (
             <motion.div key={b.title} variants={staggerChild} className={`card-premium card-premium-hover p-7 ${b.title === "Results" ? "border-dashed border-blue/40 bg-blue/[0.03]" : ""}`}>
@@ -288,7 +288,7 @@ export function Portfolio() {
 
       {/* 6b — CASE STUDY MEDIA */}
       <Section id="project-media" className="border-t border-border bg-secondary/30">
-        <SectionHeader index="05.5" eyebrow="Case Study Media" title={<>Real creatives from <span className="text-gradient-blue">OM Value Homes</span></>} intro="A curated selection of live campaign creatives — property launches, awareness posts, lifestyle visuals, and local-SEO assets — all designed and shipped for OM Value Homes." />
+        <SectionHeader index="05.5" eyebrow="Case Study Media" title={<>Real creatives from <span className="text-gradient-blue">OM Value Homes</span></>} intro="Live campaign creatives from a real-estate brand — property launches, awareness posts, lifestyle visuals, and local-SEO assets — showing the same creative and strategic skills I apply to any B2C or service industry." />
         <Reveal className="mb-8">
           <div className="card-premium overflow-hidden rounded-2xl">
             <div className="grid gap-0 lg:grid-cols-[1.2fr_1fr]">
@@ -301,7 +301,7 @@ export function Portfolio() {
                 <h3 className="text-2xl font-bold lg:text-3xl">{omvhCreatives[0].title}</h3>
                 <p className="text-sm leading-relaxed text-muted-foreground lg:text-base">{omvhCreatives[0].desc}</p>
                 <div className="mt-2 flex flex-wrap gap-2">
-                  {["Meta Ads", "Lead Form", "Canva", "1 BHK Launch"].map((t) => (
+                  {["Meta Ads", "Lead Form", "Canva", "Launch Creative"].map((t) => (
                     <span key={t} className="rounded-full border border-border bg-background px-3 py-1 text-xs font-medium text-muted-foreground">{t}</span>
                   ))}
                 </div>
