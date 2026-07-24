@@ -61,21 +61,21 @@ export const DEFAULT_CONTENT: SiteContent = {
     role: "Digital Marketing Executive",
     name: "Yash Pawar",
     tagline:
-      "Real-estate digital marketing specialist turning content, creatives, and Meta campaigns into consistent, qualified enquiries.",
+      "Performance-driven digital marketing specialist with 2.5+ years of experience turning content, creatives, and paid campaigns into qualified leads and measurable brand growth — proven in real estate, ready for any B2C or service industry.",
     ctaPrimary: { label: "View featured project", href: "#project" },
     ctaSecondary: { label: "Contact me", href: "#contact" },
     stats: [
-      { k: "1.5 Yrs", v: "Experience" },
-      { k: "Real Estate", v: "Industry" },
+      { k: "2.5+ Yrs", v: "Experience" },
+      { k: "Real Estate", v: "Proven Domain" },
       { k: "Palghar, MH", v: "Location" },
     ],
   },
   about: {
     paragraph:
-      "I'm a Digital Marketing Executive with 1.5+ years of hands-on experience in real-estate marketing. I manage the complete digital function — content planning, creative design, Meta advertising, and reporting — with a focus on generating qualified enquiries and building a consistent, trustworthy brand.",
+      "I'm a Digital Marketing Executive with 2.5+ years of hands-on experience owning the full digital function for OM Value Homes, a real estate brand in Palghar. I manage content planning, creative design, Meta advertising, lead generation, and reporting — with a focus on qualified enquiries, consistent branding, and data-led optimisation. The frameworks I use (audience research, conversion creative, paid performance, and local SEO) apply across B2C, services, e-commerce, and product businesses.",
     objectiveLabel: "Career Objective",
     objective:
-      "To grow into a senior digital marketing role where I can lead end-to-end campaigns, apply data-driven decision making, and combine creativity with AI tools to deliver measurable, efficient results.",
+      "To grow into a senior digital marketing role where I can lead multi-channel campaigns across industries, apply data-driven decision making, and combine creativity with AI tools to deliver repeatable, efficient growth.",
     features: [
       { icon: "Target", label: "Lead-focused campaigns" },
       { icon: "Palette", label: "In-house creative design" },
@@ -85,16 +85,16 @@ export const DEFAULT_CONTENT: SiteContent = {
   experience: [
     {
       role: "Digital Marketing Executive",
-      org: "OM Value Homes — Real Estate",
+      org: "OM Value Homes — Real Estate, Palghar",
       period: "Dec 2024 · Present",
       points: [
-        "Manage end-to-end digital marketing activities across social and paid channels.",
-        "Plan and execute the monthly content calendar and campaign roadmap.",
-        "Run Meta lead-generation campaigns and coordinate lead follow-up with sales.",
-        "Design social creatives, brochures, and promotional assets for launches.",
-        "Maintain brand consistency and produce performance reports for review.",
+        "Manage end-to-end digital marketing across social, paid, and local-search channels.",
+        "Plan and execute monthly content calendars and campaign roadmaps tied to business goals.",
+        "Run Meta lead-generation campaigns and coordinate lead follow-up with the sales team.",
+        "Design social creatives, brochures, and promotional assets for campaigns and launches.",
+        "Maintain brand consistency and produce performance reports for continuous improvement.",
       ],
-      tools: ["Meta Ads Manager", "Canva", "WordPress", "ChatGPT", "CRM", "Google Sheets"],
+      tools: ["Meta Ads Manager", "Canva", "WordPress", "ChatGPT", "CRM", "Google Sheets", "Google Business Profile"],
     },
   ],
   skills: {
@@ -127,7 +127,7 @@ export const DEFAULT_CONTENT: SiteContent = {
         ],
       },
       {
-        category: "Web & Analytics",
+        category: "Web & Local SEO",
         skills: [
           { name: "Basic SEO", level: 72 },
           { name: "Google Business Profile", level: 80 },
@@ -146,16 +146,16 @@ export const DEFAULT_CONTENT: SiteContent = {
     ],
   },
   process: [
-    { icon: "Search", title: "Research", desc: "Study the market, audience, competitors, and local buyer intent before any campaign begins." },
-    { icon: "CalendarRange", title: "Planning", desc: "Build the monthly content calendar, campaign objectives, budgets, and messaging framework." },
-    { icon: "Palette", title: "Creative", desc: "Design posts, reels, brochures, and ad creatives that stay on-brand and conversion-focused." },
-    { icon: "Rocket", title: "Campaign", desc: "Launch Meta lead-gen and awareness campaigns with tested copy and audience targeting." },
-    { icon: "Gauge", title: "Optimization", desc: "Monitor performance, refine targeting and creatives, and reduce cost per quality lead." },
-    { icon: "FileBarChart", title: "Reporting", desc: "Track results, share transparent performance reports, and align on next-step decisions." },
+    { icon: "Search", title: "Research", desc: "Study the market, audience, competitors, and buyer intent before any campaign begins — so every decision is grounded in evidence, not guesswork." },
+    { icon: "CalendarRange", title: "Planning", desc: "Build the content calendar, campaign objectives, budgets, and messaging framework so every channel works toward the same business goal." },
+    { icon: "Palette", title: "Creative", desc: "Design posts, reels, ads, and landing-page assets that stay on-brand and conversion-focused, whatever the product or service." },
+    { icon: "Rocket", title: "Campaign", desc: "Launch paid and organic campaigns with tested copy, audience targeting, and clear CTAs — from Meta to local SEO and beyond." },
+    { icon: "Gauge", title: "Optimization", desc: "Monitor performance, refine targeting and creative, and reduce cost per quality lead or conversion over time." },
+    { icon: "FileBarChart", title: "Reporting", desc: "Track results, share transparent reports, and align with stakeholders on next-step decisions that drive growth." },
   ],
   project: [
-    { icon: "Building2", title: "Project Overview", body: "OM Value Homes is a real-estate brand where I own the complete digital marketing function — from planning to creatives to campaign execution and reporting." },
-    { icon: "Target", title: "Business Goal", body: "Build consistent brand presence and generate a steady flow of qualified property enquiries through paid and organic digital channels." },
+    { icon: "Building2", title: "Project Overview", body: "OM Value Homes is a real-estate brand where I own the complete digital marketing function — from planning and creatives to campaign execution and reporting. It serves as a live case study of how I apply full-funnel marketing to generate leads and build trust." },
+    { icon: "Target", title: "Business Goal", body: "Build consistent brand presence and generate a steady flow of qualified enquiries through paid and organic digital channels." },
     { icon: "Users", title: "Target Audience", body: "Home buyers and investors in and around Palghar and the wider Maharashtra region, segmented by budget, location, and buying intent." },
     { icon: "LineChart", title: "Marketing Strategy", body: "A blend of Meta lead-generation, awareness campaigns, and consistent organic content to keep the brand visible and the pipeline warm." },
     { icon: "PenLine", title: "Content Strategy", body: "Monthly content calendar covering project highlights, location advantages, offers, and trust-building posts across Facebook and Instagram." },
@@ -163,16 +163,16 @@ export const DEFAULT_CONTENT: SiteContent = {
     { icon: "Palette", title: "Creatives", body: "Designed feed posts, reels, stories, carousels, brochures, and promotional posters — all kept consistent with the brand identity." },
     { icon: "Search", title: "Challenges", body: "Reaching genuinely interested buyers, keeping cost per lead efficient, and maintaining a steady content output across channels." },
     { icon: "Lightbulb", title: "Solutions", body: "Refined audience targeting, tested multiple creatives and copy angles, and used AI tools to speed up ideation and content production." },
-    { icon: "GraduationCap", title: "Learning", body: "Deepened my understanding of the real-estate buyer journey, ad optimisation, and how creative quality directly affects lead quality." },
-    { icon: "TrendingUp", title: "Future Improvements", body: "Introduce structured landing pages, sharper retargeting flows, and more data-driven reporting to further improve lead quality." },
+    { icon: "GraduationCap", title: "Learning", body: "Deepened my understanding of the buyer journey, ad optimisation, and how creative quality directly affects lead quality — skills that transfer to any product or service." },
+    { icon: "TrendingUp", title: "Future Improvements", body: "Introduce structured landing pages, sharper retargeting flows, and more data-driven reporting to further improve lead quality and scale." },
     { icon: "BadgeCheck", title: "Results", body: "Add Campaign Results Here — leads generated, cost per lead, reach, and engagement to be added once verified figures are shared." },
   ],
   campaigns: [
-    { icon: "Facebook", title: "Facebook Ads", desc: "Objective-driven ad sets with tested creatives and copy for awareness and enquiries.", tag: "Paid Social" },
-    { icon: "Instagram", title: "Instagram Campaign", desc: "Feed, reels, and story campaigns designed to grow reach and brand recall.", tag: "Organic + Paid" },
-    { icon: "Target", title: "Lead Generation", desc: "Meta lead-form campaigns focused on capturing qualified property enquiries.", tag: "Performance" },
-    { icon: "Megaphone", title: "Brand Awareness", desc: "Consistent brand messaging to build trust and recognition in the local market.", tag: "Branding" },
-    { icon: "PenLine", title: "Content Marketing", desc: "Value-led content that educates buyers and keeps the brand top of mind.", tag: "Organic" },
+    { icon: "Facebook", title: "Facebook Ads", desc: "Objective-driven ad sets with tested creatives and copy for awareness, traffic, and enquiries.", tag: "Paid Social" },
+    { icon: "Instagram", title: "Instagram Campaign", desc: "Feed, reels, and story campaigns designed to grow reach, brand recall, and engagement.", tag: "Organic + Paid" },
+    { icon: "Target", title: "Lead Generation", desc: "Meta lead-form campaigns focused on capturing qualified enquiries at efficient cost per lead.", tag: "Performance" },
+    { icon: "Megaphone", title: "Brand Awareness", desc: "Consistent brand messaging to build trust and recognition in the local market and beyond.", tag: "Branding" },
+    { icon: "PenLine", title: "Content Marketing", desc: "Value-led content that educates buyers, builds authority, and keeps the brand top of mind.", tag: "Organic" },
   ],
   creative: [
     { icon: "Instagram", label: "Instagram Posts" },
@@ -187,13 +187,14 @@ export const DEFAULT_CONTENT: SiteContent = {
   tools: [
     "Meta Business Suite", "Ads Manager", "Canva", "ChatGPT", "Claude", "Gemini",
     "Google Drive", "Google Docs", "Google Sheets", "Excel", "WordPress", "Notion",
+    "Google Business Profile", "CRM", "WhatsApp Business",
   ],
   ai: [
-    { icon: "PenLine", title: "Ad Copy", desc: "Draft and refine multiple ad-copy variations to test tone and angles faster." },
-    { icon: "Brain", title: "Brainstorming", desc: "Generate campaign themes, hooks, and content ideas at speed." },
-    { icon: "Search", title: "Research", desc: "Summarise market trends, audience insights, and competitor angles." },
-    { icon: "Lightbulb", title: "Creative Ideas", desc: "Explore reel concepts, captions, and post directions for the calendar." },
-    { icon: "Sparkles", title: "Productivity", desc: "Automate repetitive writing so more time goes to strategy and quality." },
+    { icon: "PenLine", title: "Ad Copy", desc: "Draft and refine multiple ad-copy variations to test tone, angles, and CTAs faster." },
+    { icon: "Brain", title: "Brainstorming", desc: "Generate campaign themes, hooks, and content ideas at speed for any industry." },
+    { icon: "Search", title: "Research", desc: "Summarise market trends, audience insights, and competitor angles in minutes." },
+    { icon: "Lightbulb", title: "Creative Ideas", desc: "Explore reel concepts, captions, and post directions for the monthly calendar." },
+    { icon: "Sparkles", title: "Productivity", desc: "Automate repetitive writing so more time goes to strategy, design, and quality." },
   ],
   strengths: [
     { icon: "MessageSquare", title: "Communication" },
@@ -206,18 +207,18 @@ export const DEFAULT_CONTENT: SiteContent = {
   ],
   goals: [
     { tag: "Career Roadmap", title: "Grow into a Senior Digital Marketing role", desc: "Take ownership of larger campaigns, budgets, and cross-channel strategy while mentoring newer team members." },
-    { tag: "Learning Roadmap", title: "Deepen performance-marketing expertise", desc: "Advance in audience strategy, funnel building, landing-page optimisation, and data-led decision making." },
+    { tag: "Learning Roadmap", title: "Deepen performance-marketing expertise", desc: "Advance in audience strategy, funnel building, landing-page optimisation, and data-led decision making across industries." },
     { tag: "Certifications", title: "Pursue recognised marketing certifications", desc: "Meta Blueprint, Google Ads, and Google Analytics certifications to validate and expand core skills." },
-    { tag: "Growth Plan", title: "Build a data-driven marketing system", desc: "Move toward measurable, repeatable campaign frameworks that scale results with efficiency." },
+    { tag: "Growth Plan", title: "Build a data-driven marketing system", desc: "Move toward measurable, repeatable campaign frameworks that scale results with efficiency in any industry." },
   ],
   contact: {
-    intro: "Open to Digital Marketing Executive and Senior Digital Marketing Executive roles. Let's connect.",
+    intro: "Open to Digital Marketing Executive and Senior Digital Marketing Executive roles across real estate, B2C, services, and product brands. Let's connect.",
     location: "Palghar (W), Maharashtra",
     email: "theyashpawar92@gmail.com",
     phone: "+91 73850 66631",
     linkedin: "linkedin.com/in/yashpawar9274",
     instagram: "instagram.com/theitsash",
-    footerLine: "Real Estate Digital Marketing · Palghar, Maharashtra",
+    footerLine: "Digital Marketing · Palghar, Maharashtra",
   },
 };
 

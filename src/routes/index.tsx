@@ -4,7 +4,7 @@ import ogImage from "@/assets/og-home.jpg";
 
 const TITLE = "Yash Pawar — Digital Marketing Executive Portfolio";
 const DESCRIPTION =
-  "Portfolio of Yash Pawar, Digital Marketing Executive with hands-on experience in real-estate digital marketing — Meta Ads, lead generation, content strategy, creatives, and AI-powered workflows.";
+  "Portfolio of Yash Pawar, Digital Marketing Executive with 2.5+ years of experience in lead generation, Meta Ads, content strategy, creative design, and AI-powered workflows — proven in real estate and ready for B2C, services, and product brands.";
 
 export const Route = createFileRoute("/")({
   component: Index,
