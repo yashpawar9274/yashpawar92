@@ -282,7 +282,7 @@ export const DEFAULT_CONTENT: SiteContent = {
 export type ContentKey = keyof SiteContent;
 export const CONTENT_KEYS: ContentKey[] = [
   "hero", "about", "experience", "skills", "process", "project",
-  "campaigns", "creative", "tools", "ai", "strengths", "goals", "contact",
+  "campaigns", "creative", "tools", "ai", "strengths", "goals", "application", "contact",
 ];
 
 export function mergeContent(overrides: Partial<Record<string, unknown>> | null | undefined): SiteContent {
