@@ -450,8 +450,76 @@ export function Portfolio() {
         </div>
       </Section>
 
-      {/* 13 — CONTACT */}
+      {/* 13 — JOB APPLICATION SUMMARY */}
+      <Section id="application" className="bg-secondary/40">
+        <SectionHeader
+          index="12"
+          eyebrow={c.application.eyebrow}
+          title={c.application.title}
+          intro={c.application.summary}
+        />
+        <div className="grid gap-6 lg:grid-cols-[1.15fr_1fr]">
+          <Reveal>
+            <div className="card-premium p-8 lg:p-10">
+              <div className="eyebrow">Positioning</div>
+              <p className="mt-3 text-base leading-relaxed text-foreground/90">
+                {c.application.positioning}
+              </p>
+              <div className="mt-8">
+                <div className="eyebrow">Key highlights</div>
+                <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+                  {c.application.highlights.map((h) => (
+                    <li key={h} className="flex items-start gap-2 text-sm text-foreground/85">
+                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-blue" />
+                      <span>{h}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                {[
+                  { label: "Preferred roles", value: c.application.preferredRoles.join(" · ") },
+                  { label: "Industries open to", value: c.application.preferredIndustries.join(" · ") },
+                  { label: "Preferred locations", value: c.application.preferredLocations.join(" · ") },
+                  { label: "Work mode", value: c.application.workMode },
+                  { label: "Availability", value: c.application.availability },
+                  { label: "Notice period", value: c.application.noticePeriod },
+                  { label: "Salary expectation", value: c.application.salaryExpectation },
+                ].map((row) => (
+                  <div key={row.label} className="rounded-xl border border-border bg-background/60 p-4">
+                    <div className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">{row.label}</div>
+                    <div className="mt-1.5 text-sm font-medium text-foreground">{row.value}</div>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a href={`mailto:${c.contact.email}?subject=${encodeURIComponent("Digital Marketing Executive role — " + c.hero.name)}`} className="inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 text-sm font-semibold text-primary-foreground transition-transform hover:scale-[1.02]">
+                  <Send className="h-4 w-4" /> {c.application.ctaLabel}
+                </a>
+                <a href="#contact" className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-6 py-3 text-sm font-semibold text-foreground hover:bg-secondary">
+                  View contact details <ArrowUpRight className="h-4 w-4" />
+                </a>
+              </div>
+            </div>
+          </Reveal>
+
+          <StaggerGroup className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+            {c.application.fit.map((f) => (
+              <motion.div key={f.title} variants={staggerChild} className="card-premium card-premium-hover p-6">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue/10 text-blue">
+                  <Ico name={f.icon} className="h-5 w-5" />
+                </div>
+                <h3 className="mt-4 text-base font-bold">{f.title}</h3>
+                <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{f.desc}</p>
+              </motion.div>
+            ))}
+          </StaggerGroup>
+        </div>
+      </Section>
+
+      {/* 14 — CONTACT */}
       <Section id="contact" className="relative overflow-hidden bg-ink text-white">
+
         <div className="grid gap-14 lg:grid-cols-[1fr_1fr] lg:gap-20">
           <div>
             <SectionHeader index="12" eyebrow="Contact" dark title={<>Let's build campaigns that <span className="text-gradient-blue">convert.</span></>} intro={c.contact.intro} />
