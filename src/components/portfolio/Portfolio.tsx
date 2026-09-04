@@ -366,19 +366,105 @@ export function Portfolio() {
 
       {/* 8 — CREATIVE PORTFOLIO */}
       <Section id="creative">
-        <SectionHeader index="07" eyebrow="Creative Portfolio" title="Creative Formats & Design Work" intro="A range of on-brand creative assets designed in-house for social and promotional use." />
+        <SectionHeader index="07" eyebrow="Creative Portfolio" title="Creative Formats & Design Work" intro="Instagram posts, Facebook ads, reels, stories, carousels, posters, and branding — all designed and published in-house for live campaigns." />
         <StaggerGroup className="grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
-          {c.creative.map((cr) => (
-            <motion.div key={cr.label} variants={staggerChild} className="card-premium card-premium-hover group flex aspect-[4/3] flex-col justify-between overflow-hidden p-6">
-              <Ico name={cr.icon} className="h-6 w-6 text-blue transition-transform group-hover:scale-110" />
-              <div>
-                <h3 className="text-sm font-bold">{cr.label}</h3>
-                <p className="mt-1 text-xs text-muted-foreground">Add samples here</p>
-              </div>
-            </motion.div>
-          ))}
+          {CREATIVE_FORMATS.map((cr) => {
+            const Card = (
+              <>
+                <Ico name={cr.icon} className="h-6 w-6 text-blue transition-transform group-hover:scale-110" />
+                <div>
+                  <h3 className="text-sm font-bold">{cr.label}</h3>
+                  <p className="mt-1 text-xs text-muted-foreground">{cr.note}</p>
+                  {cr.href && (
+                    <span className="mt-2 inline-flex items-center gap-1 text-xs font-semibold text-blue">
+                      View live <ArrowUpRight className="h-3 w-3" />
+                    </span>
+                  )}
+                </div>
+              </>
+            );
+            const cls = "card-premium card-premium-hover group flex aspect-[4/3] flex-col justify-between overflow-hidden p-6";
+            return (
+              <motion.div key={cr.label} variants={staggerChild}>
+                {cr.href ? (
+                  <a href={cr.href} target="_blank" rel="noopener noreferrer" className={cls}>{Card}</a>
+                ) : (
+                  <div className={cls}>{Card}</div>
+                )}
+              </motion.div>
+            );
+          })}
         </StaggerGroup>
+
+        {/* AI reels & video creatives */}
+        <div className="mt-20">
+          <SectionHeader index="07.5" eyebrow="AI Reels & Video" title={<>AI-generated <span className="text-gradient-blue">reels & video creatives</span></>} intro="Short-form video built with AI tools and published on Instagram, Facebook, and YouTube for OM Value Homes campaigns." />
+          <StaggerGroup className="grid gap-6 md:grid-cols-3">
+            {VIDEOS.map((v) => (
+              <motion.div key={v.title} variants={staggerChild} className="card-premium overflow-hidden">
+                <div className="relative w-full overflow-hidden bg-ink" style={{ aspectRatio: v.aspect }}>
+                  {v.type === "youtube" ? (
+                    <iframe
+                      src={`https://www.youtube.com/embed/${v.id}`}
+                      title={v.title}
+                      loading="lazy"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="absolute inset-0 h-full w-full border-0"
+                    />
+                  ) : (
+                    <video
+                      src={v.src}
+                      controls
+                      playsInline
+                      preload="metadata"
+                      className="absolute inset-0 h-full w-full object-cover"
+                      aria-label={v.title}
+                    />
+                  )}
+                </div>
+                <div className="p-5">
+                  <span className="eyebrow">{v.tag}</span>
+                  <h3 className="mt-2 text-sm font-bold">{v.title}</h3>
+                  <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">{v.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </StaggerGroup>
+        </div>
+
+        {/* Live channels & builds */}
+        <div className="mt-20">
+          <SectionHeader index="07.9" eyebrow="Live Work" title="Channels, websites & tools I run" intro="Live social channels, websites, and internal tools I have built and manage day to day." />
+          <StaggerGroup className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {LIVE_LINKS.map((l) => {
+              const inner = (
+                <>
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue/10 text-blue">
+                    <Ico name={l.icon} className="h-5 w-5" />
+                  </div>
+                  <h3 className="mt-4 text-sm font-bold">{l.label}</h3>
+                  <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{l.desc}</p>
+                  <span className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-blue">
+                    {l.href ? "Open" : "Internal build"} <ArrowUpRight className="h-3 w-3" />
+                  </span>
+                </>
+              );
+              const cls = "card-premium card-premium-hover block h-full p-6";
+              return (
+                <motion.div key={l.label} variants={staggerChild}>
+                  {l.href ? (
+                    <a href={l.href} target="_blank" rel="noopener noreferrer" className={cls}>{inner}</a>
+                  ) : (
+                    <div className={cls}>{inner}</div>
+                  )}
+                </motion.div>
+              );
+            })}
+          </StaggerGroup>
+        </div>
       </Section>
+
 
       {/* 9 — TOOLS */}
       <Section id="tools" className="bg-secondary/40">
