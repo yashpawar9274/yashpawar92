@@ -31,6 +31,7 @@ import beforeAfterAsset from "@/assets/omvh/beforeafter.asset.json";
 import comfortAsset from "@/assets/omvh/comfort.asset.json";
 import linesAsset from "@/assets/omvh/lines.asset.json";
 import gmbAsset from "@/assets/omvh/gmb.asset.json";
+import aiReelAsset from "@/assets/omvh/ai-reel.mp4.asset.json";
 
 const ASSET_HOST = "https://project--2b272c81-12e2-4f7d-954c-9b45799b6698.lovable.app";
 const abs = (u: string) => (u.startsWith("http") ? u : `${ASSET_HOST}${u}`);
@@ -54,6 +55,42 @@ const omvhCreatives: { src: string; title: string; tag: string; desc: string; al
   { src: IMAGES.lines, title: "From Lines on Paper to a Life Well Built", tag: "Brand Story", desc: "Sketch-to-reality brand creative connecting architectural design intent with the finished project on the ground — the anchor visual for brand-story campaigns.", alt: "OM Value Homes brand creative titled 'From lines on paper to a life well built' showing an architectural pencil sketch transitioning into a photograph of the finished building.", aspect: "4 / 5" },
   { src: IMAGES.gmb, title: "Google Business Profile — Local SEO", tag: "Local SEO · Reviews", desc: "Google Business Profile creative reinforcing the 5.0 rating, project location, photos, and direct call CTA — the last-click asset for local Palghar buyers searching by intent.", alt: "Mockup of the OM Value Homes Google Business Profile displaying a 5.0-star rating, project photos, address, and a call button — highlighting local SEO work.", aspect: "4 / 5" },
 ];
+
+const IG = "https://www.instagram.com/omvalueshome/";
+const FB = "https://www.facebook.com/profile.php?id=61590572766376";
+const YT = "https://www.youtube.com/@budgethomes4u";
+
+const CREATIVE_FORMATS: { icon: IconName; label: string; note: string; href?: string }[] = [
+  { icon: "Instagram", label: "Instagram Posts", note: "Feed creatives & campaign posts", href: IG },
+  { icon: "Facebook", label: "Facebook Ads", note: "Lead-form & awareness ad creatives", href: FB },
+  { icon: "Image", label: "Reels", note: "Short-form video incl. AI reels", href: YT },
+  { icon: "Layers", label: "Stories", note: "Offer, poll & countdown stories", href: IG },
+  { icon: "Layers", label: "Carousels", note: "Multi-slide project walkthroughs", href: IG },
+  { icon: "FileText", label: "Posters", note: "Launch, festive & offer posters" },
+  { icon: "Palette", label: "Branding", note: "Logo usage, colour & type system" },
+  { icon: "Globe", label: "Website Creatives", note: "Banners & landing-page visuals", href: "https://budgethomes4u.com/" },
+];
+
+const VIDEOS: (
+  | { type: "youtube"; id: string; title: string; tag: string; desc: string; aspect: string }
+  | { type: "file"; src: string; title: string; tag: string; desc: string; aspect: string }
+)[] = [
+  { type: "youtube", id: "w3IpMG-3TkY", title: "AI-generated property reel", tag: "AI Reel · YouTube", desc: "Full AI-produced video creative for OM Value Homes — script, visuals, and voice built with AI tools, then edited for social distribution.", aspect: "16 / 9" },
+  { type: "youtube", id: "7OCNhzDIHkw", title: "Short-form vertical reel", tag: "AI Reel · Shorts", desc: "Vertical short built for Instagram Reels, Facebook Reels, and YouTube Shorts to maximise reach on a single asset.", aspect: "9 / 16" },
+  { type: "file", src: abs(aiReelAsset.url), title: "Campaign video creative", tag: "Video Creative", desc: "Campaign video used in Meta ads and organic posts to showcase the project with motion, pricing, and a clear enquiry CTA.", aspect: "9 / 16" },
+];
+
+const LIVE_LINKS: { icon: IconName; label: string; desc: string; href?: string }[] = [
+  { icon: "Instagram", label: "Instagram — OM Value Homes", desc: "Brand account I plan, design, and publish for.", href: IG },
+  { icon: "Facebook", label: "Facebook Page", desc: "Page management plus Meta ads and lead forms.", href: FB },
+  { icon: "Globe", label: "YouTube — Budget Homes 4U", desc: "Video channel for reels, walkthroughs, and shorts.", href: YT },
+  { icon: "Globe", label: "budgethomes4u.com", desc: "Project website I built and maintain for enquiries.", href: "https://budgethomes4u.com/" },
+  { icon: "Building2", label: "omgroupofcompanies.com", desc: "Corporate group website — content and upkeep.", href: "https://omgroupofcompanies.com/" },
+  { icon: "BadgeCheck", label: "dmyashpawar.vercel.app", desc: "My personal digital marketing portfolio site.", href: "https://dmyashpawar.vercel.app/" },
+  { icon: "Users", label: "OM Value Sales Hub", desc: "Internal sales-enablement hub built to organise inventory and follow-ups.", href: "https://om-value-sales-hub.lovable.app/" },
+  { icon: "Layers", label: "OM Value Homes CRM", desc: "Lead-management CRM I built to track enquiries from ad to site visit.", href: "https://omvaluehomescrm.lovable.app/" },
+];
+
 
 /* ------------------------------ icon map --------------------------------- */
 export const ICONS: Record<IconName, LucideIcon> = {
@@ -366,19 +403,105 @@ export function Portfolio() {
 
       {/* 8 — CREATIVE PORTFOLIO */}
       <Section id="creative">
-        <SectionHeader index="07" eyebrow="Creative Portfolio" title="Creative Formats & Design Work" intro="A range of on-brand creative assets designed in-house for social and promotional use." />
+        <SectionHeader index="07" eyebrow="Creative Portfolio" title="Creative Formats & Design Work" intro="Instagram posts, Facebook ads, reels, stories, carousels, posters, and branding — all designed and published in-house for live campaigns." />
         <StaggerGroup className="grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
-          {c.creative.map((cr) => (
-            <motion.div key={cr.label} variants={staggerChild} className="card-premium card-premium-hover group flex aspect-[4/3] flex-col justify-between overflow-hidden p-6">
-              <Ico name={cr.icon} className="h-6 w-6 text-blue transition-transform group-hover:scale-110" />
-              <div>
-                <h3 className="text-sm font-bold">{cr.label}</h3>
-                <p className="mt-1 text-xs text-muted-foreground">Add samples here</p>
-              </div>
-            </motion.div>
-          ))}
+          {CREATIVE_FORMATS.map((cr) => {
+            const Card = (
+              <>
+                <Ico name={cr.icon} className="h-6 w-6 text-blue transition-transform group-hover:scale-110" />
+                <div>
+                  <h3 className="text-sm font-bold">{cr.label}</h3>
+                  <p className="mt-1 text-xs text-muted-foreground">{cr.note}</p>
+                  {cr.href && (
+                    <span className="mt-2 inline-flex items-center gap-1 text-xs font-semibold text-blue">
+                      View live <ArrowUpRight className="h-3 w-3" />
+                    </span>
+                  )}
+                </div>
+              </>
+            );
+            const cls = "card-premium card-premium-hover group flex aspect-[4/3] flex-col justify-between overflow-hidden p-6";
+            return (
+              <motion.div key={cr.label} variants={staggerChild}>
+                {cr.href ? (
+                  <a href={cr.href} target="_blank" rel="noopener noreferrer" className={cls}>{Card}</a>
+                ) : (
+                  <div className={cls}>{Card}</div>
+                )}
+              </motion.div>
+            );
+          })}
         </StaggerGroup>
+
+        {/* AI reels & video creatives */}
+        <div className="mt-20">
+          <SectionHeader index="07.5" eyebrow="AI Reels & Video" title={<>AI-generated <span className="text-gradient-blue">reels & video creatives</span></>} intro="Short-form video built with AI tools and published on Instagram, Facebook, and YouTube for OM Value Homes campaigns." />
+          <StaggerGroup className="grid gap-6 md:grid-cols-3">
+            {VIDEOS.map((v) => (
+              <motion.div key={v.title} variants={staggerChild} className="card-premium overflow-hidden">
+                <div className="relative w-full overflow-hidden bg-ink" style={{ aspectRatio: v.aspect }}>
+                  {v.type === "youtube" ? (
+                    <iframe
+                      src={`https://www.youtube.com/embed/${v.id}`}
+                      title={v.title}
+                      loading="lazy"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="absolute inset-0 h-full w-full border-0"
+                    />
+                  ) : (
+                    <video
+                      src={v.src}
+                      controls
+                      playsInline
+                      preload="metadata"
+                      className="absolute inset-0 h-full w-full object-cover"
+                      aria-label={v.title}
+                    />
+                  )}
+                </div>
+                <div className="p-5">
+                  <span className="eyebrow">{v.tag}</span>
+                  <h3 className="mt-2 text-sm font-bold">{v.title}</h3>
+                  <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">{v.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </StaggerGroup>
+        </div>
+
+        {/* Live channels & builds */}
+        <div className="mt-20">
+          <SectionHeader index="07.9" eyebrow="Live Work" title="Channels, websites & tools I run" intro="Live social channels, websites, and internal tools I have built and manage day to day." />
+          <StaggerGroup className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {LIVE_LINKS.map((l) => {
+              const inner = (
+                <>
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue/10 text-blue">
+                    <Ico name={l.icon} className="h-5 w-5" />
+                  </div>
+                  <h3 className="mt-4 text-sm font-bold">{l.label}</h3>
+                  <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{l.desc}</p>
+                  <span className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-blue">
+                    {l.href ? "Open" : "Internal build"} <ArrowUpRight className="h-3 w-3" />
+                  </span>
+                </>
+              );
+              const cls = "card-premium card-premium-hover block h-full p-6";
+              return (
+                <motion.div key={l.label} variants={staggerChild}>
+                  {l.href ? (
+                    <a href={l.href} target="_blank" rel="noopener noreferrer" className={cls}>{inner}</a>
+                  ) : (
+                    <div className={cls}>{inner}</div>
+                  )}
+                </motion.div>
+              );
+            })}
+          </StaggerGroup>
+        </div>
       </Section>
+
 
       {/* 9 — TOOLS */}
       <Section id="tools" className="bg-secondary/40">
