@@ -31,6 +31,7 @@ import beforeAfterAsset from "@/assets/omvh/beforeafter.asset.json";
 import comfortAsset from "@/assets/omvh/comfort.asset.json";
 import linesAsset from "@/assets/omvh/lines.asset.json";
 import gmbAsset from "@/assets/omvh/gmb.asset.json";
+import aiReelAsset from "@/assets/omvh/ai-reel.mp4.asset.json";
 
 const ASSET_HOST = "https://project--2b272c81-12e2-4f7d-954c-9b45799b6698.lovable.app";
 const abs = (u: string) => (u.startsWith("http") ? u : `${ASSET_HOST}${u}`);
