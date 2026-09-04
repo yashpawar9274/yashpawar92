@@ -55,6 +55,42 @@ const omvhCreatives: { src: string; title: string; tag: string; desc: string; al
   { src: IMAGES.gmb, title: "Google Business Profile — Local SEO", tag: "Local SEO · Reviews", desc: "Google Business Profile creative reinforcing the 5.0 rating, project location, photos, and direct call CTA — the last-click asset for local Palghar buyers searching by intent.", alt: "Mockup of the OM Value Homes Google Business Profile displaying a 5.0-star rating, project photos, address, and a call button — highlighting local SEO work.", aspect: "4 / 5" },
 ];
 
+const IG = "https://www.instagram.com/omvalueshome/";
+const FB = "https://www.facebook.com/profile.php?id=61590572766376";
+const YT = "https://www.youtube.com/@budgethomes4u";
+
+const CREATIVE_FORMATS: { icon: IconName; label: string; note: string; href?: string }[] = [
+  { icon: "Instagram", label: "Instagram Posts", note: "Feed creatives & campaign posts", href: IG },
+  { icon: "Facebook", label: "Facebook Ads", note: "Lead-form & awareness ad creatives", href: FB },
+  { icon: "Image", label: "Reels", note: "Short-form video incl. AI reels", href: YT },
+  { icon: "Layers", label: "Stories", note: "Offer, poll & countdown stories", href: IG },
+  { icon: "Layers", label: "Carousels", note: "Multi-slide project walkthroughs", href: IG },
+  { icon: "FileText", label: "Posters", note: "Launch, festive & offer posters" },
+  { icon: "Palette", label: "Branding", note: "Logo usage, colour & type system" },
+  { icon: "Globe", label: "Website Creatives", note: "Banners & landing-page visuals", href: "https://budgethomes4u.com/" },
+];
+
+const VIDEOS: (
+  | { type: "youtube"; id: string; title: string; tag: string; desc: string; aspect: string }
+  | { type: "file"; src: string; title: string; tag: string; desc: string; aspect: string }
+)[] = [
+  { type: "youtube", id: "w3IpMG-3TkY", title: "AI-generated property reel", tag: "AI Reel · YouTube", desc: "Full AI-produced video creative for OM Value Homes — script, visuals, and voice built with AI tools, then edited for social distribution.", aspect: "16 / 9" },
+  { type: "youtube", id: "7OCNhzDIHkw", title: "Short-form vertical reel", tag: "AI Reel · Shorts", desc: "Vertical short built for Instagram Reels, Facebook Reels, and YouTube Shorts to maximise reach on a single asset.", aspect: "9 / 16" },
+  { type: "file", src: abs(aiReelAsset.url), title: "Campaign video creative", tag: "Video Creative", desc: "Campaign video used in Meta ads and organic posts to showcase the project with motion, pricing, and a clear enquiry CTA.", aspect: "9 / 16" },
+];
+
+const LIVE_LINKS: { icon: IconName; label: string; desc: string; href?: string }[] = [
+  { icon: "Instagram", label: "Instagram — OM Value Homes", desc: "Brand account I plan, design, and publish for.", href: IG },
+  { icon: "Facebook", label: "Facebook Page", desc: "Page management plus Meta ads and lead forms.", href: FB },
+  { icon: "Globe", label: "YouTube — Budget Homes 4U", desc: "Video channel for reels, walkthroughs, and shorts.", href: YT },
+  { icon: "Globe", label: "budgethomes4u.com", desc: "Project website I built and maintain for enquiries.", href: "https://budgethomes4u.com/" },
+  { icon: "Building2", label: "omgroupofcompanies.com", desc: "Corporate group website — content and upkeep.", href: "https://omgroupofcompanies.com/" },
+  { icon: "BadgeCheck", label: "dmyashpawar.vercel.app", desc: "My personal digital marketing portfolio site.", href: "https://dmyashpawar.vercel.app/" },
+  { icon: "Users", label: "OM Value Sales Hub", desc: "Internal sales-enablement hub built to organise inventory and follow-ups.", href: "https://om-value-sales-hub.lovable.app/" },
+  { icon: "Layers", label: "OM Value Homes CRM", desc: "Lead-management CRM I built to track enquiries from ad to site visit.", href: "https://omvaluehomescrm.lovable.app/" },
+];
+
+
 /* ------------------------------ icon map --------------------------------- */
 export const ICONS: Record<IconName, LucideIcon> = {
   Target, PenLine, Megaphone, LineChart, Search, CalendarRange, Palette, Rocket,
