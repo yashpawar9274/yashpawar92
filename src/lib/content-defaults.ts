@@ -68,6 +68,7 @@ export type SiteContent = {
     phone: string;
     linkedin: string;
     instagram: string;
+    website: string;
     footerLine: string;
   };
 };
