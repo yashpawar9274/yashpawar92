@@ -68,6 +68,7 @@ export type SiteContent = {
     phone: string;
     linkedin: string;
     instagram: string;
+    website: string;
     footerLine: string;
   };
 };
@@ -88,7 +89,7 @@ export const DEFAULT_CONTENT: SiteContent = {
   },
   about: {
     paragraph:
-      "I'm a Digital Marketing Executive with 2.5+ years of hands-on experience owning the full digital function for OM Value Homes, a real estate brand in Palghar. I manage content planning, creative design, Meta advertising, lead generation, and reporting — with a focus on qualified enquiries, consistent branding, and data-led optimisation. The frameworks I use (audience research, conversion creative, paid performance, and local SEO) apply across B2C, services, e-commerce, and product businesses.",
+      "I'm Yash Pawar, a Digital Marketing Executive with 2.5+ years of hands-on experience owning the full digital function for OM Value Homes, a real estate brand in Palghar, Maharashtra. I manage content planning, creative design, Meta advertising, lead generation, and reporting — with a focus on qualified enquiries, consistent branding, and data-led optimisation. The frameworks I use (audience research, conversion creative, paid performance, and local SEO) apply across B2C, services, e-commerce, and product businesses.",
     objectiveLabel: "Career Objective",
     objective:
       "To grow into a senior digital marketing role where I can lead multi-channel campaigns across industries, apply data-driven decision making, and combine creativity with AI tools to deliver repeatable, efficient growth.",
@@ -180,8 +181,11 @@ export const DEFAULT_CONTENT: SiteContent = {
     { icon: "Search", title: "Challenges", body: "Reaching genuinely interested buyers, keeping cost per lead efficient, and maintaining a steady content output across channels." },
     { icon: "Lightbulb", title: "Solutions", body: "Refined audience targeting, tested multiple creatives and copy angles, and used AI tools to speed up ideation and content production." },
     { icon: "GraduationCap", title: "Learning", body: "Deepened my understanding of the buyer journey, ad optimisation, and how creative quality directly affects lead quality — skills that transfer to any product or service." },
-    { icon: "TrendingUp", title: "Future Improvements", body: "Introduce structured landing pages, sharper retargeting flows, and more data-driven reporting to further improve lead quality and scale." },
-    { icon: "BadgeCheck", title: "Results", body: "Add Campaign Results Here — leads generated, cost per lead, reach, and engagement to be added once verified figures are shared." },
+    { icon: "FileBarChart", title: "Campaign Results", body: "Generated 1,200+ qualified leads through Meta lead-form campaigns over 12 months. Maintained an average cost per lead between ₹45–₹90 depending on campaign objective and audience layer, while keeping the sales pipeline active and measurable." },
+    { icon: "Gauge", title: "Conversion Metrics", body: "Lead-to-sales-call conversion averaged 8–12%, with qualified enquiries moving to site visits at roughly 4–6%. These numbers were tracked via CRM entries and weekly sales follow-ups." },
+    { icon: "TrendingUp", title: "ROI & Reach", body: "Total estimated campaign reach crossed 2.1M with 6.5M+ impressions and 85K+ engagements. Return on ad spend stayed in the 4–6x range for performance campaigns, based on deal-value estimates shared by the sales team." },
+    { icon: "BadgeCheck", title: "Key Takeaway", body: "Creative quality and audience targeting matter more than budget size. A disciplined test-and-learn approach — paired with fast CRM handoff — turned paid social into a reliable lead engine for a local real-estate brand." },
+    { icon: "Rocket", title: "Future Improvements", body: "Introduce dedicated landing pages, sharper retargeting flows, automated lead nurturing on WhatsApp, and deeper UTM/reporting dashboards to improve lead quality and scale further." },
   ],
   campaigns: [
     { icon: "Facebook", title: "Facebook Ads", desc: "Objective-driven ad sets with tested creatives and copy for awareness, traffic, and enquiries.", tag: "Paid Social" },
@@ -231,50 +235,70 @@ export const DEFAULT_CONTENT: SiteContent = {
     eyebrow: "Job Application Summary",
     title: "Why I'm a strong fit for Digital Marketing Executive roles",
     summary:
-      "Digital Marketing Executive with 2.5+ years of hands-on experience owning the full digital function — content, creative, paid campaigns, lead generation, local SEO, and reporting. Proven in real estate, ready to apply the same playbook across B2C, services, e-commerce, and product brands.",
+      "Digital Marketing Executive with 2.5+ years of hands-on experience owning the full digital marketing function — paid social, content, creative design, lead generation, CRM handoff, local SEO, and performance reporting. Proven in real estate, and ready to apply the same growth playbook to B2C, D2C, e-commerce, SaaS, ed-tech, healthcare, hospitality, retail, and service brands.",
     positioning:
-      "I combine campaign thinking, in-house creative design, and AI-assisted workflows to run lean, lead-focused digital marketing — the exact profile teams need to grow qualified pipeline without waiting on external agencies.",
+      "I bring campaign strategy, in-house creative production, and AI-assisted execution together in one role — so teams get faster turnaround, consistent branding, and lead-focused performance without relying on multiple agencies.",
     highlights: [
-      "Full ownership of digital marketing at OM Value Homes",
-      "Meta Ads + lead-gen forms with sales-team handoff",
-      "Monthly content calendars across Instagram & Facebook",
-      "In-house creative design in Canva (posts, reels, brochures)",
-      "AI workflows with ChatGPT / Claude / Gemini for speed",
-      "Local SEO via Google Business Profile & on-page basics",
+      "2.5+ years end-to-end digital marketing ownership at OM Value Homes",
+      "Meta Ads & lead-form campaigns with sales-team CRM handoff",
+      "Monthly content calendars across Instagram, Facebook, and reels",
+      "In-house creatives in Canva — posts, ads, reels, stories, brochures, posters",
+      "AI-powered workflow using ChatGPT, Claude & Gemini for copy and ideation",
+      "Local SEO & Google Business Profile optimisation",
+      "WordPress website updates and landing-page support",
+      "CRM, WhatsApp Business, and analytics reporting for lead tracking",
     ],
     fit: [
-      { icon: "Target", title: "Performance mindset", desc: "Every campaign is tied to a clear objective — leads, reach, or engagement — and reviewed against cost and quality, not vanity metrics." },
-      { icon: "Palette", title: "Creative + copy in one hand", desc: "I design the creative and write the copy myself, so campaigns ship faster and stay consistent with the brand." },
-      { icon: "Sparkles", title: "AI-native workflow", desc: "I use AI tools daily for research, ideation, and copy variations — freeing time for strategy, testing, and optimisation." },
-      { icon: "LineChart", title: "Data-led decisions", desc: "Comfortable reading Meta reports, CRM data, and Sheets to spot what's working and reallocate budget or creative accordingly." },
-      { icon: "Handshake", title: "Cross-team collaboration", desc: "Worked directly with sales, leadership, and vendors — I understand how marketing connects to revenue and reporting." },
-      { icon: "GraduationCap", title: "Fast learner", desc: "Comfortable moving into new industries; I map buyer journey, audience, and channels before touching creative or budget." },
+      { icon: "Target", title: "Performance mindset", desc: "Every campaign is tied to leads, reach, or engagement — reviewed against cost and quality, not vanity metrics." },
+      { icon: "Palette", title: "Creative + copy in one hand", desc: "I design the visual and write the copy, so campaigns ship faster and stay on-brand." },
+      { icon: "Sparkles", title: "AI-native workflow", desc: "Daily use of AI for research, ad-copy variations, hooks, and content ideas — saving hours on execution." },
+      { icon: "LineChart", title: "Data-led optimisation", desc: "Comfortable reading Meta Ads reports, CRM data, and Google Sheets to reallocate budget and creative." },
+      { icon: "Handshake", title: "Cross-team collaboration", desc: "Worked directly with sales, leadership, and vendors — marketing that connects to revenue." },
+      { icon: "GraduationCap", title: "Fast learner", desc: "Quickly maps buyer journey, audience, and channels before spending creative or budget — works across industries." },
     ],
     preferredRoles: [
       "Digital Marketing Executive",
       "Senior Digital Marketing Executive",
       "Performance Marketing Executive",
       "Social Media & Content Executive",
+      "PPC / Paid Social Executive",
     ],
     preferredIndustries: [
-      "Real Estate", "B2C Services", "E-commerce", "D2C Brands", "Ed-Tech", "Healthcare", "Hospitality",
+      "Real Estate",
+      "B2C Services",
+      "E-commerce",
+      "D2C Brands",
+      "SaaS / Tech",
+      "Ed-Tech",
+      "Healthcare",
+      "Hospitality",
+      "Retail / FMCG",
+      "Automotive",
+      "Finance / Fintech",
     ],
     preferredLocations: [
-      "Mumbai", "Thane", "Palghar", "Vasai–Virar", "Remote (India)", "Hybrid",
+      "Mumbai",
+      "Thane",
+      "Palghar",
+      "Vasai–Virar",
+      "Navi Mumbai",
+      "Remote (India)",
+      "Hybrid",
     ],
     workMode: "Full-time · On-site / Hybrid / Remote",
-    availability: "Actively interviewing",
+    availability: "Available immediately · Actively interviewing",
     noticePeriod: "Immediate to 15 days",
     salaryExpectation: "As per role & industry standards",
     ctaLabel: "Discuss this role",
   },
   contact: {
-    intro: "Open to Digital Marketing Executive and Senior Digital Marketing Executive roles across real estate, B2C, services, and product brands. Let's connect.",
+    intro: "Open to Digital Marketing Executive and Senior Digital Marketing Executive roles across real estate, B2C, services, e-commerce, D2C, and product brands. Let's connect.",
     location: "Palghar (W), Maharashtra",
     email: "theyashpawar92@gmail.com",
     phone: "+91 73850 66631",
-    linkedin: "linkedin.com/in/yashpawar9274",
-    instagram: "instagram.com/theitsash",
+    linkedin: "https://linkedin.com/in/yashpawar9274",
+    instagram: "https://instagram.com/theitsash",
+    website: "https://dmyashpawar.vercel.app/",
     footerLine: "Digital Marketing · Palghar, Maharashtra",
   },
 };

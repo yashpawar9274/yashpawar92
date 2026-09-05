@@ -12,6 +12,31 @@ export type OmvhUpload = {
   created_at: string;
 };
 
+type AdminSession = { unlocked?: boolean };
+
+function getSessionConfig() {
+  const password = process.env.SESSION_SECRET;
+  if (!password) throw new Error("SESSION_SECRET not configured");
+  return {
+    password,
+    name: "omvh-admin",
+    maxAge: 60 * 60 * 24 * 30,
+    cookie: {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax" as const,
+      path: "/",
+    },
+  };
+}
+
+async function requireAdmin() {
+  const session = await useSession<AdminSession>(getSessionConfig());
+  if (!session.data.unlocked) {
+    throw new Response("Unauthorized", { status: 401 });
+  }
+}
+
 /** Public — list all uploads with fresh signed URLs. */
 export const listOmvhUploads = createServerFn({ method: "GET" }).handler(async () => {
   const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
@@ -55,8 +80,10 @@ export const adminUpload = createServerFn({ method: "POST" })
     alt: string;
     aspect: string;
     sort_order?: number;
+    passcode?: string;
   }) => d)
   .handler(async ({ data }) => {
+    await requireAdmin();
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
 
     const match = data.dataUrl.match(/^data:([^;]+);base64,(.+)$/);
@@ -85,8 +112,9 @@ export const adminUpload = createServerFn({ method: "POST" })
   });
 
 export const adminDelete = createServerFn({ method: "POST" })
-  .inputValidator((d: { id: string }) => ({ id: String(d.id) }))
+  .inputValidator((d: { id: string; passcode?: string }) => ({ id: String(d.id), passcode: d.passcode }))
   .handler(async ({ data }) => {
+    await requireAdmin();
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const { data: row } = await supabaseAdmin
       .from("omvh_uploads")
