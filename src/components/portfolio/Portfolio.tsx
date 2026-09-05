@@ -654,16 +654,24 @@ export function Portfolio() {
           <div className="grid gap-4">
             <StaggerGroup className="grid gap-4 sm:grid-cols-2">
               {[
-                { icon: Mail, label: "Email", value: c.contact.email },
-                { icon: Phone, label: "Phone", value: c.contact.phone },
-                { icon: Linkedin, label: "LinkedIn", value: c.contact.linkedin },
-                { icon: Instagram, label: "Instagram", value: c.contact.instagram },
+                { icon: Mail, label: "Email", value: c.contact.email, href: `mailto:${c.contact.email}` },
+                { icon: Phone, label: "Phone", value: c.contact.phone, href: `tel:${c.contact.phone.replace(/\s/g, "")}` },
+                { icon: Linkedin, label: "LinkedIn", value: c.contact.linkedin, href: c.contact.linkedin },
+                { icon: Instagram, label: "Instagram", value: c.contact.instagram, href: c.contact.instagram },
+                { icon: Globe, label: "Portfolio", value: c.contact.website, href: c.contact.website },
               ].map((cc) => (
-                <motion.div key={cc.label} variants={staggerChild} className="rounded-2xl border border-white/10 bg-white/[0.04] p-6 transition-colors hover:bg-white/[0.07]">
+                <motion.a
+                  key={cc.label}
+                  variants={staggerChild}
+                  href={cc.href}
+                  target={cc.href.startsWith("http") ? "_blank" : undefined}
+                  rel={cc.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                  className="rounded-2xl border border-white/10 bg-white/[0.04] p-6 transition-colors hover:bg-white/[0.07]"
+                >
                   <cc.icon className="h-5 w-5 text-blue-glow" />
                   <p className="mt-4 text-xs uppercase tracking-wider text-white/40">{cc.label}</p>
                   <p className="mt-1 text-sm font-medium break-words text-white/90">{cc.value}</p>
-                </motion.div>
+                </motion.a>
               ))}
             </StaggerGroup>
             <Reveal delay={0.2}>
