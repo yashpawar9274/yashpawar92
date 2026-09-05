@@ -46,14 +46,14 @@ export const getSiteContent = createServerFn({ method: "GET" }).handler(async ()
 
 /** Admin — upsert one section. */
 export const updateSiteContent = createServerFn({ method: "POST" })
-  .inputValidator((d: { key: string; data: unknown }) => {
+  .inputValidator((d: { key: string; data: unknown; passcode?: string }) => {
     if (!CONTENT_KEYS.includes(d.key as ContentKey)) {
       throw new Error(`Invalid section key: ${d.key}`);
     }
-    return { key: d.key as ContentKey, data: d.data };
+    return { key: d.key as ContentKey, data: d.data, passcode: d.passcode };
   })
   .handler(async ({ data }) => {
-    await requireAdmin();
+    await requireAdmin(data.passcode);
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const { error } = await supabaseAdmin
       .from("site_content")
@@ -64,9 +64,9 @@ export const updateSiteContent = createServerFn({ method: "POST" })
 
 /** Admin — reset one section (delete row → falls back to default). */
 export const resetSiteContent = createServerFn({ method: "POST" })
-  .inputValidator((d: { key: string }) => ({ key: d.key }))
+  .inputValidator((d: { key: string; passcode?: string }) => ({ key: d.key, passcode: d.passcode }))
   .handler(async ({ data }) => {
-    await requireAdmin();
+    await requireAdmin(data.passcode);
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     await supabaseAdmin.from("site_content").delete().eq("key", data.key);
     return { ok: true as const };
@@ -82,9 +82,10 @@ export const updateOmvhUpload = createServerFn({ method: "POST" })
     alt?: string;
     aspect?: string;
     sort_order?: number;
+    passcode?: string;
   }) => d)
   .handler(async ({ data }) => {
-    await requireAdmin();
+    await requireAdmin(data.passcode);
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const patch: {
       title?: string; tag?: string; caption?: string; alt?: string;
