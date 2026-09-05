@@ -89,7 +89,7 @@ export const DEFAULT_CONTENT: SiteContent = {
   },
   about: {
     paragraph:
-      "I'm a Digital Marketing Executive with 2.5+ years of hands-on experience owning the full digital function for OM Value Homes, a real estate brand in Palghar. I manage content planning, creative design, Meta advertising, lead generation, and reporting — with a focus on qualified enquiries, consistent branding, and data-led optimisation. The frameworks I use (audience research, conversion creative, paid performance, and local SEO) apply across B2C, services, e-commerce, and product businesses.",
+      "I'm Yash Pawar, a Digital Marketing Executive with 2.5+ years of hands-on experience owning the full digital function for OM Value Homes, a real estate brand in Palghar, Maharashtra. I manage content planning, creative design, Meta advertising, lead generation, and reporting — with a focus on qualified enquiries, consistent branding, and data-led optimisation. The frameworks I use (audience research, conversion creative, paid performance, and local SEO) apply across B2C, services, e-commerce, and product businesses.",
     objectiveLabel: "Career Objective",
     objective:
       "To grow into a senior digital marketing role where I can lead multi-channel campaigns across industries, apply data-driven decision making, and combine creativity with AI tools to deliver repeatable, efficient growth.",
