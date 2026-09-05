@@ -20,10 +20,15 @@ function getSessionConfig() {
   };
 }
 
-async function requireAdmin() {
+async function requireAdmin(passcode?: string) {
+  const expected = process.env.ADMIN_PASSCODE;
+  if (passcode && expected && passcode === expected) return;
   const session = await useSession<AdminSession>(getSessionConfig());
-  if (!session.data.unlocked) throw new Response("Unauthorized", { status: 401 });
+  if (!session.data.unlocked) {
+    throw new Error("Unauthorized — please enter the admin passcode again.");
+  }
 }
+
 
 type Json = null | boolean | number | string | Json[] | { [k: string]: Json };
 
