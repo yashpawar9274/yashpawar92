@@ -15,6 +15,11 @@ import {
   DEFAULT_CONTENT, CONTENT_KEYS, mergeContent, type ContentKey, type SiteContent,
 } from "@/lib/content-defaults";
 
+const PC_KEY = "omvh-admin-pc";
+export function getPc() {
+  try { return sessionStorage.getItem(PC_KEY) ?? undefined; } catch { return undefined; }
+}
+
 export const Route = createFileRoute("/admin")({
   ssr: false,
   component: AdminPage,
@@ -47,7 +52,10 @@ function PasscodeGate({ onUnlock }: { onUnlock: () => void }) {
     setBusy(true); setErr(false);
     try {
       const res = await unlock({ data: { passcode: pass } });
-      if (res.ok) onUnlock(); else setErr(true);
+      if (res.ok) {
+        try { sessionStorage.setItem(PC_KEY, pass); } catch { /* ignore */ }
+        onUnlock();
+      } else setErr(true);
     } finally { setBusy(false); }
   }
   return (
@@ -134,15 +142,15 @@ function GalleryTab() {
   const { data: items = [] } = useQuery({ queryKey: ["omvh-uploads"], queryFn: () => list() });
 
   const uploadMut = useMutation({
-    mutationFn: (v: Parameters<typeof upload>[0]["data"]) => upload({ data: v }),
+    mutationFn: (v: Parameters<typeof upload>[0]["data"]) => upload({ data: { ...v, passcode: getPc() } }),
     onSuccess: () => qc.invalidateQueries({ queryKey: ["omvh-uploads"] }),
   });
   const delMut = useMutation({
-    mutationFn: (id: string) => del({ data: { id } }),
+    mutationFn: (id: string) => del({ data: { id, passcode: getPc() } }),
     onSuccess: () => qc.invalidateQueries({ queryKey: ["omvh-uploads"] }),
   });
   const editMut = useMutation({
-    mutationFn: (v: Parameters<typeof updateMeta>[0]["data"]) => updateMeta({ data: v }),
+    mutationFn: (v: Parameters<typeof updateMeta>[0]["data"]) => updateMeta({ data: { ...v, passcode: getPc() } }),
     onSuccess: () => qc.invalidateQueries({ queryKey: ["omvh-uploads"] }),
   });
 
