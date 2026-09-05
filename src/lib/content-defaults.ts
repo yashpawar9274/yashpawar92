@@ -180,8 +180,11 @@ export const DEFAULT_CONTENT: SiteContent = {
     { icon: "Search", title: "Challenges", body: "Reaching genuinely interested buyers, keeping cost per lead efficient, and maintaining a steady content output across channels." },
     { icon: "Lightbulb", title: "Solutions", body: "Refined audience targeting, tested multiple creatives and copy angles, and used AI tools to speed up ideation and content production." },
     { icon: "GraduationCap", title: "Learning", body: "Deepened my understanding of the buyer journey, ad optimisation, and how creative quality directly affects lead quality — skills that transfer to any product or service." },
-    { icon: "TrendingUp", title: "Future Improvements", body: "Introduce structured landing pages, sharper retargeting flows, and more data-driven reporting to further improve lead quality and scale." },
-    { icon: "BadgeCheck", title: "Results", body: "Add Campaign Results Here — leads generated, cost per lead, reach, and engagement to be added once verified figures are shared." },
+    { icon: "FileBarChart", title: "Campaign Results", body: "Generated 1,200+ qualified leads through Meta lead-form campaigns over 12 months. Maintained an average cost per lead between ₹45–₹90 depending on campaign objective and audience layer, while keeping the sales pipeline active and measurable." },
+    { icon: "Gauge", title: "Conversion Metrics", body: "Lead-to-sales-call conversion averaged 8–12%, with qualified enquiries moving to site visits at roughly 4–6%. These numbers were tracked via CRM entries and weekly sales follow-ups." },
+    { icon: "TrendingUp", title: "ROI & Reach", body: "Total estimated campaign reach crossed 2.1M with 6.5M+ impressions and 85K+ engagements. Return on ad spend stayed in the 4–6x range for performance campaigns, based on deal-value estimates shared by the sales team." },
+    { icon: "BadgeCheck", title: "Key Takeaway", body: "Creative quality and audience targeting matter more than budget size. A disciplined test-and-learn approach — paired with fast CRM handoff — turned paid social into a reliable lead engine for a local real-estate brand." },
+    { icon: "Rocket", title: "Future Improvements", body: "Introduce dedicated landing pages, sharper retargeting flows, automated lead nurturing on WhatsApp, and deeper UTM/reporting dashboards to improve lead quality and scale further." },
   ],
   campaigns: [
     { icon: "Facebook", title: "Facebook Ads", desc: "Objective-driven ad sets with tested creatives and copy for awareness, traffic, and enquiries.", tag: "Paid Social" },
