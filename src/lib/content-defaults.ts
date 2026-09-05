@@ -292,12 +292,13 @@ export const DEFAULT_CONTENT: SiteContent = {
     ctaLabel: "Discuss this role",
   },
   contact: {
-    intro: "Open to Digital Marketing Executive and Senior Digital Marketing Executive roles across real estate, B2C, services, and product brands. Let's connect.",
+    intro: "Open to Digital Marketing Executive and Senior Digital Marketing Executive roles across real estate, B2C, services, e-commerce, D2C, and product brands. Let's connect.",
     location: "Palghar (W), Maharashtra",
     email: "theyashpawar92@gmail.com",
     phone: "+91 73850 66631",
-    linkedin: "linkedin.com/in/yashpawar9274",
-    instagram: "instagram.com/theitsash",
+    linkedin: "https://linkedin.com/in/yashpawar9274",
+    instagram: "https://instagram.com/theitsash",
+    website: "https://dmyashpawar.vercel.app/",
     footerLine: "Digital Marketing · Palghar, Maharashtra",
   },
 };
