@@ -1,29 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
-import { useSession } from "@tanstack/react-start/server";
 import { CONTENT_KEYS, type ContentKey } from "./content-defaults";
-
-type AdminSession = { unlocked?: boolean };
-
-function getSessionConfig() {
-  const password = process.env.SESSION_SECRET;
-  if (!password) throw new Error("SESSION_SECRET not configured");
-  return {
-    password,
-    name: "omvh-admin",
-    maxAge: 60 * 60 * 24 * 30,
-    cookie: {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "lax" as const,
-      path: "/",
-    },
-  };
-}
-
-async function requireAdmin() {
-  const session = await useSession<AdminSession>(getSessionConfig());
-  if (!session.data.unlocked) throw new Response("Unauthorized", { status: 401 });
-}
 
 type Json = null | boolean | number | string | Json[] | { [k: string]: Json };
 
@@ -48,7 +24,6 @@ export const updateSiteContent = createServerFn({ method: "POST" })
     return { key: d.key as ContentKey, data: d.data };
   })
   .handler(async ({ data }) => {
-    await requireAdmin();
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const { error } = await supabaseAdmin
       .from("site_content")
@@ -61,7 +36,6 @@ export const updateSiteContent = createServerFn({ method: "POST" })
 export const resetSiteContent = createServerFn({ method: "POST" })
   .inputValidator((d: { key: string }) => ({ key: d.key }))
   .handler(async ({ data }) => {
-    await requireAdmin();
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     await supabaseAdmin.from("site_content").delete().eq("key", data.key);
     return { ok: true as const };
@@ -79,7 +53,6 @@ export const updateOmvhUpload = createServerFn({ method: "POST" })
     sort_order?: number;
   }) => d)
   .handler(async ({ data }) => {
-    await requireAdmin();
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const patch: {
       title?: string; tag?: string; caption?: string; alt?: string;

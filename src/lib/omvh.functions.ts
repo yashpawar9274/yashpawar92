@@ -1,5 +1,4 @@
 import { createServerFn } from "@tanstack/react-start";
-import { useSession } from "@tanstack/react-start/server";
 
 export type OmvhUpload = {
   id: string;
@@ -12,31 +11,6 @@ export type OmvhUpload = {
   sort_order: number;
   created_at: string;
 };
-
-type AdminSession = { unlocked?: boolean };
-
-function getSessionConfig() {
-  const password = process.env.SESSION_SECRET;
-  if (!password) throw new Error("SESSION_SECRET not configured");
-  return {
-    password,
-    name: "omvh-admin",
-    maxAge: 60 * 60 * 24 * 30,
-    cookie: {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "lax" as const,
-      path: "/",
-    },
-  };
-}
-
-async function requireAdmin() {
-  const session = await useSession<AdminSession>(getSessionConfig());
-  if (!session.data.unlocked) {
-    throw new Response("Unauthorized", { status: 401 });
-  }
-}
 
 /** Public — list all uploads with fresh signed URLs. */
 export const listOmvhUploads = createServerFn({ method: "GET" }).handler(async () => {
@@ -69,32 +43,6 @@ export const listOmvhUploads = createServerFn({ method: "GET" }).handler(async (
   })) satisfies OmvhUpload[];
 });
 
-/** Passcode unlock. Returns ok + sets encrypted session cookie. */
-export const unlockAdmin = createServerFn({ method: "POST" })
-  .inputValidator((d: { passcode: string }) => ({ passcode: String(d?.passcode ?? "") }))
-  .handler(async ({ data }) => {
-    const expected = process.env.ADMIN_PASSCODE;
-    if (!expected) throw new Error("ADMIN_PASSCODE not configured");
-    const { createHash, timingSafeEqual } = await import("node:crypto");
-    const a = createHash("sha256").update(data.passcode, "utf8").digest();
-    const b = createHash("sha256").update(expected, "utf8").digest();
-    if (!timingSafeEqual(a, b)) return { ok: false as const };
-    const session = await useSession<AdminSession>(getSessionConfig());
-    await session.update({ unlocked: true });
-    return { ok: true as const };
-  });
-
-export const adminStatus = createServerFn({ method: "GET" }).handler(async () => {
-  const session = await useSession<AdminSession>(getSessionConfig());
-  return { unlocked: !!session.data.unlocked };
-});
-
-export const lockAdmin = createServerFn({ method: "POST" }).handler(async () => {
-  const session = await useSession<AdminSession>(getSessionConfig());
-  await session.clear();
-  return { ok: true as const };
-});
-
 /** Admin-only: upload a new creative. */
 export const adminUpload = createServerFn({ method: "POST" })
   .inputValidator((d: {
@@ -109,7 +57,6 @@ export const adminUpload = createServerFn({ method: "POST" })
     sort_order?: number;
   }) => d)
   .handler(async ({ data }) => {
-    await requireAdmin();
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
 
     const match = data.dataUrl.match(/^data:([^;]+);base64,(.+)$/);
@@ -140,7 +87,6 @@ export const adminUpload = createServerFn({ method: "POST" })
 export const adminDelete = createServerFn({ method: "POST" })
   .inputValidator((d: { id: string }) => ({ id: String(d.id) }))
   .handler(async ({ data }) => {
-    await requireAdmin();
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const { data: row } = await supabaseAdmin
       .from("omvh_uploads")

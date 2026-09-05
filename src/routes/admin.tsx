@@ -3,10 +3,10 @@ import { useServerFn } from "@tanstack/react-start";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useMemo, useState } from "react";
 import {
-  Lock, Upload, Trash2, LogOut, Loader2, CheckCircle2, Save, RotateCcw, Pencil, X,
+  Upload, Trash2, LogOut, Loader2, CheckCircle2, Save, RotateCcw, Pencil, X,
 } from "lucide-react";
 import {
-  adminDelete, adminStatus, adminUpload, listOmvhUploads, lockAdmin, unlockAdmin,
+  adminDelete, adminUpload, listOmvhUploads,
 } from "@/lib/omvh.functions";
 import {
   getSiteContent, updateSiteContent, resetSiteContent, updateOmvhUpload,
@@ -28,46 +28,7 @@ export const Route = createFileRoute("/admin")({
 });
 
 function AdminPage() {
-  const status = useServerFn(adminStatus);
-  const [unlocked, setUnlocked] = useState<boolean | null>(null);
-  useEffect(() => { status().then((r) => setUnlocked(r.unlocked)).catch(() => setUnlocked(false)); }, [status]);
-  if (unlocked === null) {
-    return <div className="grid min-h-screen place-items-center bg-background"><Loader2 className="h-6 w-6 animate-spin text-muted-foreground" /></div>;
-  }
-  return unlocked ? <AdminDashboard onLock={() => setUnlocked(false)} /> : <PasscodeGate onUnlock={() => setUnlocked(true)} />;
-}
-
-function PasscodeGate({ onUnlock }: { onUnlock: () => void }) {
-  const unlock = useServerFn(unlockAdmin);
-  const [pass, setPass] = useState("");
-  const [err, setErr] = useState(false);
-  const [busy, setBusy] = useState(false);
-  async function onSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setBusy(true); setErr(false);
-    try {
-      const res = await unlock({ data: { passcode: pass } });
-      if (res.ok) onUnlock(); else setErr(true);
-    } finally { setBusy(false); }
-  }
-  return (
-    <div className="grid min-h-screen place-items-center bg-background px-4">
-      <form onSubmit={onSubmit} className="w-full max-w-sm rounded-2xl border border-border bg-card p-8 shadow-sm">
-        <div className="mb-6 flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-secondary"><Lock className="h-5 w-5" /></div>
-          <div>
-            <h1 className="text-lg font-semibold">Admin access</h1>
-            <p className="text-xs text-muted-foreground">Enter passcode to edit portfolio content.</p>
-          </div>
-        </div>
-        <input type="password" autoFocus value={pass} onChange={(e) => setPass(e.target.value)} placeholder="Passcode" className="w-full rounded-lg border border-border bg-background px-4 py-2.5 text-sm outline-none focus:border-foreground" />
-        {err && <p className="mt-2 text-xs text-red-600">Incorrect passcode.</p>}
-        <button type="submit" disabled={busy || !pass} className="mt-4 flex w-full items-center justify-center gap-2 rounded-lg bg-foreground px-4 py-2.5 text-sm font-semibold text-background disabled:opacity-50">
-          {busy ? <Loader2 className="h-4 w-4 animate-spin" /> : "Unlock"}
-        </button>
-      </form>
-    </div>
-  );
+  return <AdminDashboard />;
 }
 
 type Tab = "gallery" | ContentKey;
@@ -89,8 +50,7 @@ const TABS: { id: Tab; label: string }[] = [
   { id: "contact", label: "Contact" },
 ];
 
-function AdminDashboard({ onLock }: { onLock: () => void }) {
-  const lock = useServerFn(lockAdmin);
+function AdminDashboard() {
   const [tab, setTab] = useState<Tab>("gallery");
 
   return (
@@ -101,9 +61,9 @@ function AdminDashboard({ onLock }: { onLock: () => void }) {
             <h1 className="text-lg font-semibold">Portfolio — Admin CMS</h1>
             <p className="text-xs text-muted-foreground">Edit any section below. Changes go live for every visitor instantly.</p>
           </div>
-          <button onClick={async () => { await lock(); onLock(); }} className="inline-flex items-center gap-2 rounded-lg border border-border px-3 py-2 text-xs font-medium hover:bg-secondary">
-            <LogOut className="h-4 w-4" /> Lock
-          </button>
+          <a href="/" className="inline-flex items-center gap-2 rounded-lg border border-border px-3 py-2 text-xs font-medium hover:bg-secondary">
+            <LogOut className="h-4 w-4" /> Exit
+          </a>
         </div>
       </header>
 
