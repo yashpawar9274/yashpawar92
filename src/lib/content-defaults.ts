@@ -68,6 +68,7 @@ export type SiteContent = {
     phone: string;
     linkedin: string;
     instagram: string;
+    website: string;
     footerLine: string;
   };
 };
@@ -88,7 +89,7 @@ export const DEFAULT_CONTENT: SiteContent = {
   },
   about: {
     paragraph:
-      "I'm a Digital Marketing Executive with 2.5+ years of hands-on experience owning the full digital function for OM Value Homes, a real estate brand in Palghar. I manage content planning, creative design, Meta advertising, lead generation, and reporting — with a focus on qualified enquiries, consistent branding, and data-led optimisation. The frameworks I use (audience research, conversion creative, paid performance, and local SEO) apply across B2C, services, e-commerce, and product businesses.",
+      "I'm Yash Pawar, a Digital Marketing Executive with 2.5+ years of hands-on experience owning the full digital function for OM Value Homes, a real estate brand in Palghar, Maharashtra. I manage content planning, creative design, Meta advertising, lead generation, and reporting — with a focus on qualified enquiries, consistent branding, and data-led optimisation. The frameworks I use (audience research, conversion creative, paid performance, and local SEO) apply across B2C, services, e-commerce, and product businesses.",
     objectiveLabel: "Career Objective",
     objective:
       "To grow into a senior digital marketing role where I can lead multi-channel campaigns across industries, apply data-driven decision making, and combine creativity with AI tools to deliver repeatable, efficient growth.",
@@ -291,12 +292,13 @@ export const DEFAULT_CONTENT: SiteContent = {
     ctaLabel: "Discuss this role",
   },
   contact: {
-    intro: "Open to Digital Marketing Executive and Senior Digital Marketing Executive roles across real estate, B2C, services, and product brands. Let's connect.",
+    intro: "Open to Digital Marketing Executive and Senior Digital Marketing Executive roles across real estate, B2C, services, e-commerce, D2C, and product brands. Let's connect.",
     location: "Palghar (W), Maharashtra",
     email: "theyashpawar92@gmail.com",
     phone: "+91 73850 66631",
-    linkedin: "linkedin.com/in/yashpawar9274",
-    instagram: "instagram.com/theitsash",
+    linkedin: "https://linkedin.com/in/yashpawar9274",
+    instagram: "https://instagram.com/theitsash",
+    website: "https://dmyashpawar.vercel.app/",
     footerLine: "Digital Marketing · Palghar, Maharashtra",
   },
 };
