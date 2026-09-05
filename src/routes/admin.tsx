@@ -311,14 +311,14 @@ function ContentTab({ sectionKey }: { sectionKey: ContentKey }) {
   useEffect(() => { setText(JSON.stringify(current, null, 2)); setParseErr(null); }, [sectionKey, raw]); // eslint-disable-line
 
   const saveMut = useMutation({
-    mutationFn: (data: unknown) => update({ data: { key: sectionKey, data } }),
+    mutationFn: (data: unknown) => update({ data: { key: sectionKey, data, passcode: getPc() } }),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["site-content"] });
       setFlash("Saved — live on the site."); setTimeout(() => setFlash(null), 2500);
     },
   });
   const resetMut = useMutation({
-    mutationFn: () => reset({ data: { key: sectionKey } }),
+    mutationFn: () => reset({ data: { key: sectionKey, passcode: getPc() } }),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["site-content"] });
       setFlash("Reset to default."); setTimeout(() => setFlash(null), 2500);
