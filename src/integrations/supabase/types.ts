@@ -86,6 +86,57 @@ export type Database = {
         }
         Relationships: []
       }
+      work_items: {
+        Row: {
+          alt: string
+          aspect: string
+          category: string
+          created_at: string
+          description: string
+          external_url: string | null
+          featured: boolean
+          id: string
+          media_type: string
+          sort_order: number
+          storage_path: string | null
+          tag: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          alt?: string
+          aspect?: string
+          category?: string
+          created_at?: string
+          description?: string
+          external_url?: string | null
+          featured?: boolean
+          id?: string
+          media_type?: string
+          sort_order?: number
+          storage_path?: string | null
+          tag?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          alt?: string
+          aspect?: string
+          category?: string
+          created_at?: string
+          description?: string
+          external_url?: string | null
+          featured?: boolean
+          id?: string
+          media_type?: string
+          sort_order?: number
+          storage_path?: string | null
+          tag?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
