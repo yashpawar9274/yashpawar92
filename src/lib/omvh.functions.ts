@@ -63,7 +63,7 @@ export const adminUpload = createServerFn({ method: "POST" })
     passcode?: string;
   }) => d)
   .handler(async ({ data }) => {
-    await requireAdmin();
+    await requireAdmin(data.passcode);
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
 
     const match = data.dataUrl.match(/^data:([^;]+);base64,(.+)$/);
@@ -94,7 +94,7 @@ export const adminUpload = createServerFn({ method: "POST" })
 export const adminDelete = createServerFn({ method: "POST" })
   .inputValidator((d: { id: string; passcode?: string }) => ({ id: String(d.id), passcode: d.passcode }))
   .handler(async ({ data }) => {
-    await requireAdmin();
+    await requireAdmin(data.passcode);
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const { data: row } = await supabaseAdmin
       .from("omvh_uploads")
