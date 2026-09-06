@@ -12,29 +12,9 @@ export type OmvhUpload = {
   created_at: string;
 };
 
-type AdminSession = { unlocked?: boolean };
-
-function getSessionConfig() {
-  const password = process.env.SESSION_SECRET;
-  if (!password) throw new Error("SESSION_SECRET not configured");
-  return {
-    password,
-    name: "omvh-admin",
-    maxAge: 60 * 60 * 24 * 30,
-    cookie: {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "lax" as const,
-      path: "/",
-    },
-  };
-}
-
-async function requireAdmin() {
-  const session = await useSession<AdminSession>(getSessionConfig());
-  if (!session.data.unlocked) {
-    throw new Response("Unauthorized", { status: 401 });
-  }
+async function requireAdmin(passcode?: string) {
+  const { assertAdmin } = await import("./admin-auth.server");
+  assertAdmin(passcode);
 }
 
 /** Public — list all uploads with fresh signed URLs. */

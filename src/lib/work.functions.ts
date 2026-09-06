@@ -46,7 +46,7 @@ export const listWorkItems = createServerFn({ method: "GET" }).handler(async () 
     const { data: signed } = await supabaseAdmin.storage
       .from("omvh-uploads")
       .createSignedUrls(paths, 60 * 60 * 24 * 365);
-    for (const s of signed ?? []) urlByPath.set(s.path ?? "", s.signedUrl);
+    for (const s of signed ?? []) urlByPath.set(s.path ?? "", s.signedUrl ?? "");
   }
 
   return rows.map((r) => ({
@@ -137,9 +137,8 @@ export const updateWorkItem = createServerFn({ method: "POST" })
     const { assertAdmin } = await import("./admin-auth.server");
     assertAdmin(data.passcode);
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-    const patch: Record<string, unknown> = clean(data);
     const storage_path = await uploadIfPresent(data);
-    if (storage_path) patch["storage_path"] = storage_path;
+    const patch = storage_path ? { ...clean(data), storage_path } : clean(data);
     const { error } = await supabaseAdmin.from("work_items").update(patch).eq("id", data.id);
     if (error) throw new Error(error.message);
     return { ok: true as const };
