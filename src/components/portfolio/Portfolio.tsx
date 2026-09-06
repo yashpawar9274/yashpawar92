@@ -23,6 +23,7 @@ import heroBg from "@/assets/hero-bg.jpg";
 import { Navbar } from "./Navbar";
 import { Reveal, StaggerGroup, staggerChild } from "./reveal";
 import { EditableImage } from "./EditableImage";
+import { WorkShowcase } from "./WorkShowcase";
 
 import dreamAsset from "@/assets/omvh/dream.asset.json";
 import newspaperAsset from "@/assets/omvh/newspaper.asset.json";
@@ -134,8 +135,8 @@ function SectionHeader({
 export function Portfolio() {
   const fetchUploads = useServerFn(listOmvhUploads);
   const fetchContent = useServerFn(getSiteContent);
-  const { data: uploads = [] } = useQuery({ queryKey: ["omvh-uploads"], queryFn: () => fetchUploads(), staleTime: 60_000 });
-  const { data: raw } = useQuery({ queryKey: ["site-content"], queryFn: () => fetchContent(), staleTime: 60_000 });
+  const { data: uploads = [] } = useQuery({ queryKey: ["omvh-uploads"], queryFn: () => fetchUploads(), staleTime: 0, refetchOnWindowFocus: true, refetchInterval: 30_000 });
+  const { data: raw } = useQuery({ queryKey: ["site-content"], queryFn: () => fetchContent(), staleTime: 0, refetchOnWindowFocus: true, refetchInterval: 30_000 });
   const c: SiteContent = mergeContent(raw);
 
   return (
@@ -502,6 +503,9 @@ export function Portfolio() {
         </div>
       </Section>
 
+
+      {/* 8b — MY WORK (admin-managed, live) */}
+      <WorkShowcase />
 
       {/* 9 — TOOLS */}
       <Section id="tools" className="bg-secondary/40">
