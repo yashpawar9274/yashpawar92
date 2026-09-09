@@ -12,8 +12,15 @@ import {
   getSiteContent, updateSiteContent, resetSiteContent, updateOmvhUpload,
 } from "@/lib/content.functions";
 import {
-  DEFAULT_CONTENT, CONTENT_KEYS, mergeContent, type ContentKey, type SiteContent,
+  DEFAULT_CONTENT, mergeContent, type ContentKey, type SiteContent,
 } from "@/lib/content-defaults";
+import { FieldEditor } from "@/components/admin/FieldEditor";
+
+const PASS_KEY = "admin-passcode";
+function getPasscode() {
+  if (typeof window === "undefined") return "";
+  return window.sessionStorage.getItem(PASS_KEY) ?? "";
+}
 
 export const Route = createFileRoute("/admin")({
   ssr: false,
