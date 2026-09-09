@@ -15,6 +15,7 @@ import {
   DEFAULT_CONTENT, mergeContent, type ContentKey, type SiteContent,
 } from "@/lib/content-defaults";
 import { FieldEditor } from "@/components/admin/FieldEditor";
+import { adminUnlock } from "@/lib/work.functions";
 
 const PASS_KEY = "admin-passcode";
 function getPasscode() {
