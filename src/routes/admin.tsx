@@ -35,7 +35,55 @@ export const Route = createFileRoute("/admin")({
 });
 
 function AdminPage() {
-  return <AdminDashboard />;
+  const unlock = useServerFn(adminUnlock);
+  const [ok, setOk] = useState(false);
+  const [pass, setPass] = useState("");
+  const [err, setErr] = useState<string | null>(null);
+  const [busy, setBusy] = useState(false);
+
+  useEffect(() => {
+    const saved = getPasscode();
+    if (!saved) return;
+    unlock({ data: { passcode: saved } }).then(() => setOk(true)).catch(() => {
+      window.sessionStorage.removeItem(PASS_KEY);
+    });
+  }, []); // eslint-disable-line
+
+  if (ok) return <AdminDashboard />;
+
+  return (
+    <div className="grid min-h-screen place-items-center bg-background px-6">
+      <form
+        onSubmit={async (e) => {
+          e.preventDefault();
+          setBusy(true); setErr(null);
+          try {
+            await unlock({ data: { passcode: pass } });
+            window.sessionStorage.setItem(PASS_KEY, pass);
+            setOk(true);
+          } catch (e2) {
+            setErr((e2 as Error).message || "Wrong passcode.");
+          } finally { setBusy(false); }
+        }}
+        className="w-full max-w-sm rounded-2xl border border-border bg-card p-6"
+      >
+        <h1 className="text-lg font-semibold">Admin access</h1>
+        <p className="mt-1 text-xs text-muted-foreground">Enter your passcode to edit the portfolio.</p>
+        <input
+          type="password"
+          value={pass}
+          onChange={(e) => setPass(e.target.value)}
+          autoFocus
+          className="mt-4 w-full rounded-lg border border-border bg-background px-3 py-2 text-sm outline-none focus:border-foreground"
+          placeholder="Passcode"
+        />
+        <button disabled={busy || !pass} className="mt-4 flex w-full items-center justify-center gap-2 rounded-lg bg-foreground px-4 py-2.5 text-sm font-semibold text-background disabled:opacity-50">
+          {busy ? <Loader2 className="h-4 w-4 animate-spin" /> : null} Unlock
+        </button>
+        {err && <p className="mt-3 text-xs text-red-600">{err}</p>}
+      </form>
+    </div>
+  );
 }
 
 type Tab = "gallery" | ContentKey;
