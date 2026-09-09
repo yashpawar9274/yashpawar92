@@ -12,8 +12,16 @@ import {
   getSiteContent, updateSiteContent, resetSiteContent, updateOmvhUpload,
 } from "@/lib/content.functions";
 import {
-  DEFAULT_CONTENT, CONTENT_KEYS, mergeContent, type ContentKey, type SiteContent,
+  DEFAULT_CONTENT, mergeContent, type ContentKey, type SiteContent,
 } from "@/lib/content-defaults";
+import { FieldEditor } from "@/components/admin/FieldEditor";
+import { adminUnlock } from "@/lib/work.functions";
+
+const PASS_KEY = "admin-passcode";
+function getPasscode() {
+  if (typeof window === "undefined") return "";
+  return window.sessionStorage.getItem(PASS_KEY) ?? "";
+}
 
 export const Route = createFileRoute("/admin")({
   ssr: false,
@@ -28,7 +36,55 @@ export const Route = createFileRoute("/admin")({
 });
 
 function AdminPage() {
-  return <AdminDashboard />;
+  const unlock = useServerFn(adminUnlock);
+  const [ok, setOk] = useState(false);
+  const [pass, setPass] = useState("");
+  const [err, setErr] = useState<string | null>(null);
+  const [busy, setBusy] = useState(false);
+
+  useEffect(() => {
+    const saved = getPasscode();
+    if (!saved) return;
+    unlock({ data: { passcode: saved } }).then(() => setOk(true)).catch(() => {
+      window.sessionStorage.removeItem(PASS_KEY);
+    });
+  }, []); // eslint-disable-line
+
+  if (ok) return <AdminDashboard />;
+
+  return (
+    <div className="grid min-h-screen place-items-center bg-background px-6">
+      <form
+        onSubmit={async (e) => {
+          e.preventDefault();
+          setBusy(true); setErr(null);
+          try {
+            await unlock({ data: { passcode: pass } });
+            window.sessionStorage.setItem(PASS_KEY, pass);
+            setOk(true);
+          } catch (e2) {
+            setErr((e2 as Error).message || "Wrong passcode.");
+          } finally { setBusy(false); }
+        }}
+        className="w-full max-w-sm rounded-2xl border border-border bg-card p-6"
+      >
+        <h1 className="text-lg font-semibold">Admin access</h1>
+        <p className="mt-1 text-xs text-muted-foreground">Enter your passcode to edit the portfolio.</p>
+        <input
+          type="password"
+          value={pass}
+          onChange={(e) => setPass(e.target.value)}
+          autoFocus
+          className="mt-4 w-full rounded-lg border border-border bg-background px-3 py-2 text-sm outline-none focus:border-foreground"
+          placeholder="Passcode"
+        />
+        <button disabled={busy || !pass} className="mt-4 flex w-full items-center justify-center gap-2 rounded-lg bg-foreground px-4 py-2.5 text-sm font-semibold text-background disabled:opacity-50">
+          {busy ? <Loader2 className="h-4 w-4 animate-spin" /> : null} Unlock
+        </button>
+        {err && <p className="mt-3 text-xs text-red-600">{err}</p>}
+      </form>
+    </div>
+  );
 }
 
 type Tab = "gallery" | ContentKey;
@@ -94,15 +150,15 @@ function GalleryTab() {
   const { data: items = [] } = useQuery({ queryKey: ["omvh-uploads"], queryFn: () => list() });
 
   const uploadMut = useMutation({
-    mutationFn: (v: Parameters<typeof upload>[0]["data"]) => upload({ data: v }),
+    mutationFn: (v: Parameters<typeof upload>[0]["data"]) => upload({ data: { ...v, passcode: getPasscode() } }),
     onSuccess: () => qc.invalidateQueries({ queryKey: ["omvh-uploads"] }),
   });
   const delMut = useMutation({
-    mutationFn: (id: string) => del({ data: { id } }),
+    mutationFn: (id: string) => del({ data: { id, passcode: getPasscode() } }),
     onSuccess: () => qc.invalidateQueries({ queryKey: ["omvh-uploads"] }),
   });
   const editMut = useMutation({
-    mutationFn: (v: Parameters<typeof updateMeta>[0]["data"]) => updateMeta({ data: v }),
+    mutationFn: (v: Parameters<typeof updateMeta>[0]["data"]) => updateMeta({ data: { ...v, passcode: getPasscode() } }),
     onSuccess: () => qc.invalidateQueries({ queryKey: ["omvh-uploads"] }),
   });
 
@@ -255,87 +311,76 @@ function ContentTab({ sectionKey }: { sectionKey: ContentKey }) {
   const current = merged[sectionKey];
   const isDefault = !raw || raw[sectionKey] === undefined;
 
-  const [text, setText] = useState<string>(() => JSON.stringify(current, null, 2));
-  const [parseErr, setParseErr] = useState<string | null>(null);
+  const [draft, setDraft] = useState<unknown>(() => current);
   const [flash, setFlash] = useState<string | null>(null);
+  const [dirty, setDirty] = useState(false);
 
-  // Reset editor when tab changes or data reloads
-  useEffect(() => { setText(JSON.stringify(current, null, 2)); setParseErr(null); }, [sectionKey, raw]); // eslint-disable-line
+  // Load fresh values when the tab changes or the database data reloads
+  useEffect(() => {
+    setDraft(JSON.parse(JSON.stringify(current)));
+    setDirty(false);
+  }, [sectionKey, raw]); // eslint-disable-line
 
   const saveMut = useMutation({
-    mutationFn: (data: unknown) => update({ data: { key: sectionKey, data } }),
+    mutationFn: (data: unknown) => update({ data: { key: sectionKey, data, passcode: getPasscode() } }),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["site-content"] });
+      setDirty(false);
       setFlash("Saved — live on the site."); setTimeout(() => setFlash(null), 2500);
     },
   });
   const resetMut = useMutation({
-    mutationFn: () => reset({ data: { key: sectionKey } }),
+    mutationFn: () => reset({ data: { key: sectionKey, passcode: getPasscode() } }),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["site-content"] });
       setFlash("Reset to default."); setTimeout(() => setFlash(null), 2500);
     },
   });
 
-  function handleSave() {
-    let parsed: unknown;
-    try { parsed = JSON.parse(text); setParseErr(null); }
-    catch (e) { setParseErr((e as Error).message); return; }
-    saveMut.mutate(parsed);
-  }
-  function loadDefault() {
-    setText(JSON.stringify(DEFAULT_CONTENT[sectionKey], null, 2));
-  }
-
   if (isLoading) return <div className="grid place-items-center p-12"><Loader2 className="h-5 w-5 animate-spin text-muted-foreground" /></div>;
 
+  const label = TABS.find((t) => t.id === sectionKey)?.label ?? sectionKey;
+
   return (
-    <div className="grid gap-6 lg:grid-cols-[1fr_320px]">
-      <div className="rounded-2xl border border-border bg-card p-5">
-        <div className="mb-3 flex items-center justify-between">
-          <div>
-            <h2 className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">{sectionKey}</h2>
-            <p className="mt-1 text-xs text-muted-foreground">
-              Edit the JSON below. Structure must match the schema shown on the right. {isDefault ? "(Currently using default values.)" : "(Custom content saved.)"}
-            </p>
-          </div>
-          <div className="flex gap-2">
-            <button onClick={loadDefault} className="inline-flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-xs font-medium hover:bg-secondary">
-              <RotateCcw className="h-3.5 w-3.5" /> Load default
-            </button>
-            {!isDefault && (
-              <button disabled={resetMut.isPending} onClick={() => { if (confirm("Reset this section to default?")) resetMut.mutate(); }} className="inline-flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-xs font-medium text-red-600 hover:bg-red-50 disabled:opacity-50">
-                Reset saved
-              </button>
-            )}
-            <button disabled={saveMut.isPending} onClick={handleSave} className="inline-flex items-center gap-1.5 rounded-lg bg-foreground px-4 py-1.5 text-xs font-semibold text-background disabled:opacity-50">
-              {saveMut.isPending ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Save className="h-3.5 w-3.5" />} Save
-            </button>
-          </div>
+    <div className="rounded-2xl border border-border bg-card p-5">
+      <div className="mb-5 flex flex-wrap items-start justify-between gap-3 border-b border-border pb-4">
+        <div>
+          <h2 className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">{label}</h2>
+          <p className="mt-1 text-xs text-muted-foreground">
+            Fill in the boxes below and press Save — the website updates for every visitor instantly.
+            {isDefault ? " (Currently showing the standard text.)" : " (Your saved text is live.)"}
+          </p>
         </div>
-        <textarea
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          spellCheck={false}
-          className="h-[70vh] w-full rounded-lg border border-border bg-background p-4 font-mono text-xs leading-relaxed outline-none focus:border-foreground"
-        />
-        {parseErr && <p className="mt-2 text-xs text-red-600">JSON error: {parseErr}</p>}
-        {saveMut.error && <p className="mt-2 text-xs text-red-600">{(saveMut.error as Error).message}</p>}
-        {flash && <p className="mt-2 flex items-center gap-1.5 text-xs text-green-700"><CheckCircle2 className="h-3.5 w-3.5" /> {flash}</p>}
+        <div className="flex flex-wrap gap-2">
+          <button onClick={() => { setDraft(JSON.parse(JSON.stringify(DEFAULT_CONTENT[sectionKey]))); setDirty(true); }} className="inline-flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-xs font-medium hover:bg-secondary">
+            <RotateCcw className="h-3.5 w-3.5" /> Load standard text
+          </button>
+          {!isDefault && (
+            <button disabled={resetMut.isPending} onClick={() => { if (confirm("Reset this section back to the standard text?")) resetMut.mutate(); }} className="inline-flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-xs font-medium text-red-600 hover:bg-red-50 disabled:opacity-50">
+              Reset section
+            </button>
+          )}
+          <button disabled={saveMut.isPending} onClick={() => saveMut.mutate(draft)} className="inline-flex items-center gap-1.5 rounded-lg bg-foreground px-4 py-1.5 text-xs font-semibold text-background disabled:opacity-50">
+            {saveMut.isPending ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Save className="h-3.5 w-3.5" />} Save{dirty ? " changes" : ""}
+          </button>
+        </div>
       </div>
 
-      <aside className="rounded-2xl border border-border bg-card p-5">
-        <h3 className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">Schema hint</h3>
-        <p className="mt-2 text-xs text-muted-foreground">Copy this default and edit fields. Icon values are strings — see the list below.</p>
-        <pre className="mt-3 max-h-[40vh] overflow-auto rounded-lg bg-secondary/60 p-3 font-mono text-[11px] leading-relaxed">{JSON.stringify(DEFAULT_CONTENT[sectionKey], null, 2)}</pre>
-        <h4 className="mt-4 text-xs font-bold uppercase tracking-wider text-muted-foreground">Available icons</h4>
-        <p className="mt-1 text-[11px] text-muted-foreground">
-          Target, PenLine, Megaphone, LineChart, Search, CalendarRange, Palette, Rocket, Gauge, FileBarChart, Sparkles, MessageSquare, Building2, Users, MapPin, Mail, Phone, Linkedin, Globe, QrCode, BadgeCheck, Brain, Lightbulb, Clock, Handshake, GraduationCap, TrendingUp, Instagram, Facebook, FileText, Image, Layers
-        </p>
-        <div className="mt-4 rounded-lg bg-secondary/50 p-3 text-[11px] text-muted-foreground">
-          Sections available: {CONTENT_KEYS.join(", ")}.
-        </div>
-      </aside>
+      <FieldEditor
+        value={draft}
+        template={DEFAULT_CONTENT[sectionKey]}
+        onChange={(v) => { setDraft(v); setDirty(true); }}
+      />
+
+      {saveMut.error && <p className="mt-3 text-xs text-red-600">{(saveMut.error as Error).message}</p>}
+      {resetMut.error && <p className="mt-3 text-xs text-red-600">{(resetMut.error as Error).message}</p>}
+      {flash && <p className="mt-3 flex items-center gap-1.5 text-xs text-green-700"><CheckCircle2 className="h-3.5 w-3.5" /> {flash}</p>}
+
+      <div className="mt-6 flex justify-end">
+        <button disabled={saveMut.isPending} onClick={() => saveMut.mutate(draft)} className="inline-flex items-center gap-1.5 rounded-lg bg-foreground px-4 py-2 text-xs font-semibold text-background disabled:opacity-50">
+          {saveMut.isPending ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Save className="h-3.5 w-3.5" />} Save
+        </button>
+      </div>
     </div>
   );
 }
