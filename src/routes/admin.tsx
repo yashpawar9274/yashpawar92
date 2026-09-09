@@ -150,15 +150,15 @@ function GalleryTab() {
   const { data: items = [] } = useQuery({ queryKey: ["omvh-uploads"], queryFn: () => list() });
 
   const uploadMut = useMutation({
-    mutationFn: (v: Parameters<typeof upload>[0]["data"]) => upload({ data: v }),
+    mutationFn: (v: Parameters<typeof upload>[0]["data"]) => upload({ data: { ...v, passcode: getPasscode() } }),
     onSuccess: () => qc.invalidateQueries({ queryKey: ["omvh-uploads"] }),
   });
   const delMut = useMutation({
-    mutationFn: (id: string) => del({ data: { id } }),
+    mutationFn: (id: string) => del({ data: { id, passcode: getPasscode() } }),
     onSuccess: () => qc.invalidateQueries({ queryKey: ["omvh-uploads"] }),
   });
   const editMut = useMutation({
-    mutationFn: (v: Parameters<typeof updateMeta>[0]["data"]) => updateMeta({ data: v }),
+    mutationFn: (v: Parameters<typeof updateMeta>[0]["data"]) => updateMeta({ data: { ...v, passcode: getPasscode() } }),
     onSuccess: () => qc.invalidateQueries({ queryKey: ["omvh-uploads"] }),
   });
 
