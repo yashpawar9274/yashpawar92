@@ -20,6 +20,13 @@ export type SiteContent = {
     ctaPrimary: { label: string; href: string };
     ctaSecondary: { label: string; href: string };
     stats: { k: string; v: string }[];
+    domains: string[];
+  };
+  capabilities: {
+    eyebrow: string;
+    title: string;
+    intro: string;
+    items: { icon: IconName; title: string; desc: string; tags: string[] }[];
   };
   about: {
     paragraph: string;
