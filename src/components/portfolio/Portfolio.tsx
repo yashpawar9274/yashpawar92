@@ -1,5 +1,5 @@
-import type { ReactNode } from "react";
-import { motion } from "motion/react";
+import { useEffect, useState, type ReactNode } from "react";
+import { AnimatePresence, motion } from "motion/react";
 import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { listOmvhUploads } from "@/lib/omvh.functions";
@@ -15,6 +15,7 @@ import {
   Globe, QrCode, BadgeCheck, Brain, Lightbulb, Clock, Handshake,
   GraduationCap, TrendingUp, Instagram, Facebook, FileText,
   Image as ImageIcon, Layers, Send, CheckCircle2,
+  Code, Smartphone, Video, Film, Camera, Boxes, Cpu, Mic, Scissors, BookOpen,
   type LucideIcon,
 } from "lucide-react";
 
@@ -99,11 +100,39 @@ export const ICONS: Record<IconName, LucideIcon> = {
   Gauge, FileBarChart, Sparkles, MessageSquare, Building2, Users, MapPin, Mail,
   Phone, Linkedin, Globe, QrCode, BadgeCheck, Brain, Lightbulb, Clock, Handshake,
   GraduationCap, TrendingUp, Instagram, Facebook, FileText, Image: ImageIcon, Layers,
+  Code, Smartphone, Video, Film, Camera, Boxes, Cpu, Mic, Scissors, BookOpen,
 };
 const Ico = ({ name, className }: { name: IconName | string; className?: string }) => {
   const C = ICONS[name as IconName] ?? Sparkles;
   return <C className={className} />;
 };
+
+/** Cycles through the domain words so the hero reflects every skill, not one industry. */
+function RotatingWord({ words, interval = 2200 }: { words: string[]; interval?: number }) {
+  const [i, setI] = useState(0);
+  useEffect(() => {
+    if (words.length < 2) return;
+    const t = setInterval(() => setI((p) => (p + 1) % words.length), interval);
+    return () => clearInterval(t);
+  }, [words, interval]);
+  const word = words[i] ?? words[0] ?? "";
+  return (
+    <span className="relative inline-block">
+      <AnimatePresence mode="wait">
+        <motion.span
+          key={word}
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -8 }}
+          transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+          className="inline-block whitespace-nowrap"
+        >
+          {word}
+        </motion.span>
+      </AnimatePresence>
+    </span>
+  );
+}
 
 /* ---------------------------- layout helpers ------------------------------ */
 function Section({ id, children, className = "" }: { id?: string; children: ReactNode; className?: string }) {
@@ -170,7 +199,11 @@ export function Portfolio() {
             <motion.dl initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.36 }} className="mt-12 grid max-w-lg grid-cols-3 gap-6 border-t border-white/10 pt-8">
               {c.hero.stats.map((s) => (
                 <div key={s.v}>
-                  <dt className="font-display text-xl font-bold text-white lg:text-2xl">{s.k}</dt>
+                  <dt className="font-display text-xl font-bold text-white lg:text-2xl">
+                    {s.v.toLowerCase().includes("domain") && (c.hero.domains?.length ?? 0) > 0
+                      ? <RotatingWord words={c.hero.domains} />
+                      : s.k}
+                  </dt>
                   <dd className="mt-1 text-xs uppercase tracking-wider text-white/50">{s.v}</dd>
                 </div>
               ))}
@@ -188,6 +221,27 @@ export function Portfolio() {
           </motion.div>
         </div>
       </header>
+
+      {/* 1B — CAPABILITIES */}
+      <Section id="capabilities" className="bg-secondary/40">
+        <SectionHeader index="01" eyebrow={c.capabilities.eyebrow} title={c.capabilities.title} intro={c.capabilities.intro} />
+        <StaggerGroup className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {c.capabilities.items.map((it) => (
+            <motion.article key={it.title} variants={staggerChild} className="group rounded-2xl border border-border bg-card p-6 transition-colors hover:border-foreground/30">
+              <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-foreground text-background">
+                <Ico name={it.icon} className="h-5 w-5" />
+              </span>
+              <h3 className="mt-5 text-base font-semibold text-foreground">{it.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{it.desc}</p>
+              <div className="mt-4 flex flex-wrap gap-1.5">
+                {(it.tags ?? []).map((t) => (
+                  <span key={t} className="rounded-full bg-secondary px-2.5 py-1 text-[11px] font-medium text-muted-foreground">{t}</span>
+                ))}
+              </div>
+            </motion.article>
+          ))}
+        </StaggerGroup>
+      </Section>
 
       {/* 2 — ABOUT */}
       <Section id="about">

@@ -9,7 +9,8 @@ export type IconName =
   | "Mail" | "Phone" | "Linkedin" | "Globe" | "QrCode" | "BadgeCheck"
   | "Brain" | "Lightbulb" | "Clock" | "Handshake" | "GraduationCap"
   | "TrendingUp" | "Instagram" | "Facebook" | "FileText" | "Image"
-  | "Layers";
+  | "Layers" | "Code" | "Smartphone" | "Video" | "Film" | "Camera"
+  | "Boxes" | "Cpu" | "Mic" | "Scissors" | "BookOpen";
 
 export type SiteContent = {
   hero: {
@@ -19,6 +20,13 @@ export type SiteContent = {
     ctaPrimary: { label: string; href: string };
     ctaSecondary: { label: string; href: string };
     stats: { k: string; v: string }[];
+    domains: string[];
+  };
+  capabilities: {
+    eyebrow: string;
+    title: string;
+    intro: string;
+    items: { icon: IconName; title: string; desc: string; tags: string[] }[];
   };
   about: {
     paragraph: string;
@@ -75,21 +83,51 @@ export type SiteContent = {
 
 export const DEFAULT_CONTENT: SiteContent = {
   hero: {
-    role: "Digital Marketing Executive",
+    role: "Digital Marketing · Web & App Builder · Video Creator",
     name: "Yash Pawar",
     tagline:
-      "Performance-driven digital marketing specialist with 2.5+ years of experience turning content, creatives, and paid campaigns into qualified leads and measurable brand growth — proven in real estate, ready for any B2C or service industry.",
-    ctaPrimary: { label: "View featured project", href: "#project" },
+      "Multi-skilled digital professional — I run performance marketing campaigns, build websites, web apps and SaaS products, shoot and edit video, produce AI-generated films, and write the scripts, blogs and copy that tie it all together.",
+    ctaPrimary: { label: "See what I can do", href: "#capabilities" },
     ctaSecondary: { label: "Contact me", href: "#contact" },
     stats: [
       { k: "2.5+ Yrs", v: "Experience" },
       { k: "Real Estate", v: "Proven Domain" },
-      { k: "Palghar, MH", v: "Location" },
+      { k: "Boisar, MH", v: "Location" },
+    ],
+    domains: [
+      "Real Estate",
+      "Web Apps",
+      "SaaS Products",
+      "Websites",
+      "Video & Reels",
+      "AI Video",
+      "Scripts & Blogs",
+      "Short Films",
+      "Paid Social",
+      "Brand Content",
+    ],
+  },
+  capabilities: {
+    eyebrow: "What I Can Do",
+    title: "One person, many skills — marketing, product and film under one roof.",
+    intro:
+      "I work across marketing, product and content. That means a brand can get its campaigns, its website or app, and its video content from a single hand — faster turnaround, one consistent voice, no agency ping-pong.",
+    items: [
+      { icon: "Code", title: "Web App Development", desc: "Build working web apps — dashboards, CRMs, internal tools and lead-management systems — with clean, mobile-first interfaces.", tags: ["Dashboards", "CRM", "Internal tools", "Lead systems"] },
+      { icon: "Globe", title: "Website Development", desc: "Design and build business websites and landing pages that load fast, rank, and convert visitors into enquiries.", tags: ["Business sites", "Landing pages", "WordPress", "SEO-ready"] },
+      { icon: "Boxes", title: "SaaS Product Building", desc: "Take a SaaS idea from concept to a usable product — logins, plans, data, admin panels and a launch-ready marketing site.", tags: ["MVP", "Auth & plans", "Admin panel", "Go-to-market"] },
+      { icon: "Target", title: "Performance Marketing", desc: "Meta and paid social campaigns built around qualified leads, efficient cost per lead, and clean CRM handoff.", tags: ["Meta Ads", "Lead gen", "Retargeting", "Reporting"] },
+      { icon: "Camera", title: "Video Shoot", desc: "Plan and shoot on-location video — site walkthroughs, product shots, testimonials and short-form content.", tags: ["On-location", "Walkthroughs", "Testimonials", "Product"] },
+      { icon: "Scissors", title: "Video Editing", desc: "Cut, caption, colour and pace short-form and long-form edits for reels, ads, shorts and YouTube.", tags: ["Reels", "Shorts", "Ad cuts", "Captions"] },
+      { icon: "Cpu", title: "AI-Generated Video", desc: "Produce complete AI video creatives using Flow and other AI tools — from prompt and script to voice, visuals and final edit.", tags: ["Flow", "AI voice", "Prompt craft", "Ad creatives"] },
+      { icon: "Palette", title: "Creative Post Design", desc: "Design scroll-stopping posts, carousels, stories and posters that stay on brand across every channel.", tags: ["Posts", "Carousels", "Stories", "Posters"] },
+      { icon: "PenLine", title: "Scriptwriting & Blogs", desc: "Write reel scripts, ad copy, video narration and SEO blog articles that sound human and drive action.", tags: ["Reel scripts", "Ad copy", "SEO blogs", "Narration"] },
+      { icon: "Film", title: "Short Films", desc: "Concept, script, shoot and edit short films and brand stories — narrative work that carries emotion, not just information.", tags: ["Concept", "Screenplay", "Direction", "Edit"] },
     ],
   },
   about: {
     paragraph:
-      "I'm Yash Pawar, a Digital Marketing Executive with 2.5+ years of hands-on experience owning the full digital function for OM Value Homes, a real estate brand in Palghar, Maharashtra. I manage content planning, creative design, Meta advertising, lead generation, and reporting — with a focus on qualified enquiries, consistent branding, and data-led optimisation. The frameworks I use (audience research, conversion creative, paid performance, and local SEO) apply across B2C, services, e-commerce, and product businesses.",
+      "I'm Yash Pawar, based in Boisar, Maharashtra — a multi-skilled digital professional with 2.5+ years of hands-on experience. I own the full digital function for OM Value Homes (campaigns, creatives, content and reporting), and alongside that I build websites, web apps and SaaS products, shoot and edit video, produce AI-generated video with tools like Flow, and write scripts and blogs. Marketing, product and content are three sides of the same job for me, and I can deliver all three.",
     objectiveLabel: "Career Objective",
     objective:
       "To grow into a senior digital marketing role where I can lead multi-channel campaigns across industries, apply data-driven decision making, and combine creativity with AI tools to deliver repeatable, efficient growth.",
@@ -292,14 +330,14 @@ export const DEFAULT_CONTENT: SiteContent = {
     ctaLabel: "Discuss this role",
   },
   contact: {
-    intro: "Open to Digital Marketing Executive and Senior Digital Marketing Executive roles across real estate, B2C, services, e-commerce, D2C, and product brands. Let's connect.",
-    location: "Palghar (W), Maharashtra",
+    intro: "Open to Digital Marketing, web/app development, and video content roles or projects across real estate, B2C, services, e-commerce, D2C, SaaS, and product brands. Let's connect.",
+    location: "Boisar, Maharashtra",
     email: "theyashpawar92@gmail.com",
     phone: "+91 73850 66631",
     linkedin: "https://linkedin.com/in/yashpawar9274",
     instagram: "https://instagram.com/theitsash",
     website: "https://dmyashpawar.vercel.app/",
-    footerLine: "Digital Marketing · Palghar, Maharashtra",
+    footerLine: "Digital Marketing · Web & Apps · Video · Boisar, Maharashtra",
   },
 };
 
@@ -309,7 +347,8 @@ export const ICON_NAMES: IconName[] = [
   "Building2", "Users", "MapPin", "Mail", "Phone", "Linkedin", "Globe",
   "QrCode", "BadgeCheck", "Brain", "Lightbulb", "Clock", "Handshake",
   "GraduationCap", "TrendingUp", "Instagram", "Facebook", "FileText",
-  "Image", "Layers",
+  "Image", "Layers", "Code", "Smartphone", "Video", "Film", "Camera",
+  "Boxes", "Cpu", "Mic", "Scissors", "BookOpen",
 ];
 
 /** Friendly labels for admin form fields. */
@@ -365,11 +404,14 @@ export const FIELD_LABELS: Record<string, string> = {
   instagram: "Instagram URL",
   website: "Website URL",
   footerLine: "Footer line",
+  items: "Cards",
+  tags: "Tags",
+  domains: "Rotating domain words (shown in the hero)",
 };
 
 export type ContentKey = keyof SiteContent;
 export const CONTENT_KEYS: ContentKey[] = [
-  "hero", "about", "experience", "skills", "process", "project",
+  "hero", "capabilities", "about", "experience", "skills", "process", "project",
   "campaigns", "creative", "tools", "ai", "strengths", "goals", "application", "contact",
 ];
 
