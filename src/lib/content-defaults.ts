@@ -347,7 +347,8 @@ export const ICON_NAMES: IconName[] = [
   "Building2", "Users", "MapPin", "Mail", "Phone", "Linkedin", "Globe",
   "QrCode", "BadgeCheck", "Brain", "Lightbulb", "Clock", "Handshake",
   "GraduationCap", "TrendingUp", "Instagram", "Facebook", "FileText",
-  "Image", "Layers",
+  "Image", "Layers", "Code", "Smartphone", "Video", "Film", "Camera",
+  "Boxes", "Cpu", "Mic", "Scissors", "BookOpen",
 ];
 
 /** Friendly labels for admin form fields. */
