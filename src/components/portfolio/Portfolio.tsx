@@ -15,6 +15,7 @@ import {
   Globe, QrCode, BadgeCheck, Brain, Lightbulb, Clock, Handshake,
   GraduationCap, TrendingUp, Instagram, Facebook, FileText,
   Image as ImageIcon, Layers, Send, CheckCircle2,
+  Code, Smartphone, Video, Film, Camera, Boxes, Cpu, Mic, Scissors, BookOpen,
   type LucideIcon,
 } from "lucide-react";
 
