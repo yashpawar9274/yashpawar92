@@ -1,4 +1,4 @@
-// Default portfolio content. Admin CMS overrides these via the `site_content`
+﻿// Default portfolio content. Admin CMS overrides these via the `site_content`
 // table. Icons are referenced by string name; the Portfolio component maps
 // them to Lucide components via `iconMap`.
 
@@ -83,18 +83,14 @@ export type SiteContent = {
 
 export const DEFAULT_CONTENT: SiteContent = {
   hero: {
-    role: "Digital Marketing · Web & App Builder · Video Creator",
+    role: "Digital Marketing Â· Web & App Builder Â· Video Creator",
     name: "Yash Pawar",
     tagline:
-      "Multi-skilled digital professional — I run performance marketing campaigns, build websites, web apps and SaaS products, shoot and edit video, produce AI-generated films, and write the scripts, blogs and copy that tie it all together.",
+      "Multi-skilled digital professional â€” I run performance marketing campaigns, build websites, web apps and SaaS products, shoot and edit video, produce AI-generated films, and write the scripts, blogs and copy that tie it all together.",
     ctaPrimary: { label: "See what I can do", href: "#capabilities" },
     ctaSecondary: { label: "Contact me", href: "#contact" },
     stats: [
-<<<<<<< HEAD
-      { k: "2.5+ Yrs", v: "Experience" },
-=======
       { k: "2+ Yrs", v: "Experience" },
->>>>>>> 3791cbc (Update portfolio admin CMS)
       { k: "Real Estate", v: "Proven Domain" },
       { k: "Boisar, MH", v: "Location" },
     ],
@@ -113,29 +109,25 @@ export const DEFAULT_CONTENT: SiteContent = {
   },
   capabilities: {
     eyebrow: "What I Can Do",
-    title: "One person, many skills — marketing, product and film under one roof.",
+    title: "One person, many skills â€” marketing, product and film under one roof.",
     intro:
-      "I work across marketing, product and content. That means a brand can get its campaigns, its website or app, and its video content from a single hand — faster turnaround, one consistent voice, no agency ping-pong.",
+      "I work across marketing, product and content. That means a brand can get its campaigns, its website or app, and its video content from a single hand â€” faster turnaround, one consistent voice, no agency ping-pong.",
     items: [
-      { icon: "Code", title: "Web App Development", desc: "Build working web apps — dashboards, CRMs, internal tools and lead-management systems — with clean, mobile-first interfaces.", tags: ["Dashboards", "CRM", "Internal tools", "Lead systems"] },
+      { icon: "Code", title: "Web App Development", desc: "Build working web apps â€” dashboards, CRMs, internal tools and lead-management systems â€” with clean, mobile-first interfaces.", tags: ["Dashboards", "CRM", "Internal tools", "Lead systems"] },
       { icon: "Globe", title: "Website Development", desc: "Design and build business websites and landing pages that load fast, rank, and convert visitors into enquiries.", tags: ["Business sites", "Landing pages", "WordPress", "SEO-ready"] },
-      { icon: "Boxes", title: "SaaS Product Building", desc: "Take a SaaS idea from concept to a usable product — logins, plans, data, admin panels and a launch-ready marketing site.", tags: ["MVP", "Auth & plans", "Admin panel", "Go-to-market"] },
+      { icon: "Boxes", title: "SaaS Product Building", desc: "Take a SaaS idea from concept to a usable product â€” logins, plans, data, admin panels and a launch-ready marketing site.", tags: ["MVP", "Auth & plans", "Admin panel", "Go-to-market"] },
       { icon: "Target", title: "Performance Marketing", desc: "Meta and paid social campaigns built around qualified leads, efficient cost per lead, and clean CRM handoff.", tags: ["Meta Ads", "Lead gen", "Retargeting", "Reporting"] },
-      { icon: "Camera", title: "Video Shoot", desc: "Plan and shoot on-location video — site walkthroughs, product shots, testimonials and short-form content.", tags: ["On-location", "Walkthroughs", "Testimonials", "Product"] },
+      { icon: "Camera", title: "Video Shoot", desc: "Plan and shoot on-location video â€” site walkthroughs, product shots, testimonials and short-form content.", tags: ["On-location", "Walkthroughs", "Testimonials", "Product"] },
       { icon: "Scissors", title: "Video Editing", desc: "Cut, caption, colour and pace short-form and long-form edits for reels, ads, shorts and YouTube.", tags: ["Reels", "Shorts", "Ad cuts", "Captions"] },
-      { icon: "Cpu", title: "AI-Generated Video", desc: "Produce complete AI video creatives using Flow and other AI tools — from prompt and script to voice, visuals and final edit.", tags: ["Flow", "AI voice", "Prompt craft", "Ad creatives"] },
+      { icon: "Cpu", title: "AI-Generated Video", desc: "Produce complete AI video creatives using Flow and other AI tools â€” from prompt and script to voice, visuals and final edit.", tags: ["Flow", "AI voice", "Prompt craft", "Ad creatives"] },
       { icon: "Palette", title: "Creative Post Design", desc: "Design scroll-stopping posts, carousels, stories and posters that stay on brand across every channel.", tags: ["Posts", "Carousels", "Stories", "Posters"] },
       { icon: "PenLine", title: "Scriptwriting & Blogs", desc: "Write reel scripts, ad copy, video narration and SEO blog articles that sound human and drive action.", tags: ["Reel scripts", "Ad copy", "SEO blogs", "Narration"] },
-      { icon: "Film", title: "Short Films", desc: "Concept, script, shoot and edit short films and brand stories — narrative work that carries emotion, not just information.", tags: ["Concept", "Screenplay", "Direction", "Edit"] },
+      { icon: "Film", title: "Short Films", desc: "Concept, script, shoot and edit short films and brand stories â€” narrative work that carries emotion, not just information.", tags: ["Concept", "Screenplay", "Direction", "Edit"] },
     ],
   },
   about: {
     paragraph:
-<<<<<<< HEAD
-      "I'm Yash Pawar, based in Boisar, Maharashtra — a multi-skilled digital professional with 2.5+ years of hands-on experience. I own the full digital function for OM Value Homes (campaigns, creatives, content and reporting), and alongside that I build websites, web apps and SaaS products, shoot and edit video, produce AI-generated video with tools like Flow, and write scripts and blogs. Marketing, product and content are three sides of the same job for me, and I can deliver all three.",
-=======
-      "I'm Yash Pawar, based in Boisar, Maharashtra — a multi-skilled digital professional with 2+ years of hands-on experience. I own the full digital function for OM Value Homes (campaigns, creatives, content and reporting), and alongside that I build websites, web apps and SaaS products, shoot and edit video, produce AI-generated video with tools like Flow, and write scripts and blogs. Marketing, product and content are three sides of the same job for me, and I can deliver all three.",
->>>>>>> 3791cbc (Update portfolio admin CMS)
+      "I'm Yash Pawar, based in Boisar, Maharashtra â€” a multi-skilled digital professional with 2+ years of hands-on experience. I own the full digital function for OM Value Homes (campaigns, creatives, content and reporting), and alongside that I build websites, web apps and SaaS products, shoot and edit video, produce AI-generated video with tools like Flow, and write scripts and blogs. Marketing, product and content are three sides of the same job for me, and I can deliver all three.",
     objectiveLabel: "Career Objective",
     objective:
       "To grow into a senior digital marketing role where I can lead multi-channel campaigns across industries, apply data-driven decision making, and combine creativity with AI tools to deliver repeatable, efficient growth.",
@@ -148,12 +140,8 @@ export const DEFAULT_CONTENT: SiteContent = {
   experience: [
     {
       role: "Digital Marketing Executive",
-      org: "OM Value Homes — Real Estate, Palghar",
-<<<<<<< HEAD
-      period: "Dec 2024 · Present",
-=======
-      period: "Sep 2024 · Present",
->>>>>>> 3791cbc (Update portfolio admin CMS)
+      org: "OM Value Homes â€” Real Estate, Palghar",
+      period: "Sep 2024 Â· Present",
       points: [
         "Manage end-to-end digital marketing across social, paid, and local-search channels.",
         "Plan and execute monthly content calendars and campaign roadmaps tied to business goals.",
@@ -213,28 +201,28 @@ export const DEFAULT_CONTENT: SiteContent = {
     ],
   },
   process: [
-    { icon: "Search", title: "Research", desc: "Study the market, audience, competitors, and buyer intent before any campaign begins — so every decision is grounded in evidence, not guesswork." },
+    { icon: "Search", title: "Research", desc: "Study the market, audience, competitors, and buyer intent before any campaign begins â€” so every decision is grounded in evidence, not guesswork." },
     { icon: "CalendarRange", title: "Planning", desc: "Build the content calendar, campaign objectives, budgets, and messaging framework so every channel works toward the same business goal." },
     { icon: "Palette", title: "Creative", desc: "Design posts, reels, ads, and landing-page assets that stay on-brand and conversion-focused, whatever the product or service." },
-    { icon: "Rocket", title: "Campaign", desc: "Launch paid and organic campaigns with tested copy, audience targeting, and clear CTAs — from Meta to local SEO and beyond." },
+    { icon: "Rocket", title: "Campaign", desc: "Launch paid and organic campaigns with tested copy, audience targeting, and clear CTAs â€” from Meta to local SEO and beyond." },
     { icon: "Gauge", title: "Optimization", desc: "Monitor performance, refine targeting and creative, and reduce cost per quality lead or conversion over time." },
     { icon: "FileBarChart", title: "Reporting", desc: "Track results, share transparent reports, and align with stakeholders on next-step decisions that drive growth." },
   ],
   project: [
-    { icon: "Building2", title: "Project Overview", body: "OM Value Homes is a real-estate brand where I own the complete digital marketing function — from planning and creatives to campaign execution and reporting. It serves as a live case study of how I apply full-funnel marketing to generate leads and build trust." },
+    { icon: "Building2", title: "Project Overview", body: "OM Value Homes is a real-estate brand where I own the complete digital marketing function â€” from planning and creatives to campaign execution and reporting. It serves as a live case study of how I apply full-funnel marketing to generate leads and build trust." },
     { icon: "Target", title: "Business Goal", body: "Build consistent brand presence and generate a steady flow of qualified enquiries through paid and organic digital channels." },
     { icon: "Users", title: "Target Audience", body: "Home buyers and investors in and around Palghar and the wider Maharashtra region, segmented by budget, location, and buying intent." },
     { icon: "LineChart", title: "Marketing Strategy", body: "A blend of Meta lead-generation, awareness campaigns, and consistent organic content to keep the brand visible and the pipeline warm." },
     { icon: "PenLine", title: "Content Strategy", body: "Monthly content calendar covering project highlights, location advantages, offers, and trust-building posts across Facebook and Instagram." },
     { icon: "Rocket", title: "Campaign Execution", body: "Set up audiences, wrote ad copy, built creatives, launched lead forms, and coordinated timely follow-up with the sales team." },
-    { icon: "Palette", title: "Creatives", body: "Designed feed posts, reels, stories, carousels, brochures, and promotional posters — all kept consistent with the brand identity." },
+    { icon: "Palette", title: "Creatives", body: "Designed feed posts, reels, stories, carousels, brochures, and promotional posters â€” all kept consistent with the brand identity." },
     { icon: "Search", title: "Challenges", body: "Reaching genuinely interested buyers, keeping cost per lead efficient, and maintaining a steady content output across channels." },
     { icon: "Lightbulb", title: "Solutions", body: "Refined audience targeting, tested multiple creatives and copy angles, and used AI tools to speed up ideation and content production." },
-    { icon: "GraduationCap", title: "Learning", body: "Deepened my understanding of the buyer journey, ad optimisation, and how creative quality directly affects lead quality — skills that transfer to any product or service." },
-    { icon: "FileBarChart", title: "Campaign Results", body: "Generated 1,200+ qualified leads through Meta lead-form campaigns over 12 months. Maintained an average cost per lead between ₹45–₹90 depending on campaign objective and audience layer, while keeping the sales pipeline active and measurable." },
-    { icon: "Gauge", title: "Conversion Metrics", body: "Lead-to-sales-call conversion averaged 8–12%, with qualified enquiries moving to site visits at roughly 4–6%. These numbers were tracked via CRM entries and weekly sales follow-ups." },
-    { icon: "TrendingUp", title: "ROI & Reach", body: "Total estimated campaign reach crossed 2.1M with 6.5M+ impressions and 85K+ engagements. Return on ad spend stayed in the 4–6x range for performance campaigns, based on deal-value estimates shared by the sales team." },
-    { icon: "BadgeCheck", title: "Key Takeaway", body: "Creative quality and audience targeting matter more than budget size. A disciplined test-and-learn approach — paired with fast CRM handoff — turned paid social into a reliable lead engine for a local real-estate brand." },
+    { icon: "GraduationCap", title: "Learning", body: "Deepened my understanding of the buyer journey, ad optimisation, and how creative quality directly affects lead quality â€” skills that transfer to any product or service." },
+    { icon: "FileBarChart", title: "Campaign Results", body: "Generated 1,200+ qualified leads through Meta lead-form campaigns over 12 months. Maintained an average cost per lead between â‚¹45â€“â‚¹90 depending on campaign objective and audience layer, while keeping the sales pipeline active and measurable." },
+    { icon: "Gauge", title: "Conversion Metrics", body: "Lead-to-sales-call conversion averaged 8â€“12%, with qualified enquiries moving to site visits at roughly 4â€“6%. These numbers were tracked via CRM entries and weekly sales follow-ups." },
+    { icon: "TrendingUp", title: "ROI & Reach", body: "Total estimated campaign reach crossed 2.1M with 6.5M+ impressions and 85K+ engagements. Return on ad spend stayed in the 4â€“6x range for performance campaigns, based on deal-value estimates shared by the sales team." },
+    { icon: "BadgeCheck", title: "Key Takeaway", body: "Creative quality and audience targeting matter more than budget size. A disciplined test-and-learn approach â€” paired with fast CRM handoff â€” turned paid social into a reliable lead engine for a local real-estate brand." },
     { icon: "Rocket", title: "Future Improvements", body: "Introduce dedicated landing pages, sharper retargeting flows, automated lead nurturing on WhatsApp, and deeper UTM/reporting dashboards to improve lead quality and scale further." },
   ],
   campaigns: [
@@ -285,30 +273,26 @@ export const DEFAULT_CONTENT: SiteContent = {
     eyebrow: "Job Application Summary",
     title: "Why I'm a strong fit for Digital Marketing Executive roles",
     summary:
-<<<<<<< HEAD
-      "Digital Marketing Executive with 2.5+ years of hands-on experience owning the full digital marketing function — paid social, content, creative design, lead generation, CRM handoff, local SEO, and performance reporting. Proven in real estate, and ready to apply the same growth playbook to B2C, D2C, e-commerce, SaaS, ed-tech, healthcare, hospitality, retail, and service brands.",
-=======
-      "Digital Marketing Executive with 2+ years of hands-on experience owning the full digital marketing function — paid social, content, creative design, lead generation, CRM handoff, local SEO, and performance reporting. Proven in real estate, and ready to apply the same growth playbook to B2C, D2C, e-commerce, SaaS, ed-tech, healthcare, hospitality, retail, and service brands.",
->>>>>>> 3791cbc (Update portfolio admin CMS)
+      "Digital Marketing Executive with 2+ years of hands-on experience owning the full digital marketing function â€” paid social, content, creative design, lead generation, CRM handoff, local SEO, and performance reporting. Proven in real estate, and ready to apply the same growth playbook to B2C, D2C, e-commerce, SaaS, ed-tech, healthcare, hospitality, retail, and service brands.",
     positioning:
-      "I bring campaign strategy, in-house creative production, and AI-assisted execution together in one role — so teams get faster turnaround, consistent branding, and lead-focused performance without relying on multiple agencies.",
+      "I bring campaign strategy, in-house creative production, and AI-assisted execution together in one role â€” so teams get faster turnaround, consistent branding, and lead-focused performance without relying on multiple agencies.",
     highlights: [
       "2.5+ years end-to-end digital marketing ownership at OM Value Homes",
       "Meta Ads & lead-form campaigns with sales-team CRM handoff",
       "Monthly content calendars across Instagram, Facebook, and reels",
-      "In-house creatives in Canva — posts, ads, reels, stories, brochures, posters",
+      "In-house creatives in Canva â€” posts, ads, reels, stories, brochures, posters",
       "AI-powered workflow using ChatGPT, Claude & Gemini for copy and ideation",
       "Local SEO & Google Business Profile optimisation",
       "WordPress website updates and landing-page support",
       "CRM, WhatsApp Business, and analytics reporting for lead tracking",
     ],
     fit: [
-      { icon: "Target", title: "Performance mindset", desc: "Every campaign is tied to leads, reach, or engagement — reviewed against cost and quality, not vanity metrics." },
+      { icon: "Target", title: "Performance mindset", desc: "Every campaign is tied to leads, reach, or engagement â€” reviewed against cost and quality, not vanity metrics." },
       { icon: "Palette", title: "Creative + copy in one hand", desc: "I design the visual and write the copy, so campaigns ship faster and stay on-brand." },
-      { icon: "Sparkles", title: "AI-native workflow", desc: "Daily use of AI for research, ad-copy variations, hooks, and content ideas — saving hours on execution." },
+      { icon: "Sparkles", title: "AI-native workflow", desc: "Daily use of AI for research, ad-copy variations, hooks, and content ideas â€” saving hours on execution." },
       { icon: "LineChart", title: "Data-led optimisation", desc: "Comfortable reading Meta Ads reports, CRM data, and Google Sheets to reallocate budget and creative." },
-      { icon: "Handshake", title: "Cross-team collaboration", desc: "Worked directly with sales, leadership, and vendors — marketing that connects to revenue." },
-      { icon: "GraduationCap", title: "Fast learner", desc: "Quickly maps buyer journey, audience, and channels before spending creative or budget — works across industries." },
+      { icon: "Handshake", title: "Cross-team collaboration", desc: "Worked directly with sales, leadership, and vendors â€” marketing that connects to revenue." },
+      { icon: "GraduationCap", title: "Fast learner", desc: "Quickly maps buyer journey, audience, and channels before spending creative or budget â€” works across industries." },
     ],
     preferredRoles: [
       "Digital Marketing Executive",
@@ -334,13 +318,13 @@ export const DEFAULT_CONTENT: SiteContent = {
       "Mumbai",
       "Thane",
       "Palghar",
-      "Vasai–Virar",
+      "Vasaiâ€“Virar",
       "Navi Mumbai",
       "Remote (India)",
       "Hybrid",
     ],
-    workMode: "Full-time · On-site / Hybrid / Remote",
-    availability: "Available immediately · Actively interviewing",
+    workMode: "Full-time Â· On-site / Hybrid / Remote",
+    availability: "Available immediately Â· Actively interviewing",
     noticePeriod: "Immediate to 15 days",
     salaryExpectation: "As per role & industry standards",
     ctaLabel: "Discuss this role",
@@ -353,7 +337,7 @@ export const DEFAULT_CONTENT: SiteContent = {
     linkedin: "https://linkedin.com/in/yashpawar9274",
     instagram: "https://instagram.com/theitsash",
     website: "https://dmyashpawar.vercel.app/",
-    footerLine: "Digital Marketing · Web & Apps · Video · Boisar, Maharashtra",
+    footerLine: "Digital Marketing Â· Web & Apps Â· Video Â· Boisar, Maharashtra",
   },
 };
 

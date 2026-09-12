@@ -1,14 +1,11 @@
-import { useEffect, useState, type ReactNode } from "react";
+﻿import { useEffect, useState, type ReactNode } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { listOmvhUploads } from "@/lib/omvh.functions";
 import { getSiteContent } from "@/lib/content.functions";
-<<<<<<< HEAD
-=======
 import { getPortfolioAssets } from "@/lib/portfolio-assets.functions";
 import { listWorkItems, type WorkItem } from "@/lib/work.functions";
->>>>>>> 3791cbc (Update portfolio admin CMS)
 import { mergeContent, type IconName, type SiteContent } from "@/lib/content-defaults";
 import {
   Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer,
@@ -28,10 +25,6 @@ import portrait from "@/assets/portrait.jpg";
 import heroBg from "@/assets/hero-bg.jpg";
 import { Navbar } from "./Navbar";
 import { Reveal, StaggerGroup, staggerChild } from "./reveal";
-<<<<<<< HEAD
-import { EditableImage } from "./EditableImage";
-=======
->>>>>>> 3791cbc (Update portfolio admin CMS)
 import { WorkShowcase } from "./WorkShowcase";
 
 import dreamAsset from "@/assets/omvh/dream.asset.json";
@@ -57,13 +50,13 @@ const IMAGES = {
 };
 
 const omvhCreatives: { src: string; title: string; tag: string; desc: string; alt: string; aspect: string }[] = [
-  { src: IMAGES.dream, title: "Your Dream Home — 1 BHK Launch", tag: "Property Launch Creative", desc: "Lead-form campaign creative for the OM Value Homes 1 BHK launch — interior photography, pricing, amenities, and RERA compliance combined into a single conversion-focused visual.", alt: "OM Value Homes 1 BHK launch creative titled 'Your Dream Home' showing modern interior photography, unit pricing, and key amenities for Meta lead-form ads.", aspect: "1 / 1" },
-  { src: IMAGES.newspaper, title: "Times-of-India Style Print Concept", tag: "Print · Social Concept", desc: "Newspaper-style concept creative distributed on Meta to borrow the credibility of a familiar editorial format — used to warm up cold audiences before retargeting.", alt: "Newspaper-style OM Value Homes ad held by a smiling delivery courier on a bicycle, designed as a social credibility concept for Meta campaigns.", aspect: "4 / 5" },
-  { src: IMAGES.rent, title: "Stop Paying Rent — Rent vs. Own", tag: "Awareness Campaign", desc: "Long-form awareness creative built around the buyer psychology of renting versus building an asset — designed for save-and-share behaviour on Instagram.", alt: "'Stop Paying Rent' awareness creative for OM Value Homes comparing monthly rent outflow versus home-ownership EMIs in a side-by-side layout.", aspect: "16 / 10" },
-  { src: IMAGES.comfort, title: "Designed for Comfort — Lifestyle Visual", tag: "Lifestyle Creative", desc: "Lifestyle-led creative featuring real living, kitchen, and bedroom photography with clear pricing and USPs — used in the mid-funnel to build aspiration.", alt: "'Designed for Comfort' OM Value Homes lifestyle creative featuring a modern living room, clean typography, and pricing overlay.", aspect: "1 / 1" },
-  { src: IMAGES.beforeAfter, title: "Before / After — Space to Home", tag: "Storytelling Post", desc: "Transformation creative — bare shell vs. fully furnished living room — used to communicate finish quality and possession readiness to serious buyers.", alt: "OM Value Homes before-and-after creative showing an empty apartment shell on the left and the same space fully furnished as a living room on the right.", aspect: "16 / 10" },
-  { src: IMAGES.lines, title: "From Lines on Paper to a Life Well Built", tag: "Brand Story", desc: "Sketch-to-reality brand creative connecting architectural design intent with the finished project on the ground — the anchor visual for brand-story campaigns.", alt: "OM Value Homes brand creative titled 'From lines on paper to a life well built' showing an architectural pencil sketch transitioning into a photograph of the finished building.", aspect: "4 / 5" },
-  { src: IMAGES.gmb, title: "Google Business Profile — Local SEO", tag: "Local SEO · Reviews", desc: "Google Business Profile creative reinforcing the 5.0 rating, project location, photos, and direct call CTA — the last-click asset for local Palghar buyers searching by intent.", alt: "Mockup of the OM Value Homes Google Business Profile displaying a 5.0-star rating, project photos, address, and a call button — highlighting local SEO work.", aspect: "4 / 5" },
+  { src: IMAGES.dream, title: "Your Dream Home â€” 1 BHK Launch", tag: "Property Launch Creative", desc: "Lead-form campaign creative for the OM Value Homes 1 BHK launch â€” interior photography, pricing, amenities, and RERA compliance combined into a single conversion-focused visual.", alt: "OM Value Homes 1 BHK launch creative titled 'Your Dream Home' showing modern interior photography, unit pricing, and key amenities for Meta lead-form ads.", aspect: "1 / 1" },
+  { src: IMAGES.newspaper, title: "Times-of-India Style Print Concept", tag: "Print Â· Social Concept", desc: "Newspaper-style concept creative distributed on Meta to borrow the credibility of a familiar editorial format â€” used to warm up cold audiences before retargeting.", alt: "Newspaper-style OM Value Homes ad held by a smiling delivery courier on a bicycle, designed as a social credibility concept for Meta campaigns.", aspect: "4 / 5" },
+  { src: IMAGES.rent, title: "Stop Paying Rent â€” Rent vs. Own", tag: "Awareness Campaign", desc: "Long-form awareness creative built around the buyer psychology of renting versus building an asset â€” designed for save-and-share behaviour on Instagram.", alt: "'Stop Paying Rent' awareness creative for OM Value Homes comparing monthly rent outflow versus home-ownership EMIs in a side-by-side layout.", aspect: "16 / 10" },
+  { src: IMAGES.comfort, title: "Designed for Comfort â€” Lifestyle Visual", tag: "Lifestyle Creative", desc: "Lifestyle-led creative featuring real living, kitchen, and bedroom photography with clear pricing and USPs â€” used in the mid-funnel to build aspiration.", alt: "'Designed for Comfort' OM Value Homes lifestyle creative featuring a modern living room, clean typography, and pricing overlay.", aspect: "1 / 1" },
+  { src: IMAGES.beforeAfter, title: "Before / After â€” Space to Home", tag: "Storytelling Post", desc: "Transformation creative â€” bare shell vs. fully furnished living room â€” used to communicate finish quality and possession readiness to serious buyers.", alt: "OM Value Homes before-and-after creative showing an empty apartment shell on the left and the same space fully furnished as a living room on the right.", aspect: "16 / 10" },
+  { src: IMAGES.lines, title: "From Lines on Paper to a Life Well Built", tag: "Brand Story", desc: "Sketch-to-reality brand creative connecting architectural design intent with the finished project on the ground â€” the anchor visual for brand-story campaigns.", alt: "OM Value Homes brand creative titled 'From lines on paper to a life well built' showing an architectural pencil sketch transitioning into a photograph of the finished building.", aspect: "4 / 5" },
+  { src: IMAGES.gmb, title: "Google Business Profile â€” Local SEO", tag: "Local SEO Â· Reviews", desc: "Google Business Profile creative reinforcing the 5.0 rating, project location, photos, and direct call CTA â€” the last-click asset for local Palghar buyers searching by intent.", alt: "Mockup of the OM Value Homes Google Business Profile displaying a 5.0-star rating, project photos, address, and a call button â€” highlighting local SEO work.", aspect: "4 / 5" },
 ];
 
 const IG = "https://www.instagram.com/omvalueshome/";
@@ -85,17 +78,17 @@ const VIDEOS: (
   | { type: "youtube"; id: string; title: string; tag: string; desc: string; aspect: string }
   | { type: "file"; src: string; title: string; tag: string; desc: string; aspect: string }
 )[] = [
-  { type: "youtube", id: "w3IpMG-3TkY", title: "AI-generated property reel", tag: "AI Reel · YouTube", desc: "Full AI-produced video creative for OM Value Homes — script, visuals, and voice built with AI tools, then edited for social distribution.", aspect: "16 / 9" },
-  { type: "youtube", id: "7OCNhzDIHkw", title: "Short-form vertical reel", tag: "AI Reel · Shorts", desc: "Vertical short built for Instagram Reels, Facebook Reels, and YouTube Shorts to maximise reach on a single asset.", aspect: "9 / 16" },
+  { type: "youtube", id: "w3IpMG-3TkY", title: "AI-generated property reel", tag: "AI Reel Â· YouTube", desc: "Full AI-produced video creative for OM Value Homes â€” script, visuals, and voice built with AI tools, then edited for social distribution.", aspect: "16 / 9" },
+  { type: "youtube", id: "7OCNhzDIHkw", title: "Short-form vertical reel", tag: "AI Reel Â· Shorts", desc: "Vertical short built for Instagram Reels, Facebook Reels, and YouTube Shorts to maximise reach on a single asset.", aspect: "9 / 16" },
   { type: "file", src: abs(aiReelAsset.url), title: "Campaign video creative", tag: "Video Creative", desc: "Campaign video used in Meta ads and organic posts to showcase the project with motion, pricing, and a clear enquiry CTA.", aspect: "9 / 16" },
 ];
 
 const LIVE_LINKS: { icon: IconName; label: string; desc: string; href?: string }[] = [
-  { icon: "Instagram", label: "Instagram — OM Value Homes", desc: "Brand account I plan, design, and publish for.", href: IG },
+  { icon: "Instagram", label: "Instagram â€” OM Value Homes", desc: "Brand account I plan, design, and publish for.", href: IG },
   { icon: "Facebook", label: "Facebook Page", desc: "Page management plus Meta ads and lead forms.", href: FB },
-  { icon: "Globe", label: "YouTube — Budget Homes 4U", desc: "Video channel for reels, walkthroughs, and shorts.", href: YT },
+  { icon: "Globe", label: "YouTube â€” Budget Homes 4U", desc: "Video channel for reels, walkthroughs, and shorts.", href: YT },
   { icon: "Globe", label: "budgethomes4u.com", desc: "Project website I built and maintain for enquiries.", href: "https://budgethomes4u.com/" },
-  { icon: "Building2", label: "omgroupofcompanies.com", desc: "Corporate group website — content and upkeep.", href: "https://omgroupofcompanies.com/" },
+  { icon: "Building2", label: "omgroupofcompanies.com", desc: "Corporate group website â€” content and upkeep.", href: "https://omgroupofcompanies.com/" },
   { icon: "BadgeCheck", label: "dmyashpawar.vercel.app", desc: "My personal digital marketing portfolio site.", href: "https://dmyashpawar.vercel.app/" },
   { icon: "Users", label: "OM Value Sales Hub", desc: "Internal sales-enablement hub built to organise inventory and follow-ups.", href: "https://om-value-sales-hub.lovable.app/" },
   { icon: "Layers", label: "OM Value Homes CRM", desc: "Lead-management CRM I built to track enquiries from ad to site visit.", href: "https://omvaluehomescrm.lovable.app/" },
@@ -168,8 +161,6 @@ function SectionHeader({
   );
 }
 
-<<<<<<< HEAD
-=======
 function portfolioYoutubeId(url: string) {
   const match = url.match(/(?:youtu\.be\/|v=|shorts\/|embed\/)([A-Za-z0-9_-]{6,})/);
   return match?.[1] ?? null;
@@ -184,16 +175,10 @@ function WorkPreview({ item }: { item: WorkItem }) {
   return <img src={item.url} alt={item.alt || item.title} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" />;
 }
 
->>>>>>> 3791cbc (Update portfolio admin CMS)
 /* --------------------------------- Page ---------------------------------- */
 export function Portfolio() {
   const fetchUploads = useServerFn(listOmvhUploads);
   const fetchContent = useServerFn(getSiteContent);
-<<<<<<< HEAD
-  const { data: uploads = [] } = useQuery({ queryKey: ["omvh-uploads"], queryFn: () => fetchUploads(), staleTime: 0, refetchOnWindowFocus: true, refetchInterval: 30_000 });
-  const { data: raw } = useQuery({ queryKey: ["site-content"], queryFn: () => fetchContent(), staleTime: 0, refetchOnWindowFocus: true, refetchInterval: 30_000 });
-  const c: SiteContent = mergeContent(raw);
-=======
   const fetchAssets = useServerFn(getPortfolioAssets);
   const fetchWork = useServerFn(listWorkItems);
   const { data: uploads = [] } = useQuery({ queryKey: ["omvh-uploads"], queryFn: () => fetchUploads(), staleTime: 0, refetchOnWindowFocus: true, refetchInterval: 30_000 });
@@ -205,13 +190,12 @@ export function Portfolio() {
   const resumeUrl = assets?.resumeUrl ?? "/resume/Yash_Pawar_ATS_Resume.docx";
   const creativeItems = workItems.filter((item) => item.category === "post_creative");
   const aiVideoItems = workItems.filter((item) => item.category === "ai_video");
->>>>>>> 3791cbc (Update portfolio admin CMS)
 
   return (
     <div id="top" className="overflow-x-hidden bg-background">
       <Navbar />
 
-      {/* 1 — COVER */}
+      {/* 1 â€” COVER */}
       <header className="relative flex min-h-screen items-center overflow-hidden bg-ink text-white">
         <img src={heroBg} alt="" aria-hidden className="absolute inset-0 h-full w-full object-cover opacity-70" />
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/70 to-ink/30" />
@@ -234,12 +218,9 @@ export function Portfolio() {
               <a href={c.hero.ctaSecondary.href} className="inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10">
                 {c.hero.ctaSecondary.label}
               </a>
-<<<<<<< HEAD
-=======
               <a href={resumeUrl} download className="inline-flex items-center gap-2 rounded-full border border-blue-glow/60 bg-blue/20 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-blue/35">
                 <FileText className="h-4 w-4" /> Download Resume
               </a>
->>>>>>> 3791cbc (Update portfolio admin CMS)
             </motion.div>
             <motion.dl initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.36 }} className="mt-12 grid max-w-lg grid-cols-3 gap-6 border-t border-white/10 pt-8">
               {c.hero.stats.map((s) => (
@@ -257,24 +238,17 @@ export function Portfolio() {
           <motion.div initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }} className="relative mx-auto w-full max-w-sm">
             <div className="absolute -inset-4 rounded-[2rem] bg-blue/20 blur-3xl" />
             <div className="relative overflow-hidden rounded-[1.75rem] border border-white/15 bg-white/5 shadow-[var(--shadow-blue)]">
-<<<<<<< HEAD
-              <EditableImage storageKey="hero-portrait" fallback={portrait} alt={`${c.hero.name} — professional portrait`} aspect="4 / 5" imgClassName="h-full w-full object-cover" label="Upload photo" />
-              <div className="pointer-events-none absolute bottom-4 left-4 right-4 flex items-center justify-between rounded-xl border border-white/15 bg-ink/60 px-4 py-3 backdrop-blur-md">
-                <span className="text-sm font-semibold text-white">{c.hero.name}</span>
-                <span className="text-xs text-blue-glow">Hover to replace</span>
-=======
-              <img src={profileImage} alt={`${c.hero.name} — professional portrait`} className="h-full w-full object-cover" style={{ aspectRatio: "4 / 5" }} />
+              <img src={profileImage} alt={`${c.hero.name} â€” professional portrait`} className="h-full w-full object-cover" style={{ aspectRatio: "4 / 5" }} />
               <div className="pointer-events-none absolute bottom-4 left-4 right-4 flex items-center justify-between rounded-xl border border-white/15 bg-ink/60 px-4 py-3 backdrop-blur-md">
                 <span className="text-sm font-semibold text-white">{c.hero.name}</span>
                 <span className="text-xs text-blue-glow">Portfolio</span>
->>>>>>> 3791cbc (Update portfolio admin CMS)
               </div>
             </div>
           </motion.div>
         </div>
       </header>
 
-      {/* 1B — CAPABILITIES */}
+      {/* 1B â€” CAPABILITIES */}
       <Section id="capabilities" className="bg-secondary/40">
         <SectionHeader index="01" eyebrow={c.capabilities.eyebrow} title={c.capabilities.title} intro={c.capabilities.intro} />
         <StaggerGroup className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -295,7 +269,7 @@ export function Portfolio() {
         </StaggerGroup>
       </Section>
 
-      {/* 2 — ABOUT */}
+      {/* 2 â€” ABOUT */}
       <Section id="about">
         <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
           <SectionHeader index="01" eyebrow="About Me" title={<>A marketer who pairs <span className="text-gradient-blue">creative craft</span> with performance discipline.</>} />
@@ -321,7 +295,7 @@ export function Portfolio() {
         </div>
       </Section>
 
-      {/* 3 — EXPERIENCE */}
+      {/* 3 â€” EXPERIENCE */}
       <Section id="experience" className="bg-secondary/40">
         <SectionHeader index="02" eyebrow="Experience" title="Experience Timeline" intro="A focused, ownership-driven role covering the full digital marketing lifecycle." />
         <div className="relative border-l border-border pl-8 lg:pl-12">
@@ -358,7 +332,7 @@ export function Portfolio() {
         </div>
       </Section>
 
-      {/* 4 — SKILLS */}
+      {/* 4 â€” SKILLS */}
       <Section id="skills">
         <SectionHeader index="03" eyebrow="Core Skills" title="Core Skills & Capabilities" intro="A balanced skill set across paid advertising, content, creative, AI tools, and analytics." />
         <div className="grid gap-8 lg:grid-cols-[1.4fr_1fr]">
@@ -397,7 +371,7 @@ export function Portfolio() {
         </div>
       </Section>
 
-      {/* 5 — PROCESS */}
+      {/* 5 â€” PROCESS */}
       <Section id="process" className="relative overflow-hidden bg-ink text-white">
         <SectionHeader index="04" eyebrow="How I Work" dark title="The Digital Marketing Process" intro="A repeatable, six-stage approach that keeps every campaign structured from insight to impact." />
         <StaggerGroup className="grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-3">
@@ -414,9 +388,9 @@ export function Portfolio() {
         </StaggerGroup>
       </Section>
 
-      {/* 6 — FEATURED PROJECT */}
+      {/* 6 â€” FEATURED PROJECT */}
       <Section id="project">
-        <SectionHeader index="05" eyebrow="Featured Project" title={<>Case Study: <span className="text-gradient-blue">OM Value Homes</span></>} intro="A real-estate case study demonstrating end-to-end digital marketing — from strategy and creatives to campaigns and reporting — using skills that transfer to B2C, services, and product brands." />
+        <SectionHeader index="05" eyebrow="Featured Project" title={<>Case Study: <span className="text-gradient-blue">OM Value Homes</span></>} intro="A real-estate case study demonstrating end-to-end digital marketing â€” from strategy and creatives to campaigns and reporting â€” using skills that transfer to B2C, services, and product brands." />
         <StaggerGroup className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {c.project.map((b) => (
             <motion.div key={b.title} variants={staggerChild} className={`card-premium card-premium-hover p-7 ${b.title === "Results" ? "border-dashed border-blue/40 bg-blue/[0.03]" : ""}`}>
@@ -430,9 +404,9 @@ export function Portfolio() {
         </StaggerGroup>
       </Section>
 
-      {/* 6b — CASE STUDY MEDIA */}
+      {/* 6b â€” CASE STUDY MEDIA */}
       <Section id="project-media" className="border-t border-border bg-secondary/30">
-        <SectionHeader index="05.5" eyebrow="Case Study Media" title={<>Real creatives from <span className="text-gradient-blue">OM Value Homes</span></>} intro="Live campaign creatives from a real-estate brand — property launches, awareness posts, lifestyle visuals, and local-SEO assets — showing the same creative and strategic skills I apply to any B2C or service industry." />
+        <SectionHeader index="05.5" eyebrow="Case Study Media" title={<>Real creatives from <span className="text-gradient-blue">OM Value Homes</span></>} intro="Live campaign creatives from a real-estate brand â€” property launches, awareness posts, lifestyle visuals, and local-SEO assets â€” showing the same creative and strategic skills I apply to any B2C or service industry." />
         <Reveal className="mb-8">
           <div className="card-premium overflow-hidden rounded-2xl">
             <div className="grid gap-0 lg:grid-cols-[1.2fr_1fr]">
@@ -455,11 +429,7 @@ export function Portfolio() {
         </Reveal>
         <div className="mb-4 flex items-center justify-between">
           <span className="eyebrow">Creative Gallery</span>
-<<<<<<< HEAD
-          <span className="text-xs text-muted-foreground">{omvhCreatives.length - 1 + uploads.length} live creatives · social, awareness &amp; local SEO</span>
-=======
-          <span className="text-xs text-muted-foreground">{omvhCreatives.length - 1 + uploads.length + creativeItems.length} live creatives · social, awareness &amp; local SEO</span>
->>>>>>> 3791cbc (Update portfolio admin CMS)
+          <span className="text-xs text-muted-foreground">{omvhCreatives.length - 1 + uploads.length + creativeItems.length} live creatives Â· social, awareness &amp; local SEO</span>
         </div>
         <StaggerGroup className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {omvhCreatives.slice(1).map((cv) => (
@@ -486,8 +456,6 @@ export function Portfolio() {
               </figcaption>
             </motion.figure>
           ))}
-<<<<<<< HEAD
-=======
           {creativeItems.map((item) => (
             <motion.figure key={item.id} variants={staggerChild} className="card-premium group overflow-hidden rounded-2xl">
               <div className="relative overflow-hidden bg-secondary" style={{ aspectRatio: item.aspect || "1 / 1" }}>
@@ -500,11 +468,10 @@ export function Portfolio() {
               </figcaption>
             </motion.figure>
           ))}
->>>>>>> 3791cbc (Update portfolio admin CMS)
         </StaggerGroup>
       </Section>
 
-      {/* 7 — CAMPAIGNS */}
+      {/* 7 â€” CAMPAIGNS */}
       <Section id="campaigns" className="bg-secondary/40">
         <SectionHeader index="06" eyebrow="Campaign Showcase" title="Campaign Types I Deliver" intro="The core campaign formats I plan, build, and manage across paid and organic channels." />
         <StaggerGroup className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -522,14 +489,14 @@ export function Portfolio() {
           ))}
           <motion.div variants={staggerChild} className="flex flex-col justify-center rounded-2xl border border-dashed border-blue/40 bg-blue/[0.03] p-7">
             <span className="eyebrow">Results</span>
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">Add Campaign Results Here — reach, leads, and engagement metrics can be added once verified figures are available.</p>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">Add Campaign Results Here â€” reach, leads, and engagement metrics can be added once verified figures are available.</p>
           </motion.div>
         </StaggerGroup>
       </Section>
 
-      {/* 8 — CREATIVE PORTFOLIO */}
+      {/* 8 â€” CREATIVE PORTFOLIO */}
       <Section id="creative">
-        <SectionHeader index="07" eyebrow="Creative Portfolio" title="Creative Formats & Design Work" intro="Instagram posts, Facebook ads, reels, stories, carousels, posters, and branding — all designed and published in-house for live campaigns." />
+        <SectionHeader index="07" eyebrow="Creative Portfolio" title="Creative Formats & Design Work" intro="Instagram posts, Facebook ads, reels, stories, carousels, posters, and branding â€” all designed and published in-house for live campaigns." />
         <StaggerGroup className="grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
           {CREATIVE_FORMATS.map((cr) => {
             const Card = (
@@ -593,8 +560,6 @@ export function Portfolio() {
                 </div>
               </motion.div>
             ))}
-<<<<<<< HEAD
-=======
             {aiVideoItems.map((item) => (
               <motion.div key={item.id} variants={staggerChild} className="card-premium overflow-hidden">
                 <div className="relative w-full overflow-hidden bg-ink" style={{ aspectRatio: item.aspect || "9 / 16" }}>
@@ -607,7 +572,6 @@ export function Portfolio() {
                 </div>
               </motion.div>
             ))}
->>>>>>> 3791cbc (Update portfolio admin CMS)
           </StaggerGroup>
         </div>
 
@@ -644,10 +608,10 @@ export function Portfolio() {
       </Section>
 
 
-      {/* 8b — MY WORK (admin-managed, live) */}
+      {/* 8b â€” MY WORK (admin-managed, live) */}
       <WorkShowcase />
 
-      {/* 9 — TOOLS */}
+      {/* 9 â€” TOOLS */}
       <Section id="tools" className="bg-secondary/40">
         <SectionHeader index="08" eyebrow="Marketing Tools" title="Tools & Platforms" intro="The day-to-day stack I use to plan, create, launch, and report on campaigns." />
         <StaggerGroup className="flex flex-wrap gap-3">
@@ -659,11 +623,11 @@ export function Portfolio() {
         </StaggerGroup>
       </Section>
 
-      {/* 10 — AI WORKFLOW */}
+      {/* 10 â€” AI WORKFLOW */}
       <Section id="ai">
         <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
           <div>
-            <SectionHeader index="09" eyebrow="AI Workflow" title={<>AI as a <span className="text-gradient-blue">creative co-pilot</span></>} intro="I use ChatGPT, Claude, and Gemini to work faster and think broader — while keeping human judgment on strategy and brand quality." />
+            <SectionHeader index="09" eyebrow="AI Workflow" title={<>AI as a <span className="text-gradient-blue">creative co-pilot</span></>} intro="I use ChatGPT, Claude, and Gemini to work faster and think broader â€” while keeping human judgment on strategy and brand quality." />
             <Reveal delay={0.1}>
               <div className="card-premium flex items-center gap-4 p-6">
                 <Sparkles className="h-6 w-6 shrink-0 text-blue" />
@@ -683,7 +647,7 @@ export function Portfolio() {
         </div>
       </Section>
 
-      {/* 11 — STRENGTHS */}
+      {/* 11 â€” STRENGTHS */}
       <Section id="strengths" className="bg-secondary/40">
         <SectionHeader index="10" eyebrow="Professional Strengths" title="What I Bring to a Team" intro="The professional qualities that keep campaigns organised and collaboration smooth." />
         <StaggerGroup className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -698,9 +662,9 @@ export function Portfolio() {
         </StaggerGroup>
       </Section>
 
-      {/* 12 — GOALS */}
+      {/* 12 â€” GOALS */}
       <Section id="goals">
-        <SectionHeader index="11" eyebrow="Future Goals" title="Career & Growth Roadmap" intro="A clear direction for growth — deeper expertise, recognised certifications, and senior-level impact." />
+        <SectionHeader index="11" eyebrow="Future Goals" title="Career & Growth Roadmap" intro="A clear direction for growth â€” deeper expertise, recognised certifications, and senior-level impact." />
         <div className="relative">
           <StaggerGroup className="grid gap-5 md:grid-cols-2">
             {c.goals.map((g, i) => (
@@ -717,7 +681,7 @@ export function Portfolio() {
         </div>
       </Section>
 
-      {/* 13 — JOB APPLICATION SUMMARY */}
+      {/* 13 â€” JOB APPLICATION SUMMARY */}
       <Section id="application" className="bg-secondary/40">
         <SectionHeader
           index="12"
@@ -745,9 +709,9 @@ export function Portfolio() {
               </div>
               <div className="mt-8 grid gap-4 sm:grid-cols-2">
                 {[
-                  { label: "Preferred roles", value: c.application.preferredRoles.join(" · ") },
-                  { label: "Industries open to", value: c.application.preferredIndustries.join(" · ") },
-                  { label: "Preferred locations", value: c.application.preferredLocations.join(" · ") },
+                  { label: "Preferred roles", value: c.application.preferredRoles.join(" Â· ") },
+                  { label: "Industries open to", value: c.application.preferredIndustries.join(" Â· ") },
+                  { label: "Preferred locations", value: c.application.preferredLocations.join(" Â· ") },
                   { label: "Work mode", value: c.application.workMode },
                   { label: "Availability", value: c.application.availability },
                   { label: "Notice period", value: c.application.noticePeriod },
@@ -760,7 +724,7 @@ export function Portfolio() {
                 ))}
               </div>
               <div className="mt-8 flex flex-wrap gap-3">
-                <a href={`mailto:${c.contact.email}?subject=${encodeURIComponent("Digital Marketing Executive role — " + c.hero.name)}`} className="inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 text-sm font-semibold text-primary-foreground transition-transform hover:scale-[1.02]">
+                <a href={`mailto:${c.contact.email}?subject=${encodeURIComponent("Digital Marketing Executive role â€” " + c.hero.name)}`} className="inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 text-sm font-semibold text-primary-foreground transition-transform hover:scale-[1.02]">
                   <Send className="h-4 w-4" /> {c.application.ctaLabel}
                 </a>
                 <a href="#contact" className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-6 py-3 text-sm font-semibold text-foreground hover:bg-secondary">
@@ -784,7 +748,7 @@ export function Portfolio() {
         </div>
       </Section>
 
-      {/* 14 — CONTACT */}
+      {/* 14 â€” CONTACT */}
       <Section id="contact" className="relative overflow-hidden bg-ink text-white">
 
         <div className="grid gap-14 lg:grid-cols-[1fr_1fr] lg:gap-20">
@@ -827,7 +791,7 @@ export function Portfolio() {
           </div>
         </div>
         <div className="mx-auto mt-20 flex max-w-7xl flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-sm text-white/40 sm:flex-row">
-          <span>© {new Date().getFullYear()} {c.hero.name} — {c.hero.role}</span>
+          <span>Â© {new Date().getFullYear()} {c.hero.name} â€” {c.hero.role}</span>
           <span>{c.contact.footerLine}</span>
         </div>
       </Section>

@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+﻿import { createFileRoute } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useMemo, useState } from "react";
@@ -8,11 +8,8 @@ import {
 import {
   adminDelete, adminUpload, listOmvhUploads,
 } from "@/lib/omvh.functions";
-<<<<<<< HEAD
-=======
 import { getPortfolioAssets, updatePortfolioAsset } from "@/lib/portfolio-assets.functions";
 import { createWorkItem, deleteWorkItem, listWorkItems, WORK_CATEGORIES } from "@/lib/work.functions";
->>>>>>> 3791cbc (Update portfolio admin CMS)
 import {
   getSiteContent, updateSiteContent, resetSiteContent, updateOmvhUpload,
 } from "@/lib/content.functions";
@@ -33,7 +30,7 @@ export const Route = createFileRoute("/admin")({
   component: AdminPage,
   head: () => ({
     meta: [
-      { title: "Admin — Portfolio CMS" },
+      { title: "Admin â€” Portfolio CMS" },
       { name: "description", content: "Private admin area for editing every portfolio section." },
       { name: "robots", content: "noindex, nofollow" },
     ],
@@ -92,17 +89,11 @@ function AdminPage() {
   );
 }
 
-<<<<<<< HEAD
-type Tab = "gallery" | ContentKey;
-const TABS: { id: Tab; label: string }[] = [
-  { id: "gallery", label: "Gallery Uploads" },
-=======
 type Tab = "gallery" | "assets" | "work" | ContentKey;
 const TABS: { id: Tab; label: string }[] = [
   { id: "assets", label: "Profile and Resume" },
   { id: "gallery", label: "Gallery Uploads" },
   { id: "work", label: "My Work and AI Videos" },
->>>>>>> 3791cbc (Update portfolio admin CMS)
   { id: "hero", label: "Hero" },
   { id: "about", label: "About" },
   { id: "experience", label: "Experience" },
@@ -127,7 +118,7 @@ function AdminDashboard() {
       <header className="border-b border-border">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
           <div>
-            <h1 className="text-lg font-semibold">Portfolio — Admin CMS</h1>
+            <h1 className="text-lg font-semibold">Portfolio â€” Admin CMS</h1>
             <p className="text-xs text-muted-foreground">Edit any section below. Changes go live for every visitor instantly.</p>
           </div>
           <a href="/" className="inline-flex items-center gap-2 rounded-lg border border-border px-3 py-2 text-xs font-medium hover:bg-secondary">
@@ -145,11 +136,7 @@ function AdminDashboard() {
           ))}
         </div>
 
-<<<<<<< HEAD
-        {tab === "gallery" ? <GalleryTab /> : <ContentTab key={tab} sectionKey={tab} />}
-=======
         {tab === "gallery" ? <GalleryTab /> : tab === "assets" ? <AssetsTab /> : tab === "work" ? <WorkTab /> : <ContentTab key={tab} sectionKey={tab} />}
->>>>>>> 3791cbc (Update portfolio admin CMS)
       </div>
     </div>
   );
@@ -315,8 +302,6 @@ function EditItem({
   );
 }
 
-<<<<<<< HEAD
-=======
 /* ------------------------- PROFILE AND RESUME TAB ------------------------- */
 
 function AssetsTab() {
@@ -429,7 +414,6 @@ function WorkTab() {
   );
 }
 
->>>>>>> 3791cbc (Update portfolio admin CMS)
 /* ------------------------------ CONTENT TAB ------------------------------ */
 
 function ContentTab({ sectionKey }: { sectionKey: ContentKey }) {
@@ -458,7 +442,7 @@ function ContentTab({ sectionKey }: { sectionKey: ContentKey }) {
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["site-content"] });
       setDirty(false);
-      setFlash("Saved — live on the site."); setTimeout(() => setFlash(null), 2500);
+      setFlash("Saved â€” live on the site."); setTimeout(() => setFlash(null), 2500);
     },
   });
   const resetMut = useMutation({
@@ -479,7 +463,7 @@ function ContentTab({ sectionKey }: { sectionKey: ContentKey }) {
         <div>
           <h2 className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">{label}</h2>
           <p className="mt-1 text-xs text-muted-foreground">
-            Fill in the boxes below and press Save — the website updates for every visitor instantly.
+            Fill in the boxes below and press Save â€” the website updates for every visitor instantly.
             {isDefault ? " (Currently showing the standard text.)" : " (Your saved text is live.)"}
           </p>
         </div>

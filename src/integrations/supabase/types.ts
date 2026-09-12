@@ -1,4 +1,4 @@
-export type Json =
+﻿export type Json =
   | string
   | number
   | boolean
@@ -68,8 +68,6 @@ export type Database = {
         }
         Relationships: []
       }
-<<<<<<< HEAD
-=======
       portfolio_assets: {
         Row: {
           asset_key: string
@@ -88,7 +86,6 @@ export type Database = {
         }
         Relationships: []
       }
->>>>>>> 3791cbc (Update portfolio admin CMS)
       site_content: {
         Row: {
           data: Json
