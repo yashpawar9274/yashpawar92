@@ -222,6 +222,27 @@ export function Portfolio() {
         </div>
       </header>
 
+      {/* 1B — CAPABILITIES */}
+      <Section id="capabilities" className="bg-secondary/40">
+        <SectionHeader index="01" eyebrow={c.capabilities.eyebrow} title={c.capabilities.title} intro={c.capabilities.intro} />
+        <StaggerGroup className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {c.capabilities.items.map((it) => (
+            <motion.article key={it.title} variants={staggerChild} className="group rounded-2xl border border-border bg-card p-6 transition-colors hover:border-foreground/30">
+              <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-foreground text-background">
+                <Ico name={it.icon} className="h-5 w-5" />
+              </span>
+              <h3 className="mt-5 text-base font-semibold text-foreground">{it.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{it.desc}</p>
+              <div className="mt-4 flex flex-wrap gap-1.5">
+                {(it.tags ?? []).map((t) => (
+                  <span key={t} className="rounded-full bg-secondary px-2.5 py-1 text-[11px] font-medium text-muted-foreground">{t}</span>
+                ))}
+              </div>
+            </motion.article>
+          ))}
+        </StaggerGroup>
+      </Section>
+
       {/* 2 — ABOUT */}
       <Section id="about">
         <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
