@@ -408,7 +408,7 @@ export const FIELD_LABELS: Record<string, string> = {
 
 export type ContentKey = keyof SiteContent;
 export const CONTENT_KEYS: ContentKey[] = [
-  "hero", "about", "experience", "skills", "process", "project",
+  "hero", "capabilities", "about", "experience", "skills", "process", "project",
   "campaigns", "creative", "tools", "ai", "strengths", "goals", "application", "contact",
 ];
 
