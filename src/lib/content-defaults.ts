@@ -337,7 +337,7 @@ export const DEFAULT_CONTENT: SiteContent = {
     linkedin: "https://linkedin.com/in/yashpawar9274",
     instagram: "https://instagram.com/theitsash",
     website: "https://dmyashpawar.vercel.app/",
-    footerLine: "Digital Marketing · Palghar, Maharashtra",
+    footerLine: "Digital Marketing · Web & Apps · Video · Boisar, Maharashtra",
   },
 };
 
