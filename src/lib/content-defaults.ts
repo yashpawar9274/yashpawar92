@@ -404,6 +404,9 @@ export const FIELD_LABELS: Record<string, string> = {
   instagram: "Instagram URL",
   website: "Website URL",
   footerLine: "Footer line",
+  items: "Cards",
+  tags: "Tags",
+  domains: "Rotating domain words (shown in the hero)",
 };
 
 export type ContentKey = keyof SiteContent;
