@@ -100,6 +100,7 @@ export const ICONS: Record<IconName, LucideIcon> = {
   Gauge, FileBarChart, Sparkles, MessageSquare, Building2, Users, MapPin, Mail,
   Phone, Linkedin, Globe, QrCode, BadgeCheck, Brain, Lightbulb, Clock, Handshake,
   GraduationCap, TrendingUp, Instagram, Facebook, FileText, Image: ImageIcon, Layers,
+  Code, Smartphone, Video, Film, Camera, Boxes, Cpu, Mic, Scissors, BookOpen,
 };
 const Ico = ({ name, className }: { name: IconName | string; className?: string }) => {
   const C = ICONS[name as IconName] ?? Sparkles;
