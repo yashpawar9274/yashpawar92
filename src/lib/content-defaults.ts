@@ -9,7 +9,8 @@ export type IconName =
   | "Mail" | "Phone" | "Linkedin" | "Globe" | "QrCode" | "BadgeCheck"
   | "Brain" | "Lightbulb" | "Clock" | "Handshake" | "GraduationCap"
   | "TrendingUp" | "Instagram" | "Facebook" | "FileText" | "Image"
-  | "Layers";
+  | "Layers" | "Code" | "Smartphone" | "Video" | "Film" | "Camera"
+  | "Boxes" | "Cpu" | "Mic" | "Scissors" | "BookOpen";
 
 export type SiteContent = {
   hero: {
