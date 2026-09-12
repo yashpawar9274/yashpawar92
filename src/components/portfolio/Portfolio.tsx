@@ -172,7 +172,11 @@ export function Portfolio() {
             <motion.dl initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.36 }} className="mt-12 grid max-w-lg grid-cols-3 gap-6 border-t border-white/10 pt-8">
               {c.hero.stats.map((s) => (
                 <div key={s.v}>
-                  <dt className="font-display text-xl font-bold text-white lg:text-2xl">{s.k}</dt>
+                  <dt className="font-display text-xl font-bold text-white lg:text-2xl">
+                    {s.v.toLowerCase().includes("domain") && (c.hero.domains?.length ?? 0) > 0
+                      ? <RotatingWord words={c.hero.domains} />
+                      : s.k}
+                  </dt>
                   <dd className="mt-1 text-xs uppercase tracking-wider text-white/50">{s.v}</dd>
                 </div>
               ))}
