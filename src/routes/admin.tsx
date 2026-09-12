@@ -8,6 +8,11 @@ import {
 import {
   adminDelete, adminUpload, listOmvhUploads,
 } from "@/lib/omvh.functions";
+<<<<<<< HEAD
+=======
+import { getPortfolioAssets, updatePortfolioAsset } from "@/lib/portfolio-assets.functions";
+import { createWorkItem, deleteWorkItem, listWorkItems, WORK_CATEGORIES } from "@/lib/work.functions";
+>>>>>>> 3791cbc (Update portfolio admin CMS)
 import {
   getSiteContent, updateSiteContent, resetSiteContent, updateOmvhUpload,
 } from "@/lib/content.functions";
@@ -87,9 +92,17 @@ function AdminPage() {
   );
 }
 
+<<<<<<< HEAD
 type Tab = "gallery" | ContentKey;
 const TABS: { id: Tab; label: string }[] = [
   { id: "gallery", label: "Gallery Uploads" },
+=======
+type Tab = "gallery" | "assets" | "work" | ContentKey;
+const TABS: { id: Tab; label: string }[] = [
+  { id: "assets", label: "Profile and Resume" },
+  { id: "gallery", label: "Gallery Uploads" },
+  { id: "work", label: "My Work and AI Videos" },
+>>>>>>> 3791cbc (Update portfolio admin CMS)
   { id: "hero", label: "Hero" },
   { id: "about", label: "About" },
   { id: "experience", label: "Experience" },
@@ -132,7 +145,11 @@ function AdminDashboard() {
           ))}
         </div>
 
+<<<<<<< HEAD
         {tab === "gallery" ? <GalleryTab /> : <ContentTab key={tab} sectionKey={tab} />}
+=======
+        {tab === "gallery" ? <GalleryTab /> : tab === "assets" ? <AssetsTab /> : tab === "work" ? <WorkTab /> : <ContentTab key={tab} sectionKey={tab} />}
+>>>>>>> 3791cbc (Update portfolio admin CMS)
       </div>
     </div>
   );
@@ -298,6 +315,121 @@ function EditItem({
   );
 }
 
+<<<<<<< HEAD
+=======
+/* ------------------------- PROFILE AND RESUME TAB ------------------------- */
+
+function AssetsTab() {
+  const getAssets = useServerFn(getPortfolioAssets);
+  const updateAsset = useServerFn(updatePortfolioAsset);
+  const qc = useQueryClient();
+  const { data: assets } = useQuery({ queryKey: ["portfolio-assets"], queryFn: () => getAssets() });
+  const [profile, setProfile] = useState<File | null>(null);
+  const [resume, setResume] = useState<File | null>(null);
+
+  const mutation = useMutation({
+    mutationFn: async ({ assetKey, file }: { assetKey: "profile_image" | "resume"; file: File }) => {
+      const dataUrl = await new Promise<string>((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(String(reader.result));
+        reader.onerror = () => reject(reader.error);
+        reader.readAsDataURL(file);
+      });
+      return updateAsset({ data: { assetKey, filename: file.name, contentType: file.type, dataUrl, passcode: getPasscode() } });
+    },
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["portfolio-assets"] }),
+  });
+
+  const upload = async (assetKey: "profile_image" | "resume", file: File | null) => {
+    if (!file) return;
+    await mutation.mutateAsync({ assetKey, file });
+    if (assetKey === "profile_image") setProfile(null); else setResume(null);
+  };
+
+  return (
+    <div className="grid gap-6 lg:grid-cols-2">
+      <section className="rounded-2xl border border-border bg-card p-6">
+        <h2 className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">Profile picture</h2>
+        <p className="mt-2 text-xs text-muted-foreground">This image is stored in the database and is shown in the website hero for every visitor.</p>
+        {assets?.profileImageUrl && <img src={assets.profileImageUrl} alt="Current profile" className="mt-4 aspect-[4/5] w-40 rounded-xl object-cover" />}
+        <input type="file" accept="image/png,image/jpeg,image/webp" onChange={(e) => setProfile(e.target.files?.[0] ?? null)} className="mt-4 block w-full text-xs file:mr-3 file:rounded-md file:border-0 file:bg-secondary file:px-3 file:py-2" />
+        <button disabled={!profile || mutation.isPending} onClick={() => upload("profile_image", profile)} className="mt-4 inline-flex items-center gap-2 rounded-lg bg-foreground px-4 py-2 text-xs font-semibold text-background disabled:opacity-50">
+          {mutation.isPending ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Upload className="h-3.5 w-3.5" />} Save profile picture
+        </button>
+      </section>
+      <section className="rounded-2xl border border-border bg-card p-6">
+        <h2 className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">Resume download</h2>
+        <p className="mt-2 text-xs text-muted-foreground">Upload the latest PDF or DOCX. The Download Resume button on the website will use this file immediately.</p>
+        {assets?.resumeUrl && <a href={assets.resumeUrl} target="_blank" rel="noreferrer" className="mt-4 inline-flex text-sm font-semibold text-blue hover:underline">Open current resume</a>}
+        <input type="file" accept="application/pdf,.pdf,.docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document" onChange={(e) => setResume(e.target.files?.[0] ?? null)} className="mt-4 block w-full text-xs file:mr-3 file:rounded-md file:border-0 file:bg-secondary file:px-3 file:py-2" />
+        <button disabled={!resume || mutation.isPending} onClick={() => upload("resume", resume)} className="mt-4 inline-flex items-center gap-2 rounded-lg bg-foreground px-4 py-2 text-xs font-semibold text-background disabled:opacity-50">
+          {mutation.isPending ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Upload className="h-3.5 w-3.5" />} Save resume
+        </button>
+      </section>
+      {mutation.error && <p className="text-xs text-red-600 lg:col-span-2">{(mutation.error as Error).message}</p>}
+    </div>
+  );
+}
+
+/* ------------------------------ MY WORK TAB ------------------------------ */
+
+function WorkTab() {
+  const list = useServerFn(listWorkItems);
+  const create = useServerFn(createWorkItem);
+  const remove = useServerFn(deleteWorkItem);
+  const qc = useQueryClient();
+  const { data: items = [] } = useQuery({ queryKey: ["work-items"], queryFn: () => list() });
+  const [file, setFile] = useState<File | null>(null);
+  const [category, setCategory] = useState("post_creative");
+  const [mediaType, setMediaType] = useState("image");
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [tag, setTag] = useState("");
+  const [url, setUrl] = useState("");
+  const [aspect, setAspect] = useState("1 / 1");
+  const [order, setOrder] = useState(0);
+  const [featured, setFeatured] = useState(false);
+
+  const addMut = useMutation({
+    mutationFn: async () => {
+      let uploadData: Record<string, string> = {};
+      if (file) {
+        const dataUrl = await new Promise<string>((resolve, reject) => {
+          const reader = new FileReader(); reader.onload = () => resolve(String(reader.result)); reader.onerror = () => reject(reader.error); reader.readAsDataURL(file);
+        });
+        uploadData = { filename: file.name, contentType: file.type, dataUrl };
+      }
+      if ((mediaType === "image" || mediaType === "video") && !file) throw new Error("Choose a media file for image or video items.");
+      if ((mediaType === "youtube" || mediaType === "link") && !url.trim()) throw new Error("Add the external link.");
+      return create({ data: { passcode: getPasscode(), category, media_type: mediaType, title, description, tag, external_url: url, alt: title, aspect, sort_order: order, featured, ...uploadData } });
+    },
+    onSuccess: () => { qc.invalidateQueries({ queryKey: ["work-items"] }); setFile(null); setTitle(""); setDescription(""); setTag(""); setUrl(""); setOrder(0); },
+  });
+  const deleteMut = useMutation({ mutationFn: (id: string) => remove({ data: { id, passcode: getPasscode() } }), onSuccess: () => qc.invalidateQueries({ queryKey: ["work-items"] }) });
+
+  return (
+    <div className="grid gap-8 lg:grid-cols-[420px_1fr]">
+      <form onSubmit={(e) => { e.preventDefault(); addMut.mutate(); }} className="h-fit rounded-2xl border border-border bg-card p-6">
+        <h2 className="mb-2 text-sm font-semibold uppercase tracking-widest text-muted-foreground">Add work item</h2>
+        <p className="mb-4 text-xs text-muted-foreground">Use AI Videos for the AI Reels section, Post Creatives for the creative gallery, or another category for My Work.</p>
+        <label className="mb-3 block text-xs font-medium">Category<select value={category} onChange={(e) => setCategory(e.target.value)} className="mt-1 w-full rounded-lg border border-border bg-background px-3 py-2 text-sm">{WORK_CATEGORIES.map((item) => <option key={item.id} value={item.id}>{item.label}</option>)}</select></label>
+        <label className="mb-3 block text-xs font-medium">Media type<select value={mediaType} onChange={(e) => setMediaType(e.target.value)} className="mt-1 w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"><option value="image">Image</option><option value="video">Video file</option><option value="youtube">YouTube link</option><option value="link">Website link</option></select></label>
+        {(mediaType === "image" || mediaType === "video") && <label className="mb-3 block text-xs font-medium">Media file<input type="file" accept={mediaType === "video" ? "video/*" : "image/*"} onChange={(e) => setFile(e.target.files?.[0] ?? null)} className="mt-1 block w-full text-xs" /></label>}
+        {(mediaType === "youtube" || mediaType === "link") && <Field label={mediaType === "youtube" ? "YouTube URL" : "Website URL"} value={url} onChange={setUrl} required />}
+        <Field label="Title" value={title} onChange={setTitle} required />
+        <Field label="Short description" value={description} onChange={setDescription} textarea />
+        <Field label="Tag" value={tag} onChange={setTag} />
+        <div className="grid grid-cols-2 gap-3"><Field label="Aspect ratio" value={aspect} onChange={setAspect} /><label className="mb-3 block text-xs font-medium">Sort order<input type="number" value={order} onChange={(e) => setOrder(Number(e.target.value))} className="mt-1 w-full rounded-lg border border-border bg-background px-3 py-2 text-sm" /></label></div>
+        <label className="flex items-center gap-2 text-xs font-medium"><input type="checkbox" checked={featured} onChange={(e) => setFeatured(e.target.checked)} /> Featured</label>
+        <button disabled={addMut.isPending || !title} className="mt-5 flex w-full items-center justify-center gap-2 rounded-lg bg-foreground px-4 py-2.5 text-sm font-semibold text-background disabled:opacity-50">{addMut.isPending ? <Loader2 className="h-4 w-4 animate-spin" /> : <Upload className="h-4 w-4" />} Add to website</button>
+        {addMut.error && <p className="mt-3 text-xs text-red-600">{(addMut.error as Error).message}</p>}
+      </form>
+      <section><h2 className="mb-4 text-sm font-semibold uppercase tracking-widest text-muted-foreground">Published work ({items.length})</h2><div className="grid gap-4 sm:grid-cols-2">{items.map((item) => <article key={item.id} className="overflow-hidden rounded-xl border border-border bg-card"><div className="aspect-video bg-secondary">{item.media_type === "image" ? <img src={item.url} alt={item.alt} className="h-full w-full object-cover" /> : <div className="grid h-full place-items-center p-4 text-center text-xs text-muted-foreground">{item.media_type === "video" ? "Video file" : item.external_url}</div>}</div><div className="p-4"><p className="text-[10px] font-semibold uppercase tracking-widest text-blue">{WORK_CATEGORIES.find((x) => x.id === item.category)?.label ?? item.category}</p><h3 className="mt-1 text-sm font-semibold">{item.title}</h3><button onClick={() => { if (confirm("Delete this work item?")) deleteMut.mutate(item.id); }} className="mt-3 inline-flex items-center gap-1 text-xs font-medium text-red-600 hover:underline"><Trash2 className="h-3.5 w-3.5" /> Delete</button></div></article>)}{items.length === 0 && <p className="rounded-xl border border-dashed border-border p-8 text-center text-sm text-muted-foreground sm:col-span-2">No work items yet.</p>}</div></section>
+    </div>
+  );
+}
+
+>>>>>>> 3791cbc (Update portfolio admin CMS)
 /* ------------------------------ CONTENT TAB ------------------------------ */
 
 function ContentTab({ sectionKey }: { sectionKey: ContentKey }) {

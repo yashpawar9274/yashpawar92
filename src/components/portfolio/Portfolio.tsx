@@ -4,6 +4,11 @@ import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { listOmvhUploads } from "@/lib/omvh.functions";
 import { getSiteContent } from "@/lib/content.functions";
+<<<<<<< HEAD
+=======
+import { getPortfolioAssets } from "@/lib/portfolio-assets.functions";
+import { listWorkItems, type WorkItem } from "@/lib/work.functions";
+>>>>>>> 3791cbc (Update portfolio admin CMS)
 import { mergeContent, type IconName, type SiteContent } from "@/lib/content-defaults";
 import {
   Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer,
@@ -23,7 +28,10 @@ import portrait from "@/assets/portrait.jpg";
 import heroBg from "@/assets/hero-bg.jpg";
 import { Navbar } from "./Navbar";
 import { Reveal, StaggerGroup, staggerChild } from "./reveal";
+<<<<<<< HEAD
 import { EditableImage } from "./EditableImage";
+=======
+>>>>>>> 3791cbc (Update portfolio admin CMS)
 import { WorkShowcase } from "./WorkShowcase";
 
 import dreamAsset from "@/assets/omvh/dream.asset.json";
@@ -160,13 +168,44 @@ function SectionHeader({
   );
 }
 
+<<<<<<< HEAD
+=======
+function portfolioYoutubeId(url: string) {
+  const match = url.match(/(?:youtu\.be\/|v=|shorts\/|embed\/)([A-Za-z0-9_-]{6,})/);
+  return match?.[1] ?? null;
+}
+
+function WorkPreview({ item }: { item: WorkItem }) {
+  if (item.media_type === "youtube") {
+    const id = portfolioYoutubeId(item.external_url ?? item.url);
+    return id ? <iframe src={`https://www.youtube.com/embed/${id}`} title={item.title} loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen className="absolute inset-0 h-full w-full border-0" /> : null;
+  }
+  if (item.media_type === "video") return <video src={item.url} controls playsInline preload="metadata" className="absolute inset-0 h-full w-full object-cover" aria-label={item.title} />;
+  return <img src={item.url} alt={item.alt || item.title} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" />;
+}
+
+>>>>>>> 3791cbc (Update portfolio admin CMS)
 /* --------------------------------- Page ---------------------------------- */
 export function Portfolio() {
   const fetchUploads = useServerFn(listOmvhUploads);
   const fetchContent = useServerFn(getSiteContent);
+<<<<<<< HEAD
   const { data: uploads = [] } = useQuery({ queryKey: ["omvh-uploads"], queryFn: () => fetchUploads(), staleTime: 0, refetchOnWindowFocus: true, refetchInterval: 30_000 });
   const { data: raw } = useQuery({ queryKey: ["site-content"], queryFn: () => fetchContent(), staleTime: 0, refetchOnWindowFocus: true, refetchInterval: 30_000 });
   const c: SiteContent = mergeContent(raw);
+=======
+  const fetchAssets = useServerFn(getPortfolioAssets);
+  const fetchWork = useServerFn(listWorkItems);
+  const { data: uploads = [] } = useQuery({ queryKey: ["omvh-uploads"], queryFn: () => fetchUploads(), staleTime: 0, refetchOnWindowFocus: true, refetchInterval: 30_000 });
+  const { data: raw } = useQuery({ queryKey: ["site-content"], queryFn: () => fetchContent(), staleTime: 0, refetchOnWindowFocus: true, refetchInterval: 30_000 });
+  const { data: assets } = useQuery({ queryKey: ["portfolio-assets"], queryFn: () => fetchAssets(), staleTime: 0, refetchOnWindowFocus: true, refetchInterval: 30_000 });
+  const { data: workItems = [] } = useQuery({ queryKey: ["work-items"], queryFn: () => fetchWork(), staleTime: 0, refetchOnWindowFocus: true, refetchInterval: 30_000 });
+  const c: SiteContent = mergeContent(raw);
+  const profileImage = assets?.profileImageUrl ?? portrait;
+  const resumeUrl = assets?.resumeUrl ?? "/resume/Yash_Pawar_ATS_Resume.docx";
+  const creativeItems = workItems.filter((item) => item.category === "post_creative");
+  const aiVideoItems = workItems.filter((item) => item.category === "ai_video");
+>>>>>>> 3791cbc (Update portfolio admin CMS)
 
   return (
     <div id="top" className="overflow-x-hidden bg-background">
@@ -195,6 +234,12 @@ export function Portfolio() {
               <a href={c.hero.ctaSecondary.href} className="inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10">
                 {c.hero.ctaSecondary.label}
               </a>
+<<<<<<< HEAD
+=======
+              <a href={resumeUrl} download className="inline-flex items-center gap-2 rounded-full border border-blue-glow/60 bg-blue/20 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-blue/35">
+                <FileText className="h-4 w-4" /> Download Resume
+              </a>
+>>>>>>> 3791cbc (Update portfolio admin CMS)
             </motion.div>
             <motion.dl initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.36 }} className="mt-12 grid max-w-lg grid-cols-3 gap-6 border-t border-white/10 pt-8">
               {c.hero.stats.map((s) => (
@@ -212,10 +257,17 @@ export function Portfolio() {
           <motion.div initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }} className="relative mx-auto w-full max-w-sm">
             <div className="absolute -inset-4 rounded-[2rem] bg-blue/20 blur-3xl" />
             <div className="relative overflow-hidden rounded-[1.75rem] border border-white/15 bg-white/5 shadow-[var(--shadow-blue)]">
+<<<<<<< HEAD
               <EditableImage storageKey="hero-portrait" fallback={portrait} alt={`${c.hero.name} — professional portrait`} aspect="4 / 5" imgClassName="h-full w-full object-cover" label="Upload photo" />
               <div className="pointer-events-none absolute bottom-4 left-4 right-4 flex items-center justify-between rounded-xl border border-white/15 bg-ink/60 px-4 py-3 backdrop-blur-md">
                 <span className="text-sm font-semibold text-white">{c.hero.name}</span>
                 <span className="text-xs text-blue-glow">Hover to replace</span>
+=======
+              <img src={profileImage} alt={`${c.hero.name} — professional portrait`} className="h-full w-full object-cover" style={{ aspectRatio: "4 / 5" }} />
+              <div className="pointer-events-none absolute bottom-4 left-4 right-4 flex items-center justify-between rounded-xl border border-white/15 bg-ink/60 px-4 py-3 backdrop-blur-md">
+                <span className="text-sm font-semibold text-white">{c.hero.name}</span>
+                <span className="text-xs text-blue-glow">Portfolio</span>
+>>>>>>> 3791cbc (Update portfolio admin CMS)
               </div>
             </div>
           </motion.div>
@@ -403,7 +455,11 @@ export function Portfolio() {
         </Reveal>
         <div className="mb-4 flex items-center justify-between">
           <span className="eyebrow">Creative Gallery</span>
+<<<<<<< HEAD
           <span className="text-xs text-muted-foreground">{omvhCreatives.length - 1 + uploads.length} live creatives · social, awareness &amp; local SEO</span>
+=======
+          <span className="text-xs text-muted-foreground">{omvhCreatives.length - 1 + uploads.length + creativeItems.length} live creatives · social, awareness &amp; local SEO</span>
+>>>>>>> 3791cbc (Update portfolio admin CMS)
         </div>
         <StaggerGroup className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {omvhCreatives.slice(1).map((cv) => (
@@ -430,6 +486,21 @@ export function Portfolio() {
               </figcaption>
             </motion.figure>
           ))}
+<<<<<<< HEAD
+=======
+          {creativeItems.map((item) => (
+            <motion.figure key={item.id} variants={staggerChild} className="card-premium group overflow-hidden rounded-2xl">
+              <div className="relative overflow-hidden bg-secondary" style={{ aspectRatio: item.aspect || "1 / 1" }}>
+                <WorkPreview item={item} />
+              </div>
+              <figcaption className="p-5">
+                <span className="text-[10px] font-semibold uppercase tracking-widest text-blue">{item.tag || "Creative"}</span>
+                <h4 className="mt-2 text-sm font-bold">{item.title}</h4>
+                {item.description && <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">{item.description}</p>}
+              </figcaption>
+            </motion.figure>
+          ))}
+>>>>>>> 3791cbc (Update portfolio admin CMS)
         </StaggerGroup>
       </Section>
 
@@ -522,6 +593,21 @@ export function Portfolio() {
                 </div>
               </motion.div>
             ))}
+<<<<<<< HEAD
+=======
+            {aiVideoItems.map((item) => (
+              <motion.div key={item.id} variants={staggerChild} className="card-premium overflow-hidden">
+                <div className="relative w-full overflow-hidden bg-ink" style={{ aspectRatio: item.aspect || "9 / 16" }}>
+                  <WorkPreview item={item} />
+                </div>
+                <div className="p-5">
+                  <span className="eyebrow">{item.tag || "AI Video"}</span>
+                  <h3 className="mt-2 text-sm font-bold">{item.title}</h3>
+                  {item.description && <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">{item.description}</p>}
+                </div>
+              </motion.div>
+            ))}
+>>>>>>> 3791cbc (Update portfolio admin CMS)
           </StaggerGroup>
         </div>
 

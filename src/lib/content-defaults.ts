@@ -90,7 +90,11 @@ export const DEFAULT_CONTENT: SiteContent = {
     ctaPrimary: { label: "See what I can do", href: "#capabilities" },
     ctaSecondary: { label: "Contact me", href: "#contact" },
     stats: [
+<<<<<<< HEAD
       { k: "2.5+ Yrs", v: "Experience" },
+=======
+      { k: "2+ Yrs", v: "Experience" },
+>>>>>>> 3791cbc (Update portfolio admin CMS)
       { k: "Real Estate", v: "Proven Domain" },
       { k: "Boisar, MH", v: "Location" },
     ],
@@ -127,7 +131,11 @@ export const DEFAULT_CONTENT: SiteContent = {
   },
   about: {
     paragraph:
+<<<<<<< HEAD
       "I'm Yash Pawar, based in Boisar, Maharashtra — a multi-skilled digital professional with 2.5+ years of hands-on experience. I own the full digital function for OM Value Homes (campaigns, creatives, content and reporting), and alongside that I build websites, web apps and SaaS products, shoot and edit video, produce AI-generated video with tools like Flow, and write scripts and blogs. Marketing, product and content are three sides of the same job for me, and I can deliver all three.",
+=======
+      "I'm Yash Pawar, based in Boisar, Maharashtra — a multi-skilled digital professional with 2+ years of hands-on experience. I own the full digital function for OM Value Homes (campaigns, creatives, content and reporting), and alongside that I build websites, web apps and SaaS products, shoot and edit video, produce AI-generated video with tools like Flow, and write scripts and blogs. Marketing, product and content are three sides of the same job for me, and I can deliver all three.",
+>>>>>>> 3791cbc (Update portfolio admin CMS)
     objectiveLabel: "Career Objective",
     objective:
       "To grow into a senior digital marketing role where I can lead multi-channel campaigns across industries, apply data-driven decision making, and combine creativity with AI tools to deliver repeatable, efficient growth.",
@@ -141,7 +149,11 @@ export const DEFAULT_CONTENT: SiteContent = {
     {
       role: "Digital Marketing Executive",
       org: "OM Value Homes — Real Estate, Palghar",
+<<<<<<< HEAD
       period: "Dec 2024 · Present",
+=======
+      period: "Sep 2024 · Present",
+>>>>>>> 3791cbc (Update portfolio admin CMS)
       points: [
         "Manage end-to-end digital marketing across social, paid, and local-search channels.",
         "Plan and execute monthly content calendars and campaign roadmaps tied to business goals.",
@@ -273,7 +285,11 @@ export const DEFAULT_CONTENT: SiteContent = {
     eyebrow: "Job Application Summary",
     title: "Why I'm a strong fit for Digital Marketing Executive roles",
     summary:
+<<<<<<< HEAD
       "Digital Marketing Executive with 2.5+ years of hands-on experience owning the full digital marketing function — paid social, content, creative design, lead generation, CRM handoff, local SEO, and performance reporting. Proven in real estate, and ready to apply the same growth playbook to B2C, D2C, e-commerce, SaaS, ed-tech, healthcare, hospitality, retail, and service brands.",
+=======
+      "Digital Marketing Executive with 2+ years of hands-on experience owning the full digital marketing function — paid social, content, creative design, lead generation, CRM handoff, local SEO, and performance reporting. Proven in real estate, and ready to apply the same growth playbook to B2C, D2C, e-commerce, SaaS, ed-tech, healthcare, hospitality, retail, and service brands.",
+>>>>>>> 3791cbc (Update portfolio admin CMS)
     positioning:
       "I bring campaign strategy, in-house creative production, and AI-assisted execution together in one role — so teams get faster turnaround, consistent branding, and lead-focused performance without relying on multiple agencies.",
     highlights: [

@@ -68,6 +68,27 @@ export type Database = {
         }
         Relationships: []
       }
+<<<<<<< HEAD
+=======
+      portfolio_assets: {
+        Row: {
+          asset_key: string
+          storage_path: string
+          updated_at: string
+        }
+        Insert: {
+          asset_key: string
+          storage_path: string
+          updated_at?: string
+        }
+        Update: {
+          asset_key?: string
+          storage_path?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+>>>>>>> 3791cbc (Update portfolio admin CMS)
       site_content: {
         Row: {
           data: Json
