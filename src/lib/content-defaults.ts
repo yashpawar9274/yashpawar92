@@ -330,8 +330,8 @@ export const DEFAULT_CONTENT: SiteContent = {
     ctaLabel: "Discuss this role",
   },
   contact: {
-    intro: "Open to Digital Marketing Executive and Senior Digital Marketing Executive roles across real estate, B2C, services, e-commerce, D2C, and product brands. Let's connect.",
-    location: "Palghar (W), Maharashtra",
+    intro: "Open to Digital Marketing, web/app development, and video content roles or projects across real estate, B2C, services, e-commerce, D2C, SaaS, and product brands. Let's connect.",
+    location: "Boisar, Maharashtra",
     email: "theyashpawar92@gmail.com",
     phone: "+91 73850 66631",
     linkedin: "https://linkedin.com/in/yashpawar9274",
