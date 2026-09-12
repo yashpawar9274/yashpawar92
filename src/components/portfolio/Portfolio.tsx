@@ -107,6 +107,33 @@ const Ico = ({ name, className }: { name: IconName | string; className?: string 
   return <C className={className} />;
 };
 
+/** Cycles through the domain words so the hero reflects every skill, not one industry. */
+function RotatingWord({ words, interval = 2200 }: { words: string[]; interval?: number }) {
+  const [i, setI] = useState(0);
+  useEffect(() => {
+    if (words.length < 2) return;
+    const t = setInterval(() => setI((p) => (p + 1) % words.length), interval);
+    return () => clearInterval(t);
+  }, [words, interval]);
+  const word = words[i] ?? words[0] ?? "";
+  return (
+    <span className="relative inline-block">
+      <AnimatePresence mode="wait">
+        <motion.span
+          key={word}
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -8 }}
+          transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+          className="inline-block whitespace-nowrap"
+        >
+          {word}
+        </motion.span>
+      </AnimatePresence>
+    </span>
+  );
+}
+
 /* ---------------------------- layout helpers ------------------------------ */
 function Section({ id, children, className = "" }: { id?: string; children: ReactNode; className?: string }) {
   return (
