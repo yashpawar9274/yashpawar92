@@ -96,6 +96,7 @@ const TABS: { id: Tab; label: string }[] = [
   { id: "work", label: "My Work and AI Videos" },
   { id: "hero", label: "Hero" },
   { id: "about", label: "About" },
+  { id: "capabilities", label: "What I Can Do" },
   { id: "experience", label: "Experience" },
   { id: "skills", label: "Skills" },
   { id: "process", label: "Process" },
@@ -107,6 +108,7 @@ const TABS: { id: Tab; label: string }[] = [
   { id: "strengths", label: "Strengths" },
   { id: "goals", label: "Future Goals" },
   { id: "application", label: "Application Summary" },
+  { id: "assistant", label: "Voice Assistant" },
   { id: "contact", label: "Contact" },
 ];
 

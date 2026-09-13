@@ -432,12 +432,18 @@ export const FIELD_LABELS: Record<string, string> = {
   items: "Cards",
   tags: "Tags",
   domains: "Rotating domain words (shown in the hero)",
+  enabled: "Show the assistant on the site",
+  buttonLabel: "Floating button label",
+  subtitle: "Subtitle",
+  greeting: "Greeting spoken first",
+  suggestions: "Suggested questions",
+  voiceInstructions: "Voice style instructions",
 };
 
 export type ContentKey = keyof SiteContent;
 export const CONTENT_KEYS: ContentKey[] = [
   "hero", "capabilities", "about", "experience", "skills", "process", "project",
-  "campaigns", "creative", "tools", "ai", "strengths", "goals", "application", "contact",
+  "campaigns", "creative", "tools", "ai", "strengths", "goals", "application", "assistant", "contact",
 ];
 
 export function mergeContent(overrides: Partial<Record<string, unknown>> | null | undefined): SiteContent {
