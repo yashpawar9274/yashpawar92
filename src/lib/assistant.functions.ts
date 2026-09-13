@@ -109,7 +109,19 @@ ${profile}`;
 
 /** Turns assistant text into natural speech (base64 mp3). */
 export const assistantSpeak = createServerFn({ method: "POST" })
-  .inputValidator((d: unknown) => z.object({ text: z.string().min(1).max(1200) }).parse(d))
+  .inputValidator((d: unknown) =>
+    z
+      .object({
+        text: z.string().min(1).max(1200),
+        instructions: z
+          .string()
+          .max(400)
+          .default(
+            "Speak like a warm, natural young Indian professional: conversational pace, friendly, clear, not robotic.",
+          ),
+      })
+      .parse(d),
+  )
   .handler(async ({ data }) => {
     const key = process.env["LOVABLE_API_KEY"];
     if (!key) throw new Error("The assistant is not configured yet.");
