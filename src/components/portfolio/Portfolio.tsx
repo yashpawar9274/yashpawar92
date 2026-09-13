@@ -26,6 +26,7 @@ import heroBg from "@/assets/hero-bg.jpg";
 import { Navbar } from "./Navbar";
 import { Reveal, StaggerGroup, staggerChild } from "./reveal";
 import { WorkShowcase } from "./WorkShowcase";
+import { VoiceAssistant } from "./VoiceAssistant";
 
 import dreamAsset from "@/assets/omvh/dream.asset.json";
 import newspaperAsset from "@/assets/omvh/newspaper.asset.json";
@@ -795,6 +796,8 @@ export function Portfolio() {
           <span>{c.contact.footerLine}</span>
         </div>
       </Section>
+
+      <VoiceAssistant config={c.assistant} name={c.hero.name} />
     </div>
   );
 }

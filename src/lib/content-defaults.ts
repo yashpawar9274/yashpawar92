@@ -69,6 +69,15 @@ export type SiteContent = {
     salaryExpectation: string;
     ctaLabel: string;
   };
+  assistant: {
+    enabled: boolean;
+    buttonLabel: string;
+    title: string;
+    subtitle: string;
+    greeting: string;
+    suggestions: string[];
+    voiceInstructions: string;
+  };
   contact: {
     intro: string;
     location: string;
@@ -329,6 +338,22 @@ export const DEFAULT_CONTENT: SiteContent = {
     salaryExpectation: "As per role & industry standards",
     ctaLabel: "Discuss this role",
   },
+  assistant: {
+    enabled: true,
+    buttonLabel: "Talk to my AI",
+    title: "Ask about Yash",
+    subtitle: "Press and hold the mic, ask anything — you'll get a spoken answer.",
+    greeting:
+      "Hi! I'm Yash Pawar's AI assistant. You can ask me about his skills, experience, projects or availability. What would you like to know?",
+    suggestions: [
+      "What can Yash do?",
+      "Tell me about his experience",
+      "Which tools does he use?",
+      "Is he available for a new role?",
+    ],
+    voiceInstructions:
+      "Speak like a warm, natural young Indian professional: conversational pace, friendly, clear, not robotic.",
+  },
   contact: {
     intro: "Open to Digital Marketing, web/app development, and video content roles or projects across real estate, B2C, services, e-commerce, D2C, SaaS, and product brands. Let's connect.",
     location: "Boisar, Maharashtra",
@@ -407,12 +432,18 @@ export const FIELD_LABELS: Record<string, string> = {
   items: "Cards",
   tags: "Tags",
   domains: "Rotating domain words (shown in the hero)",
+  enabled: "Show the assistant on the site",
+  buttonLabel: "Floating button label",
+  subtitle: "Subtitle",
+  greeting: "Greeting spoken first",
+  suggestions: "Suggested questions",
+  voiceInstructions: "Voice style instructions",
 };
 
 export type ContentKey = keyof SiteContent;
 export const CONTENT_KEYS: ContentKey[] = [
   "hero", "capabilities", "about", "experience", "skills", "process", "project",
-  "campaigns", "creative", "tools", "ai", "strengths", "goals", "application", "contact",
+  "campaigns", "creative", "tools", "ai", "strengths", "goals", "application", "assistant", "contact",
 ];
 
 export function mergeContent(overrides: Partial<Record<string, unknown>> | null | undefined): SiteContent {

@@ -53,7 +53,9 @@ async function buildProfile(): Promise<string> {
     "SKILLS:\n" +
       c.skills.groups.map((g) => `- ${g.category}: ${g.skills.map((s) => s.name).join(", ")}`).join("\n"),
   );
-  lines.push(`FEATURED PROJECT: ${c.project.title} — ${c.project.desc}`);
+  lines.push(
+    "FEATURED PROJECT (OM VALUE HOMES):\n" + c.project.map((p) => `- ${p.title}: ${p.body}`).join("\n"),
+  );
   lines.push(
     `APPLICATION: ${c.application.summary} Preferred roles: ${c.application.preferredRoles.join(", ")}. Industries: ${c.application.preferredIndustries.join(", ")}. Locations: ${c.application.preferredLocations.join(", ")}. Work mode: ${c.application.workMode}. Availability: ${c.application.availability}. Notice: ${c.application.noticePeriod}.`,
   );
@@ -107,7 +109,19 @@ ${profile}`;
 
 /** Turns assistant text into natural speech (base64 mp3). */
 export const assistantSpeak = createServerFn({ method: "POST" })
-  .inputValidator((d: unknown) => z.object({ text: z.string().min(1).max(1200) }).parse(d))
+  .inputValidator((d: unknown) =>
+    z
+      .object({
+        text: z.string().min(1).max(1200),
+        instructions: z
+          .string()
+          .max(400)
+          .default(
+            "Speak like a warm, natural young Indian professional: conversational pace, friendly, clear, not robotic.",
+          ),
+      })
+      .parse(d),
+  )
   .handler(async ({ data }) => {
     const key = process.env["LOVABLE_API_KEY"];
     if (!key) throw new Error("The assistant is not configured yet.");
@@ -120,8 +134,7 @@ export const assistantSpeak = createServerFn({ method: "POST" })
         input: data.text,
         voice: "alloy",
         response_format: "mp3",
-        instructions:
-          "Speak like a warm, natural young Indian professional: conversational pace, friendly, clear, not robotic.",
+        instructions: data.instructions,
       }),
     });
     if (!res.ok) throw gatewayError(res.status, await res.text());
@@ -150,7 +163,8 @@ export const assistantTranscribe = createServerFn({ method: "POST" })
 
     const form = new FormData();
     form.append("model", "openai/gpt-4o-mini-transcribe");
-    form.append("file", new Blob([bytes], { type: data.mimeType }), "question.webm");
+    const ext = data.mimeType.includes("mp4") ? "mp4" : data.mimeType.includes("wav") ? "wav" : data.mimeType.includes("mpeg") ? "mp3" : data.mimeType.includes("ogg") ? "ogg" : "webm";
+    form.append("file", new Blob([bytes], { type: data.mimeType }), `question.${ext}`);
 
     const res = await fetch(`${GATEWAY}/audio/transcriptions`, {
       method: "POST",
