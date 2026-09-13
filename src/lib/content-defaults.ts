@@ -69,6 +69,15 @@ export type SiteContent = {
     salaryExpectation: string;
     ctaLabel: string;
   };
+  assistant: {
+    enabled: boolean;
+    buttonLabel: string;
+    title: string;
+    subtitle: string;
+    greeting: string;
+    suggestions: string[];
+    voiceInstructions: string;
+  };
   contact: {
     intro: string;
     location: string;
