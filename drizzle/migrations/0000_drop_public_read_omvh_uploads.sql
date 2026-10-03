@@ -1,0 +1,1 @@
+DROP POLICY IF EXISTS "Public can read omvh-uploads files" ON storage.objects;
