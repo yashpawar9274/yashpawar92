@@ -2,7 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { useServerFn } from "@tanstack/react-start";
 import { Mic, Square, X, Loader2, Sparkles, Volume2, Send } from "lucide-react";
-import { assistantAsk, assistantSpeak, assistantTranscribe } from "@/lib/assistant.functions";
+import { assistantAsk, assistantTranscribe } from "@/lib/assistant.functions";
+import { streamSpeech } from "@/lib/stream-speech";
 import type { SiteContent } from "@/lib/content-defaults";
 
 type Msg = { role: "user" | "assistant"; content: string };
@@ -17,7 +18,6 @@ function pickMime() {
 
 export function VoiceAssistant({ config, name }: { config: SiteContent["assistant"]; name: string }) {
   const ask = useServerFn(assistantAsk);
-  const speak = useServerFn(assistantSpeak);
   const transcribe = useServerFn(assistantTranscribe);
 
   const [open, setOpen] = useState(false);
@@ -44,24 +44,32 @@ export function VoiceAssistant({ config, name }: { config: SiteContent["assistan
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
 
+  const abortRef = useRef<AbortController | null>(null);
   const stopAudio = () => {
+    abortRef.current?.abort();
+    abortRef.current = null;
     if (audioRef.current) {
       audioRef.current.pause();
       audioRef.current = null;
     }
   };
 
+  useEffect(() => () => abortRef.current?.abort(), []);
+
   async function play(text: string) {
+    stopAudio();
+    const ctrl = new AbortController();
+    abortRef.current = ctrl;
     try {
       setStatus("speaking");
-      const { audio } = await speak({ data: { text: text.slice(0, 1200), instructions: config.voiceInstructions } });
-      stopAudio();
-      const el = new Audio(audio);
-      audioRef.current = el;
-      el.onended = () => setStatus("idle");
-      await el.play();
+      await streamSpeech(text.slice(0, 1200), config.voiceInstructions, ctrl.signal);
     } catch {
-      setStatus("idle");
+      /* stopped or failed: fall through to idle */
+    } finally {
+      if (abortRef.current === ctrl) {
+        abortRef.current = null;
+        setStatus("idle");
+      }
     }
   }
 
